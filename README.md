@@ -1,9 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to github page for my Auction app!
 
-Things you may want to cover:
+I am unsatisfied with the current Fantasy Football Auction web applications, and I decided it would be fun and instructive to build my own.
+
+This app is built with Rails 5 and React js.
+
+My blog I maintained while I built the app is shown here:
+https://medium.com/brockwebdev
+
+
+
+Bullets for later:
 
 * Ruby version
 

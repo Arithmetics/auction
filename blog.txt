@@ -1,3 +1,7 @@
 1. new rails app with --webpack=react built in. not sure if i need react_on_rails gem
 
-2. 
+2. (talk about rails, react experience and why chosen to build on)
+
+3. github link
+
+4. devise setup
