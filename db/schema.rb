@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 20180202232927) do
   end
 
   create_table "players", force: :cascade do |t|
-    t.integer "player_id"
     t.string "esbid"
     t.string "gsisPlayerId"
     t.string "player_name"
