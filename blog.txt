@@ -5,3 +5,13 @@
 3. github link
 
 4. devise setup
+
+5. researched the nfl api
+
+6. debated my data models
+
+7. made player and game models
+
+8. db seeded with api requests from nfl api
+
+9. did model associations for player and games 

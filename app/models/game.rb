@@ -1,7 +1,4 @@
 class Game < ApplicationRecord
-
+  belongs to :player
 
 end
-
-
-player_list = []

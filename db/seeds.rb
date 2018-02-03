@@ -1,7 +1,7 @@
 require 'open-uri'
 require 'json'
 
-
+###############seasons seed################
 #
 # def api_request(week, season, position)
 #   response = open("http://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=#{season}&week=#{week}&position=#{position}&format=json").read
@@ -177,19 +177,21 @@ require 'json'
 #   end
 # end
 
-player_list = []
-Game.all.each do |game|
-  player_list.push([game.player_id, game.esbid, game.gsisPlayerId, game.player_name, game.position])
-end
 
-unique_players = player_list.uniq
-
-unique_players.each do |player|
-  Player.create(
-    player_id: player[0],
-    esbid: player[1],
-    gsisPlayerId: player[2],
-    player_name: player[3],
-    position: player[4]
-  )
-end
+##########players seed###################
+# player_list = []
+# Game.all.each do |game|
+#   player_list.push([game.player_id, game.esbid, game.gsisPlayerId, game.player_name, game.position])
+# end
+#
+# unique_players = player_list.uniq
+#
+# unique_players.each do |player|
+#   Player.create(
+#     player_id: player[0],
+#     esbid: player[1],
+#     gsisPlayerId: player[2],
+#     player_name: player[3],
+#     position: player[4]
+#   )
+# end
