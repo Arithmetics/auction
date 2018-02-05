@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180202232927) do
+ActiveRecord::Schema.define(version: 20180205222006) do
+
+  create_table "bids", force: :cascade do |t|
+    t.integer "amount"
+    t.integer "user_id"
+    t.integer "draft_id"
+    t.integer "player_id"
+    t.boolean "winning", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "drafts", force: :cascade do |t|
+    t.integer "year"
+    t.string "format"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "games", force: :cascade do |t|
     t.integer "season"

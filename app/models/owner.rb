@@ -1,2 +1,0 @@
-class Owner < ApplicationRecord
-end
