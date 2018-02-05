@@ -1,0 +1,9 @@
+<h1> Players 2013 - 2017</h1>
+<ul>
+  <% @players.each do |player| %>
+    <li>
+      <%= link_to player.player_name, player %>,
+      <%= player.position %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,11 @@
+<h1><%= @player.player_name %></h1>
+<ul>
+  <% @games.each do |game| %>
+    <li>
+      <%= game.season %>,
+      <%= game.week %>,
+      <%= game.rushing_yards %>,
+      <%= game.rushing_touchdowns %>
+    </li>
+  <% end %>
+</ul>
