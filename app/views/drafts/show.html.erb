@@ -1,0 +1,48 @@
+<h1>2017 Draft</h1>
+<h3>Draft Status: Open! </h3>
+
+<div class="box">
+  <h4>Users online: </h4>
+  <% @users.each do |user| %>
+  <h5> <%= user.name + " has $" + user.money_remaining(@draft.year).to_s + " remaining" %> </h5>
+  <% end %>
+</div>
+
+
+
+<% if !@nominated_player %>
+  <div class="box">
+    <h4>Being bid on: </h4>
+    Waiting for nomination....
+  </div>
+<% else %>
+  <div class="box">
+    <h3><%= @nominated_player.player_name %></h3>
+    <h3> Current Bid: $<%= @bids.first.amount %> </h3>
+    <h3> Leading Bidder: <%= @bids.first.user.name %> </h3>
+  </div>
+
+
+
+  <div class="box">
+    <%= form_for @bid do |f| %>
+      <%= f.hidden_field :player_id, value: @nominated_player.id %>
+      <%= f.hidden_field :draft_id, value: @draft.id %>
+      <%= f.hidden_field :winning, value: false %>
+      $ <%= f.number_field :amount, value: @bids.first.amount + 1 %>
+      <%= f.submit %>
+    <% end %>
+  </div>
+
+  <div class="box">
+    <h3> Bid History: </h3>
+    <ul>
+      <% @bids.each do |bid| %>
+        <li><%= bid.user.name %>,
+            $<%=bid.amount %>
+             @ <%= bid.created_at %>, <%= link_to 'Delete', bid_path(bid), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </li>
+      <%end %>
+    </ul>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205222006) do
+ActiveRecord::Schema.define(version: 20180205232909) do
 
   create_table "bids", force: :cascade do |t|
     t.integer "amount"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20180205222006) do
     t.string "format"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "open"
+    t.integer "nominated_player_id"
   end
 
   create_table "games", force: :cascade do |t|

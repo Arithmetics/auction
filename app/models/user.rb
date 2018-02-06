@@ -17,4 +17,10 @@ class User < ApplicationRecord
     players
   end
 
+  def money_remaining(year)
+    drafted_players = self.drafted_players(year)
+    spent = drafted_players.reduce(0) {|sum, player| sum + player[:amount]}
+    200 - spent
+  end
+
 end

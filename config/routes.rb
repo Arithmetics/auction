@@ -9,4 +9,9 @@ Rails.application.routes.draw do
   end
 
   resources :games
+
+  resources :drafts
+
+  resources :bids
+  
 end
