@@ -14,12 +14,31 @@
   <div class="box">
     <h4>Being bid on: </h4>
     Waiting for nomination....
+    <%= form_for @draft, :url => {:action=> "nominate", :method => :patch, :controller => "drafts"} do |f| %>
+      <%= f.collection_select :nominated_player_id, Player.unsold(@draft.year), :id, :player_name %>
+      <%= f.submit "Nominate Player" %>
+    <% end %>
+
+
   </div>
 <% else %>
   <div class="box">
+    <%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{@nominated_player.esbid}.png") %>
     <h3><%= @nominated_player.player_name %></h3>
     <h3> Current Bid: $<%= @bids.first.amount %> </h3>
     <h3> Leading Bidder: <%= @bids.first.user.name %> </h3>
+    <div class="auctioneer">
+      <h4>Auctioneer Actions</h4>
+      <%= link_to "Sell Player", bid_path(@bids.first, :bid => { :winning => true }), :method => :put, :confirm => "Sure?" %>
+
+      <%= form_for @draft, :url => {:action=> "unnominate", :method => :patch, :controller => "drafts"} do |f| %>
+        <%= f.submit "Cancel Auction" %>
+      <% end %>
+  </div>
+
+
+
+
   </div>
 
 

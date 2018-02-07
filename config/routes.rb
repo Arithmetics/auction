@@ -10,8 +10,13 @@ Rails.application.routes.draw do
 
   resources :games
 
-  resources :drafts
+  resources :drafts do
+    member do
+      patch 'nominate'
+      patch 'unnominate'
+    end
+  end
 
   resources :bids
-  
+
 end
