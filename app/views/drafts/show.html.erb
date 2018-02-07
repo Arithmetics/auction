@@ -29,12 +29,15 @@
     <h3> Leading Bidder: <%= @bids.first.user.name %> </h3>
     <div class="auctioneer">
       <h4>Auctioneer Actions</h4>
-      <%= link_to "Sell Player", bid_path(@bids.first, :bid => { :winning => true }), :method => :put, :confirm => "Sure?" %>
+
+      <%= link_to bid_path(@bids.first, :bid => { :winning => true }), :method => :put, :confirm => "Sure?"  do %>
+      <button>Sell Player</button>
+      <% end %>
 
       <%= form_for @draft, :url => {:action=> "unnominate", :method => :patch, :controller => "drafts"} do |f| %>
         <%= f.submit "Cancel Auction" %>
       <% end %>
-  </div>
+    </div>
 
 
 
@@ -65,3 +68,38 @@
     </ul>
   </div>
 <% end %>
+
+
+<div class="box">
+  <h3>Your Team</h3>
+  <ol>
+  <% current_user.drafted_players(@draft.year).each do |player| %>
+    <li><%= player[:player].player_name %>, $<%= player[:amount] %></li>
+  <% end %>
+  </ol>
+</div>
+
+<div class="box">
+  <h3>Other Teams</h3>
+
+  <% @users.each do |user| %>
+    <% if user.id != current_user.id  %>
+
+      <h4><%= user.name %></h4>
+      <ol>
+      <% user.drafted_players(@draft.year).each do |player| %>
+        <li><%= player[:player].player_name %>,
+            $<%= player[:amount] %>,
+
+            <%= form_for @draft, :url => {:action=> "undo_drafting", :method => :patch, :controller => "drafts"} do |f| %>
+            <%= f.hidden_field :year, value: @draft.year %>
+              <%= f.hidden_field :player_id, value: player[:player].id %>
+              <%= f.submit "Undo Drafting" %>
+            <% end %>
+
+        </li>
+      <% end %>
+      </ol>
+    <% end %>
+  <% end %>
+</div>

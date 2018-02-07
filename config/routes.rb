@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     member do
       patch 'nominate'
       patch 'unnominate'
+      patch 'undo_drafting'
     end
   end
 

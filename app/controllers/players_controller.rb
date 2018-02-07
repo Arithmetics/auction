@@ -9,5 +9,6 @@ class PlayersController < ApplicationController
     @games = @player.games.order(:season).order(:week)
   end
 
+  
 
 end

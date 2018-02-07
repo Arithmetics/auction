@@ -16,6 +16,7 @@ class DraftsController < ApplicationController
       draft: @draft,
       player: @nominated_player,
       winning: false);
+
   end
 
 
@@ -32,17 +33,26 @@ class DraftsController < ApplicationController
   end
 
   def unnominate
-    puts "XXXXXXXXXXXXXXXXX"
     @draft = Draft.find(params[:id])
-    puts @draft
     player = Player.find(@draft.nominated_player_id)
+    bids = player.bids.select { |bid| bid.draft.year == @draft.year }
     if @draft.update_attribute(:nominated_player_id, nil)
-      puts "ZZZZZZZZZZ"
+      bids.each { |bid| bid.destroy }
       redirect_to request.referer
     else
       flash[:alert] = "error"
       redirect_to request.referer
     end
+  end
+
+  def undo_drafting
+    player = Player.find(params[:draft][:player_id])
+    bids = player.bids.select {|bid| bid.draft.year == params[:draft][:year].to_i}
+    bids.each do |bid|
+      bid.destroy
+      puts bid.amount
+    end
+    redirect_to request.referer
   end
 
 
