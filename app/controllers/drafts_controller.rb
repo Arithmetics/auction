@@ -1,4 +1,5 @@
 class DraftsController < ApplicationController
+  before_action :user_is_auctioneer, only: [:undo_drafting, :unnominate]
 
   def index
     @drafts = Draft.all
@@ -9,7 +10,7 @@ class DraftsController < ApplicationController
     @draft = Draft.find(params[:id])
     @nominated_player = @draft.nominated_player
     @players = Player.all
-    @users = User.all
+    @users = User.all.where(auctioneer: false)
     @bids = @draft.bids.where(player: @nominated_player).order(:amount).reverse
 
     @bid = current_user.bids.build(
@@ -60,6 +61,10 @@ class DraftsController < ApplicationController
 
   def draft_params
     params.require(:draft).permit(:year, :format, :nominated_player_id)
+  end
+
+  def user_is_auctioneer
+    redirect_to request.referer unless current_user.auctioneer?
   end
 
 end

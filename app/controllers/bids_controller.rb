@@ -1,10 +1,9 @@
 class BidsController < ApplicationController
   before_action :not_winning, :check_if_enough_money, :check_if_top_bid, only: :create
-  before_action :user_is_auctioneer, only: :destroy
+  before_action :user_is_auctioneer, only: [:destroy, :update]
 
   def create
     if @bid.save
-      puts 'BID SAVED ACTIVATED'
       redirect_to request.referer
     else
       redirect_to request.referer
@@ -23,7 +22,7 @@ class BidsController < ApplicationController
   end
 
   def destroy
-    @bid.destroy
+    Bid.find(params[:id]).destroy
     flash[:success] = "Bid deleted"
     redirect_to request.referer
   end
@@ -37,6 +36,9 @@ class BidsController < ApplicationController
     params.require(:bid).permit(:draft_id, :player_id, :user, :amount, :winning)
   end
 
+  def user_is_auctioneer
+    redirect_to request.referer unless current_user.auctioneer?
+  end
 
   def not_winning
     @bid = current_user.bids.build(bid_params)
@@ -60,9 +62,5 @@ class BidsController < ApplicationController
     end
   end
 
-  def user_is_auctioneer
-    @bid = Bid.find(params[:id])
-    puts @bid
-  end
 
 end
