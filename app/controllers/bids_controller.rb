@@ -7,6 +7,13 @@ class BidsController < ApplicationController
       @draft = @bid.draft
       @player = @bid.player
       @bids = @draft.bids.where(player: @player).order(:amount).reverse
+      DraftChannel.broadcast_to(
+        @draft,
+        message: BidsController.render_with_signed_in_user(
+          current_user, 'drafts/_test',
+          locals: { rhino: 45 }
+          )
+        )
       respond_to do |format|
         format.html {redirect_to request.referer}
         format.js
@@ -31,6 +38,13 @@ class BidsController < ApplicationController
     Bid.find(params[:id]).destroy
     flash[:success] = "Bid deleted"
     redirect_to request.referer
+  end
+
+  def self.render_with_signed_in_user(user, *args)
+     ActionController::Renderer::RACK_KEY_TRANSLATION['warden'] ||= 'warden'
+     proxy = Warden::Proxy.new({}, Warden::Manager.new({})).tap{|i| i.set_user(user, scope: :user) }
+     renderer = self.renderer.new('warden' => proxy)
+     renderer.render(*args)
   end
 
 
