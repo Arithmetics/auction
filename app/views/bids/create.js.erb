@@ -1,2 +1,6 @@
-console.log("entry");
 $('#bidding-history').html("<%=j render partial: 'drafts/bidlist', locals: {bids: @bids} %>");
+
+document.getElementById('bid-form').children[5].value =
+("<%=j (@bid.amount + 1).to_s %>");
+
+$('#bid-info').html("<h3> Current Bid: <%= @bids.first.amount%> </h3> <h3> Leading Bidder: <%= @bids.first.user.name %> </h3> ");

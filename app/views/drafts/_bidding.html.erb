@@ -3,8 +3,11 @@
     <% if @nominated_player %>
       <%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{@nominated_player.esbid}.png") %>
       <h3><%= @nominated_player.player_name %></h3>
-      <h3> Current Bid: $<%= @bids.first.amount %> </h3>
-      <h3> Leading Bidder: <%= @bids.first.user.name %> </h3>
+      <div id="bid-info">
+        <h3> Current Bid: $<%= @bids.first.amount %> </h3>
+        <h3> Leading Bidder: <%= @bids.first.user.name %> </h3>
+      </div>
+
       <% if current_user.auctioneer %>
         <div class="auctioneer">
           <h4>Auctioneer Actions:</h4>
@@ -23,7 +26,7 @@
     </div>
     <% if !current_user.auctioneer %>
       <div class="box">
-        <%= form_for @bid, remote: true do |f| %>
+        <%= form_for @bid, :html => {:id => 'bid-form'}, remote: true do |f| %>
           <%= f.hidden_field :player_id, value: @nominated_player.id %>
           <%= f.hidden_field :draft_id, value: @draft.id %>
           <%= f.hidden_field :winning, value: false %>
@@ -36,7 +39,6 @@
       <h3 class="history"> Bid History: </h3>
       <ul id='bidding-history'>
         <%= render 'bidlist', bids: @bids %>
-        <%= render 'test', rhino: 45 %>
       </ul>
     <% end %>
   </div>
