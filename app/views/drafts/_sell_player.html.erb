@@ -1,3 +1,3 @@
-<%= link_to bid_path(bid, :bid => { :winning => true }), :method => :put, :confirm => "Sure?"  do %>
-<button>Sell Player</button>
+<%= link_to bid_path(bid, :bid => { :winning => true }), :method => :put, :confirm => "Sure?", remote: true  do %>
+<button class="sell-button">Sell Player</button>
 <% end %>

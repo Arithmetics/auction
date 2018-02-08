@@ -39,3 +39,19 @@ input[type=submit] {
     background-color: #4CAF50;
     border-radius: 5px;
 }
+
+.sell-button {
+  padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: #81d3d2;
+    border-radius: 5px;
+}
+
+body:not(.with-admin) .admin-only {
+  display: none;
+}
+
+body:not(.without-admin) .not-admin {
+  display: none;
+}

@@ -1,0 +1,3 @@
+<%= form_for draft, :url => {:action=> "unnominate", :method => :patch, :controller => "drafts"}, remote: true do |f| %>
+  <%= f.submit "Cancel Auction" %>
+<% end %>

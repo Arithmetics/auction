@@ -14,10 +14,17 @@ class BidsController < ApplicationController
 
   def update
     @bid = Bid.last
+    puts "XXXXXXXXX" + @bid.id.to_s
     @draft = @bid.draft
+    puts "YYYYYYYYY" + @draft.id.to_s
     if @bid.update_attributes(bid_params)
       @draft.update_attribute(:nominated_player_id, nil)
-      redirect_to request.referer
+
+      ActionCable.server.broadcast 'draft_channel',
+        nomination: render(partial: 'drafts/nomination', locals: { draft: @draft })
+
+      #redirect_to request.referer
+
     else
       redirect_to request.referer
     end

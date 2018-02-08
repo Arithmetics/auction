@@ -7,65 +7,52 @@
 
   <% @users.each do |user| %>
     <div class="user-box">
-      <h5> <%= user.name %><br> $ <%= user.money_remaining(@draft.year).to_s%> </h5>
+      <p> <%= user.name %><br> $ <%= user.money_remaining(@draft.year).to_s%> </p>
     </div>
   <% end %>
 </div>
 
-
+<div id="switcher">
 
 <% if !@nominated_player %>
-  <div class="box">
-    <h4>Being bid on: </h4>
-    Waiting for nomination....
-    <%= form_for @draft, :url => {:action=> "nominate", :method => :patch, :controller => "drafts"} do |f| %>
-      <%= f.collection_select :nominated_player_id, Player.unsold(@draft.year), :id, :player_name %>
-      <%= f.submit "Nominate Player" %>
-    <% end %>
 
-
+  <div id="nomination">
+    <%= render partial: 'nomination', locals: { draft: @draft } %>
   </div>
+
 <% else %>
+
   <div class="box">
+
     <div id="player_for_sale">
       <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first } %>
     </div>
 
-
-
     <% if current_user.auctioneer %>
+
       <div class="auctioneer">
         <h4>Auctioneer Actions</h4>
+
         <div id="sell_player">
           <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
         </div>
 
+        <div id="unnominate">
+          <%= render partial: 'unnominate', locals: { draft: @draft } %>
+        </div>
 
-        <%= form_for @draft, :url => {:action=> "unnominate", :method => :patch, :controller => "drafts"} do |f| %>
-          <%= f.submit "Cancel Auction" %>
-        <% end %>
       </div>
+
     <% end %>
-
-
-
-
-
   </div>
 
-
-<% if !current_user.auctioneer %>
-  <div class="box">
-    <%= form_for @bid, remote: true  do |f| %>
-      <%= f.hidden_field :player_id, value: @nominated_player.id %>
-      <%= f.hidden_field :draft_id, value: @draft.id %>
-      <%= f.hidden_field :winning, value: false %>
-      $ <%= f.number_field :amount, value: @bids.first.amount + 1 %>
-      <%= f.submit %>
-    <% end %>
-
-<% end %>
-  </div>
+  <% if !current_user.auctioneer %>
+    <div class="box">
+      <div id="bidding-form" />
+        <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="box">
     <h3> Bid History: </h3>
@@ -75,11 +62,12 @@
       <% end %>
     </ul>
   </div>
+
 <% end %>
 
 
 
-
+</div>
 
 
 

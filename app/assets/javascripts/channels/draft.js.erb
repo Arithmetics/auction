@@ -7,10 +7,22 @@ App.draft = App.cable.subscriptions.create("DraftChannel", {
 
   received(data) {
     if (data.bid != null) {
-      $('#bid-list').prepend(data.bid);
-      $('#current-bid').html( "Current Bid: $" + data.amount);
+      $('#bid-list').prepend(data.bid).hide().fadeIn('slow');
+
+      $("#current-bid").fadeOut('slow', function(){
+              $('#current-bid').html( "Current Bid: $" + data.amount).fadeIn("slow");
+      });
+
       $('#leading-bidder').html( "Leading Bidder: " + data.leading);
     }
+    if (data.nomination != null) {
+      $('#switcher').html(data.nomination);
+    }
+
+    if (data.player_for_sale != null){
+      $('#switcher').html(data.player_for_sale);
+    }
+
   }
 }
 );

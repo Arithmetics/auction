@@ -1,0 +1,9 @@
+<div class="box">
+  <h4>Being bid on: </h4>
+  Waiting for nomination....
+  <%= form_for draft, :url => {:action=> "nominate", :method => :patch, :controller => "drafts", id: draft.id}, remote: true do |f| %>
+    <%= f.hidden_field :id, value: draft.id %>
+    <%= f.collection_select :nominated_player_id, Player.unsold(draft.year), :id, :player_name %>
+    <%= f.submit "Nominate Player" %>
+  <% end %>
+</div>
