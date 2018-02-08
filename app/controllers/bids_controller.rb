@@ -4,7 +4,13 @@ class BidsController < ApplicationController
 
   def create
     if @bid.save
-      redirect_to request.referer
+      @draft = @bid.draft
+      @player = @bid.player
+      @bids = @draft.bids.where(player: @player).order(:amount).reverse
+      respond_to do |format|
+        format.html {redirect_to request.referer}
+        format.js
+      end
     else
       redirect_to request.referer
     end

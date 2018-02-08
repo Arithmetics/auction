@@ -1,83 +1,20 @@
 <h1>2017 Draft</h1>
 <h3>Draft Status: Open! </h3>
+
 <% if current_user.auctioneer %>
   <h3> You are the Auctioneer </h3>
 <% end %>
+
 <div class="box">
-  <h4>Users online: </h4>
+  <h4>Users Drafting: </h4>
   <% @users.each do |user| %>
   <h5> <%= user.name + " has $" + user.money_remaining(@draft.year).to_s + " remaining" %> </h5>
   <% end %>
 </div>
 
-
-
-<% if !@nominated_player %>
-  <div class="box">
-    <h4>Being bid on: </h4>
-    Waiting for nomination....
-    <%= form_for @draft, :url => {:action=> "nominate", :method => :patch, :controller => "drafts"} do |f| %>
-      <%= f.collection_select :nominated_player_id, Player.unsold(@draft.year), :id, :player_name %>
-      <%= f.submit "Nominate Player" %>
-    <% end %>
-
-
-  </div>
-<% else %>
-  <div class="box">
-    <%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{@nominated_player.esbid}.png") %>
-    <h3><%= @nominated_player.player_name %></h3>
-    <h3> Current Bid: $<%= @bids.first.amount %> </h3>
-    <h3> Leading Bidder: <%= @bids.first.user.name %> </h3>
-
-
-    <% if current_user.auctioneer %>
-      <div class="auctioneer">
-        <h4>Auctioneer Actions</h4>
-        <%= link_to bid_path(@bids.first, :bid => { :winning => true }), :method => :put, :confirm => "Sure?"  do %>
-        <button>Sell Player</button>
-        <% end %>
-
-        <%= form_for @draft, :url => {:action=> "unnominate", :method => :patch, :controller => "drafts"} do |f| %>
-          <%= f.submit "Cancel Auction" %>
-        <% end %>
-      </div>
-    <% end %>
-
-
-
-
-
-  </div>
-
-
-<% if !current_user.auctioneer %>
-  <div class="box">
-    <%= form_for @bid do |f| %>
-      <%= f.hidden_field :player_id, value: @nominated_player.id %>
-      <%= f.hidden_field :draft_id, value: @draft.id %>
-      <%= f.hidden_field :winning, value: false %>
-      $ <%= f.number_field :amount, value: @bids.first.amount + 1 %>
-      <%= f.submit %>
-    <% end %>
-  </div>
-<% end %>
-
-  <div class="box">
-    <h3> Bid History: </h3>
-    <ul>
-      <% @bids.each do |bid| %>
-        <li><%= bid.user.name %>,
-            $<%=bid.amount %>
-             @ <%= bid.created_at %>,
-              <% if current_user.auctioneer %>
-                <%= link_to 'Delete', bid, method: :delete, data: { confirm: 'Are you sure?' } %>
-              <% end %>
-        </li>
-      <%end %>
-    </ul>
-  </div>
-<% end %>
+<div class="zone">
+  <%= render 'bidding_zone' %>
+</div>
 
 <% if !current_user.auctioneer %>
   <div class="box">

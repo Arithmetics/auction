@@ -5,3 +5,25 @@
   padding: 5px;
   display: block;
 }
+
+
+
+.inline-button {
+  display: inline-block;
+}
+
+.sell-button {
+  background-color: green;
+  width: 200px;
+  height: 50px;
+
+  border-radius: 15px;
+}
+
+.cancel-button {
+  background-color: red;
+  width: 200px;
+  height: 50px;
+
+  border-radius: 15px;
+}

@@ -1,0 +1,9 @@
+<% bids.each do |bid| %>
+  <li><%= bid.user.name %>,
+      $<%=bid.amount %>
+       @ <%= bid.created_at %>,
+        <% if current_user.auctioneer %>
+          <%= link_to 'Delete', bid, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+  </li>
+<% end %>

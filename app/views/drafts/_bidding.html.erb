@@ -1,0 +1,43 @@
+<div class="bidding">
+  <div class="box">
+    <% if @nominated_player %>
+      <%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{@nominated_player.esbid}.png") %>
+      <h3><%= @nominated_player.player_name %></h3>
+      <h3> Current Bid: $<%= @bids.first.amount %> </h3>
+      <h3> Leading Bidder: <%= @bids.first.user.name %> </h3>
+      <% if current_user.auctioneer %>
+        <div class="auctioneer">
+          <h4>Auctioneer Actions:</h4>
+          <%= link_to bid_path(@bids.first, :bid => { :winning => true }), :method => :put, :confirm => "Sure?"  do %>
+          <div class="inline-button">
+            <button class="sell-button">Sell Player</button>
+          </div>
+          <% end %>
+          <div class="inline-button">
+            <%= form_for @draft, :url => {:action=> "unnominate", :method => :patch, :controller => "drafts"} do |f| %>
+              <%= f.submit "Cancel Auction", :class => "cancel-button" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <% if !current_user.auctioneer %>
+      <div class="box">
+        <%= form_for @bid, remote: true do |f| %>
+          <%= f.hidden_field :player_id, value: @nominated_player.id %>
+          <%= f.hidden_field :draft_id, value: @draft.id %>
+          <%= f.hidden_field :winning, value: false %>
+          $ <%= f.number_field :amount, value: @bids.first.amount + 1 %>
+          <%= f.submit %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="box">
+      <h3 class="history"> Bid History: </h3>
+      <ul id='bidding-history'>
+        <%= render 'bidlist', bids: @bids %>
+        <%= render 'test', rhino: 45 %>
+      </ul>
+    <% end %>
+  </div>
+</div>
