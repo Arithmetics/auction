@@ -5,3 +5,37 @@
   padding: 5px;
   display: block;
 }
+
+.user-box {
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  margin: 2px;
+}
+
+.other-team {
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  margin: 2px;
+  padding: 2px;
+  vertical-align:top;
+}
+
+input[type=number] {
+  padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: white;
+    color: black;
+}
+
+input[type=submit] {
+  padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: #4CAF50;
+    border-radius: 5px;
+}

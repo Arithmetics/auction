@@ -1,13 +1,14 @@
 <h1>2017 Draft</h1>
-<h3>Draft Status: Open! </h3>
 <% if current_user.auctioneer %>
   <h3> You are the Auctioneer </h3>
 <% end %>
 
 <div class="box">
-  <h4>Users online: </h4>
+
   <% @users.each do |user| %>
-  <h5> <%= user.name + " has $" + user.money_remaining(@draft.year).to_s + " remaining" %> </h5>
+    <div class="user-box">
+      <h5> <%= user.name %><br> $ <%= user.money_remaining(@draft.year).to_s%> </h5>
+    </div>
   <% end %>
 </div>
 
@@ -26,18 +27,19 @@
   </div>
 <% else %>
   <div class="box">
-    <%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{@nominated_player.esbid}.png") %>
-    <h3><%= @nominated_player.player_name %></h3>
-    <h3 id="current-bid"> Current Bid: $<%= @bids.first.amount %> </h3>
-    <h3 id="leading-bidder"> Leading Bidder: <%= @bids.first.user.name %> </h3>
+    <div id="player_for_sale">
+      <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first } %>
+    </div>
+
 
 
     <% if current_user.auctioneer %>
       <div class="auctioneer">
         <h4>Auctioneer Actions</h4>
-        <%= link_to bid_path(@bids.first, :bid => { :winning => true }), :method => :put, :confirm => "Sure?"  do %>
-        <button>Sell Player</button>
-        <% end %>
+        <div id="sell_player">
+          <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
+        </div>
+
 
         <%= form_for @draft, :url => {:action=> "unnominate", :method => :patch, :controller => "drafts"} do |f| %>
           <%= f.submit "Cancel Auction" %>
@@ -61,8 +63,9 @@
       $ <%= f.number_field :amount, value: @bids.first.amount + 1 %>
       <%= f.submit %>
     <% end %>
-  </div>
+
 <% end %>
+  </div>
 
   <div class="box">
     <h3> Bid History: </h3>
@@ -109,6 +112,7 @@
   <h3>Other Teams</h3>
 
   <% @users.each do |user| %>
+    <div class="other-team">
     <% if user.id != current_user.id  %>
 
       <h4><%= user.name %></h4>
@@ -130,5 +134,6 @@
       <% end %>
       </ol>
     <% end %>
+  </div>
   <% end %>
 </div>
