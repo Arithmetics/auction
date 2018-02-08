@@ -4,7 +4,7 @@ class BidsController < ApplicationController
 
   def create
     if @bid.save
-      redirect_to request.referer
+      ActionCable.server.broadcast 'draft_channel', bid: render(partial: 'drafts/bid', locals: { bid: @bid }), leading: @bid.user.name, amount: @bid.amount 
     else
       redirect_to request.referer
     end
