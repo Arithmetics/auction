@@ -1,0 +1,4 @@
+<%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{nominated_player.esbid}.png") %>
+<h3><%= nominated_player.player_name %></h3>
+<h3 id="current-bid"> Current Bid: $<%= bid.amount %> </h3>
+<h3 id="leading-bidder"> Leading Bidder: <%= bid.user.name %> </h3>

@@ -1,0 +1,40 @@
+App.draft = App.cable.subscriptions.create("DraftChannel", {
+  connected() {},
+    // Called when the subscription is ready for use on the server
+
+  disconnected() {},
+    // Called when the subscription has been terminated by the server
+
+  received(data) {
+
+    if (data.bid != null) {
+      $('#bid-list').prepend(data.bid).hide().fadeIn('slow');
+      $("#current-bid").fadeOut('slow', function(){
+              $('#current-bid').html( "Current Bid: $" + data.amount).fadeIn("slow");
+      });
+      $('#leading-bidder').fadeOut('slow', function(){
+              $('#leading-bidder').html( "Leading Bidder: " + data.leading).fadeIn("slow");
+      });
+    }
+
+    if (data.nomination != null) {
+      $('#switcher').fadeOut('slow', function(){
+              $('#switcher').html(data.nomination).fadeIn("slow");
+      });
+      const user_id = data.user_id
+      $('#team-'+ user_id).append("<li>" + data.new_player_name + ", $" + data.new_player_cost + "</li>");
+      $('#user-money-'+ user_id).html(data.user_name + "<br> $" + data.user_money)
+    }
+
+    if (data.player_for_sale != null){
+      $('#switcher').fadeOut('slow', function(){
+              $('#switcher').html(data.player_for_sale).fadeIn("slow");
+      });
+    }
+
+    if (data.undrafted != null){
+      $(`li:contains(${data.undrafted})`).fadeOut('slow')
+    }
+  }
+
+});

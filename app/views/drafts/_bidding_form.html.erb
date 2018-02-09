@@ -1,0 +1,7 @@
+<%= form_for bid, remote: true  do |f| %>
+  <%= f.hidden_field :player_id, value: nominated_player.id %>
+  <%= f.hidden_field :draft_id, value: draft.id %>
+  <%= f.hidden_field :winning, value: false %>
+  $ <%= f.number_field :amount, value: bids.first.amount + 1 %>
+  <%= f.submit "Submit Bid", class: "bid-button" %>
+<% end %>

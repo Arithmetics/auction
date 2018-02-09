@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   resources :bids
 
+  mount ActionCable.server, at: '/cable'
+
 end

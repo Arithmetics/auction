@@ -4,18 +4,26 @@ class BidsController < ApplicationController
 
   def create
     if @bid.save
-      redirect_to request.referer
+      ActionCable.server.broadcast 'draft_channel',
+        bid: render(partial: 'drafts/bid', locals: { bid: @bid }),
+        leading: @bid.user.name, amount: @bid.amount
     else
       redirect_to request.referer
     end
   end
 
   def update
-    @bid = Bid.find(params[:id])
+    @bid = Bid.last
     @draft = @bid.draft
     if @bid.update_attributes(bid_params)
       @draft.update_attribute(:nominated_player_id, nil)
-      redirect_to request.referer
+
+      ActionCable.server.broadcast 'draft_channel',
+        nomination: render(partial: 'drafts/nomination', locals: { draft: @draft }),
+        new_player_name: @bid.player.player_name, new_player_cost: @bid.amount, user_id: @bid.user.id, user_money: @bid.user.money_remaining(@draft.year), user_name: @bid.user.name 
+
+      #redirect_to request.referer
+
     else
       redirect_to request.referer
     end
@@ -57,7 +65,6 @@ class BidsController < ApplicationController
   def check_if_top_bid
     high_bid = @bid.draft.highest_bid_amount(@bid.player)
     if @bid.amount <= high_bid
-      flash[:alert] = "Bid is too low"
       redirect_to draft_path(@bid.draft)
     end
   end
