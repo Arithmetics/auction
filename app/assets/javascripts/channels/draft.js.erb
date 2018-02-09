@@ -31,6 +31,10 @@ App.draft = App.cable.subscriptions.create("DraftChannel", {
               $('#switcher').html(data.player_for_sale).fadeIn("slow");
       });
     }
+
+    if (data.undrafted != null){
+      $(`li:contains(${data.undrafted})`).fadeOut('slow')
+    }
   }
 
 });

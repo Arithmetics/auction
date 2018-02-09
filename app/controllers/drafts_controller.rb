@@ -67,9 +67,12 @@ class DraftsController < ApplicationController
     bids = player.bids.select {|bid| bid.draft.year == params[:draft][:year].to_i}
     bids.each do |bid|
       bid.destroy
-      puts bid.amount
     end
-    redirect_to request.referer
+
+    ActionCable.server.broadcast 'draft_channel',
+      undrafted: player.player_name, team_id: bids.last.user_id
+
+    #redirect_to request.referer
   end
 
 
