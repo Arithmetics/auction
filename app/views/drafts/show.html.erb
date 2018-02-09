@@ -6,8 +6,8 @@
 <div class="box">
 
   <% @users.each do |user| %>
-    <div class="user-box">
-      <p> <%= user.name %><br> $ <%= user.money_remaining(@draft.year).to_s%> </p>
+    <div class="user-box" >
+      <p id="<%= 'user-money-' + user.id.to_s %>"> <%= user.name %><br> $ <%= user.money_remaining(@draft.year).to_s%> </p>
     </div>
   <% end %>
 </div>
@@ -31,14 +31,16 @@
     <% if current_user.auctioneer %>
 
       <div class="auctioneer">
-        <h4>Auctioneer Actions</h4>
+        <div class="box">
+          <h4>Auctioneer Actions:</h4>
 
-        <div id="sell_player">
-          <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
-        </div>
+          <div id="sell_player">
+            <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
+          </div>
 
-        <div id="unnominate">
-          <%= render partial: 'unnominate', locals: { draft: @draft } %>
+          <div id="unnominate">
+            <%= render partial: 'unnominate', locals: { draft: @draft } %>
+          </div>
         </div>
 
       </div>
@@ -73,11 +75,11 @@
 
 
 <% if !current_user.auctioneer %>
-  <div class="box">
+  <div class="box" >
     <h3>Your Team</h3>
-    <ol>
+    <ol id="<%= 'team-' + current_user.id.to_s %>">
     <% current_user.drafted_players(@draft.year).each do |player| %>
-      <li><%= player[:player].player_name %>, $<%= player[:amount] %></li>
+      <%= render partial: 'player', locals: { player: player, draft: @draft  } %>
     <% end %>
     </ol>
   </div>
@@ -89,36 +91,19 @@
 
 
 
-
-
-
-
-
-
-
 <div class="box">
+  <div id="testz">...
+  </div>
   <h3>Other Teams</h3>
 
   <% @users.each do |user| %>
-    <div class="other-team">
+    <div class="other-team" >
     <% if user.id != current_user.id  %>
 
       <h4><%= user.name %></h4>
-      <ol>
+      <ol id="<%= 'team-' + user.id.to_s %>">
       <% user.drafted_players(@draft.year).each do |player| %>
-        <li><%= player[:player].player_name %>,
-            $<%= player[:amount] %>
-
-            <% if current_user.auctioneer %>
-
-              <%= form_for @draft, :url => {:action=> "undo_drafting", :method => :patch, :controller => "drafts"} do |f| %>
-              <%= f.hidden_field :year, value: @draft.year %>
-                <%= f.hidden_field :player_id, value: player[:player].id %>
-                <%= f.submit "Undo Drafting" %>
-              <% end %>
-            <% end %>
-
-        </li>
+        <%= render partial: 'player', locals: { player: player, draft: @draft } %>
       <% end %>
       </ol>
     <% end %>

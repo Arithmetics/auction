@@ -11,6 +11,8 @@
   border-style: solid;
   border-width: 1px;
   margin: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .other-team {
@@ -32,7 +34,7 @@ input[type=number] {
     color: black;
 }
 
-input[type=submit] {
+.nominate {
   padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -42,9 +44,27 @@ input[type=submit] {
 
 .sell-button {
   padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #81d3d2;
+  border-radius: 5px;
+  color: black;
+}
+
+.cancel-auction {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #c18989;
+  border-radius: 5px;
+  color: black;
+}
+
+.bid-button {
+  padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    background-color: #81d3d2;
+    background-color: #4CAF50;
     border-radius: 5px;
 }
 
@@ -54,4 +74,16 @@ body:not(.with-admin) .admin-only {
 
 body:not(.without-admin) .not-admin {
   display: none;
+}
+
+.remove {
+  background-color: #c18989;
+}
+
+#sell_player {
+  display: inline-block;
+}
+
+#unnominate {
+  display: inline-block;
 }

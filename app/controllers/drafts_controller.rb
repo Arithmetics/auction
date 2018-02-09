@@ -41,8 +41,6 @@ class DraftsController < ApplicationController
           draft: @draft,
           bid: @bid
            })
-
-
       #redirect_to request.referer
     else
       flash[:alert] = "error"
@@ -56,7 +54,8 @@ class DraftsController < ApplicationController
     bids = player.bids.select { |bid| bid.draft.year == @draft.year }
     if @draft.update_attribute(:nominated_player_id, nil)
       bids.each { |bid| bid.destroy }
-      redirect_to request.referer
+      ActionCable.server.broadcast 'draft_channel',
+        nomination: render(partial: 'drafts/nomination', locals: { draft: @draft })
     else
       flash[:alert] = "error"
       redirect_to request.referer
