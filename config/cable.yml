@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://redistogo:12ff295398b4f533c59239f3df794c3d@soldierfish.redistogo.com:11136/
   channel_prefix: auction_production
