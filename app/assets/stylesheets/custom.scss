@@ -51,9 +51,12 @@ body {
   display: inline-block;
 }
 
+
+
 .num_field {
   display: inline-block;
 }
+
 
 .user-box {
   display: inline-block;
@@ -63,8 +66,22 @@ body {
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 4px;
-  width: 200px;
-  height: 25px;
+  width: 180px;
+  height: 30px;
+  text-align: center;
+}
+
+.user-header {
+  margin: 0px;
+  color: #DC75A6;
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+
+
+.user-money {
+  margin: 0;
 }
 
 .other-team {
@@ -114,10 +131,30 @@ input[type=number] {
 
 .bid-button {
   padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    background-color: #4CAF50;
-    border-radius: 5px;
+  margin: 0px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: #14151E;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.bid-button:hover {
+  background-color: #02ead7;
+  transition: background-color 1s linear;
+  transition: color 1s linear;
+  color: #14151E;
+}
+
+#bid_amount {
+  width: 75px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 3px;
+  margin-bottom: -5px;
+  background-color: #14151E;
+  color: white;
+
 }
 
 body:not(.with-admin) .admin-only {
@@ -152,10 +189,6 @@ body:not(.without-admin) .not-admin {
   min-height: 550px;
 }
 
-.user-header {
-  margin: 0px;
-  color: #DC75A6;
-}
 
 
 

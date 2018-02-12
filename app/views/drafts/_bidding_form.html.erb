@@ -2,6 +2,6 @@
   <%= f.hidden_field :player_id, value: nominated_player.id %>
   <%= f.hidden_field :draft_id, value: draft.id %>
   <%= f.hidden_field :winning, value: false %>
-  <div class="money">$ </div><div class="num-field"><%= f.number_field :amount, value: bids.first.amount + 1 %></div>
+  <span class="money">$ </span><span class="num-field"><%= f.number_field :amount, value: bids.first.amount + 1 %></span>
   <%= f.submit "Submit Bid", class: "bid-button" %>
 <% end %>

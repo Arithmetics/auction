@@ -23,7 +23,7 @@ App.draft = App.cable.subscriptions.create("DraftChannel", {
       });
       const user_id = data.user_id
       $('#team-'+ user_id).append("<li>" + data.new_player_name + ", $" + data.new_player_cost + "</li>");
-      $('#user-money-'+ user_id).html(data.user_name + "<br> $" + data.user_money)
+      $('#user-money-'+ user_id).html("$" + data.user_money)
     }
 
     if (data.player_for_sale != null){

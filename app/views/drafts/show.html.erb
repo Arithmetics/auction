@@ -4,10 +4,10 @@
 <% end %> -->
 
 <div class="box">
-
   <% @users.each do |user| %>
     <div class="user-box" >
-      <p class="user-header" id="<%= 'user-money-' + user.id.to_s %>"> <%= user.name %>$<%= user.money_remaining(@draft.year).to_s%> </p>
+      <p class="user-header"><%= user.name %> -
+      <span class="user-money" id="<%= 'user-money-' + user.id.to_s %>">$<%= user.money_remaining(@draft.year).to_s%></span> </p>
     </div>
   <% end %>
 </div>
@@ -20,9 +20,9 @@
       </div>
     <% else %>
       <div class="box">
-        <div id="player_for_sale" class="player-card">
+
           <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first } %>
-        </div>
+
         <% if current_user.auctioneer %>
           <div class="auctioneer">
             <div class="box">
@@ -42,9 +42,9 @@
           <div id="bidding-form" >
             <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
           </div>
-        </div>
+
       <% end %>
-      <div class="box">
+
         <h3> Bid History: </h3>
         <ul id='bid-list'>
           <% @bids.each do |bid| %>
