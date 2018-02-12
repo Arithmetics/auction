@@ -1,0 +1,450 @@
+body {
+  background-color: #0D0D18
+}
+
+
+.box {
+  border-style: solid;
+  border-width: 1px;
+  margin: 10px;
+  padding: 5px;
+  display: block;
+  background-color: #1C1E28;
+  border-radius: 5px;
+}
+
+.player-card {
+  border-style: solid;
+  border-width: 1px;
+  width: 250px;
+  border-radius: 20px;
+  margin: 10px;
+  padding: 20px;
+  justify-content: center;
+  box-shadow: 0px 0px 10px 10px rgba(0,0,0,0.1),
+              0px 0px 10px 10px rgba(45,78,255,0.15);
+}
+
+.player-pic {
+  border-radius: 100px;
+  border-style: solid;
+  border-width: 2px;
+  display: block;
+  margin: auto;
+  box-shadow: 0px 0px 10px 10px rgba(0,0,0,0.1),
+              0px 0px 10px 10px rgba(45,78,255,0.15);
+}
+
+.center-pic {
+  margin: 0 auto;
+}
+
+.player-info {
+  margin-top: 10px;
+  border-color: #DC75A6;
+  border-style: solid;
+  border-width: 1px 0 0 0;
+}
+
+.money {
+  font-size: 25px;
+  display: inline-block;
+}
+
+.num_field {
+  display: inline-block;
+}
+
+.user-box {
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  margin: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 4px;
+  width: 200px;
+  height: 25px;
+}
+
+.other-team {
+  display: inline-block;
+  border-style: solid;
+  border-width: 1px;
+  margin: 2px;
+  padding: 2px;
+  vertical-align:top;
+}
+
+input[type=number] {
+  padding: 6px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: white;
+    color: black;
+}
+
+.nominate {
+  padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+
+.sell-button {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #81d3d2;
+  border-radius: 5px;
+  color: black;
+}
+
+.cancel-auction {
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: #c18989;
+  border-radius: 5px;
+  color: black;
+}
+
+.bid-button {
+  padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    background-color: #4CAF50;
+    border-radius: 5px;
+}
+
+body:not(.with-admin) .admin-only {
+  display: none;
+}
+
+body:not(.without-admin) .not-admin {
+  display: none;
+}
+
+.remove {
+  background-color: #c18989;
+}
+
+#sell_player {
+  display: inline-block;
+}
+
+#unnominate {
+  display: inline-block;
+}
+
+#current-bid {
+  color: #DC75A6;
+}
+
+#leading-bidder {
+  color: #DC75A6;
+}
+
+#switcher {
+  min-height: 550px;
+}
+
+.user-header {
+  margin: 0px;
+  color: #DC75A6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.arizonacardinals {
+  color: #97233F;
+  border-color:  #97233F;
+}
+
+.arizonacardinals:hover {
+  background: #97233F;
+}
+
+.atlantafalcons {
+  color: #A6192E;
+  border-color:  #A6192E;
+}
+
+.atlantafalcons:hover {
+  background: #A6192E;
+}
+
+.baltimoreravens {
+  color:  #D0B240;
+  border-color:  #D0B240;
+}
+
+.baltimoreravens:hover  {
+  background: #D0B240;
+}
+
+.buffalobills {
+  color:  #C8102E;
+  border-color:  #C8102E;
+}
+
+.buffalobills:hover  {
+  background: #C8102E;
+}
+
+.carolinapanthers {
+  color:  #0085CA;
+  border-color:   #0085CA;
+}
+
+.carolinapanthers:hover  {
+  background:  #0085CA;
+}
+
+.chicagobears {
+  color:  #DC4405;
+  border-color:  #DC4405;
+}
+
+.chicagobears:hover  {
+  background:  #DC4405;
+}
+
+.clevelandbrowns {
+  color:  #EB3300;
+  border-color:  #EB3300;
+}
+
+.clevelandbrowns:hover  {
+  background:  #EB3300;
+}
+
+.dallascowboys {
+  color:  #7F9695;
+  border-color: #7F9695;
+}
+
+.dallascowboys:hover  {
+  background: #7F9695;
+}
+
+.denverbroncos {
+  color:  #FC4C02;
+  border-color: #FC4C02;
+}
+
+.denverbroncos:hover  {
+  background: #FC4C02;
+}
+
+.detroitlions {
+  color: #0069B1;
+  border-color: #0069B1;
+}
+
+.detroitlions:hover  {
+  background: #0069B1;
+}
+
+.greenbaypackers {
+  color:  #175E33;
+  border-color:  #175E33;
+}
+
+.greenbaypackers:hover  {
+  background:  #175E33;
+}
+
+.jacksonvillejaguars {
+  color:  #006073;
+  border-color:  #006073;
+}
+
+.jacksonvillejaguars:hover  {
+  background:  #006073;
+}
+
+.houstontexans {
+  color: #A6192E;
+  border-color: #A6192E;
+}
+
+.houstontexans:hover  {
+  background: #A6192E;
+}
+
+.indianapoliscolts {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.indianapoliscolts:hover  {
+  background: #FFFFFF;
+}
+
+.kansascitychiefs {
+  color: #C8102E;
+  border-color: #C8102E;
+}
+
+.kansascitychiefs:hover  {
+  background: #C8102E;
+}
+
+.losangeleschargers {
+  color: #0072CE;
+  border-color: #0072CE;
+}
+
+.losangeleschargers:hover  {
+  background: #0072CE;
+}
+
+.losangelesrams {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.losangelesrams:hover  {
+  background: #FFFFFF;
+}
+
+.miamidolphins {
+  color: #F58220;
+  border-color: #F58220;
+}
+
+.miamidolphins:hover  {
+  background: #F58220;
+}
+
+.newenglandpatriots {
+  color: #C8102E;
+  border-color: #C8102E;
+}
+
+.newenglandpatriots:hover  {
+  background: #C8102E;
+}
+
+.minnesotavikings {
+  color: #FFC62F;
+  border-color: #FFC62F;
+}
+
+.minnesotavikings:hover  {
+  background: #FFC62F;
+}
+
+.neworleanssaints {
+  color: #D3BC8D;
+  border-color: #D3BC8D;
+}
+
+.neworleanssaints:hover  {
+  background: #D3BC8D;
+}
+
+.pittsburghsteelers {
+  color: #FFB81C;
+  border-color: #FFB81C;
+}
+
+.pittsburghsteelers:hover  {
+  background: #FFB81C;
+}
+
+.philadelphiaeagles {
+  color: #869397;
+  border-color: #869397;
+}
+
+.philadelphiaeagles:hover  {
+  background: #869397;
+}
+
+.oaklandraiders {
+  color: #A5ACAF;
+  border-color: #A5ACAF;
+}
+
+.oaklandraiders:hover   {
+  background: #A5ACAF;
+}
+
+.seattleseahawks {
+  color:  #4DFF00;
+  border-color:  #4DFF00;
+}
+
+.seattleseahawks:hover  {
+  background:  #4DFF00;
+}
+
+.tennesseetitans {
+  color:  #4B92DB;
+  border-color:  #4B92DB;
+}
+
+.tennesseetitans:hover  {
+  background:  #4B92DB;
+}
+
+.newyorkgiants {
+  color:  #A6192E;
+  border-color:  #A6192E;
+}
+
+.newyorkgiants:hover  {
+  background:  #A6192E;
+}
+
+.newyorkjets {
+  color:  #FFFFFF;
+  border-color:  #FFFFFF;
+}
+
+.newyorkjets:hover  {
+  background:  #FFFFFF;
+}
+
+.sanfrancisco49ers {
+  color: #B3995E;
+  border-color: #B3995E;
+}
+
+.sanfrancisco49ers:hover  {
+  background: #B3995E;
+}
+
+.tampabaybuccaneers {
+  color: #FF8200;
+  border-color: #FF8200;
+}
+
+.tampabaybuccaneers:hover  {
+  background: #FF8200;
+}
+
+.washingtonredskins {
+  color: #FFC20F;
+  border-color: #FFC20F;
+}
+
+.washingtonredskins:hover  {
+  background: #FFC20F;
+}

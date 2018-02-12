@@ -1,4 +1,13 @@
-<%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{nominated_player.esbid}.png") %>
-<h3><%= nominated_player.player_name %></h3>
-<h3 id="current-bid"> Current Bid: $<%= bid.amount %> </h3>
-<h3 id="leading-bidder"> Leading Bidder: <%= bid.user.name %> </h3>
+<div class='center-pic'>
+  <%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{nominated_player.esbid}.png", class: "player-pic") %>
+</div>
+<div class='player-info'>
+  <h3><%= nominated_player.player_name %>,  <%= nominated_player.games.last.position %></h3>
+  <div class="price">
+    <div class="price-circle">
+      <h4>Current Bid:
+      <span id="current-bid">$<%= bid.amount %></span></h4>
+    </div>
+  </div>
+  <h4>  Leading Bidder: <span id="leading-bidder"><%= bid.user.name %></span></h4>
+</div>

@@ -10,10 +10,10 @@ App.draft = App.cable.subscriptions.create("DraftChannel", {
     if (data.bid != null) {
       $('#bid-list').prepend(data.bid).hide().fadeIn('slow');
       $("#current-bid").fadeOut('slow', function(){
-              $('#current-bid').html( "Current Bid: $" + data.amount).fadeIn("slow");
+              $('#current-bid').html( "$" + data.amount).fadeIn("slow");
       });
       $('#leading-bidder').fadeOut('slow', function(){
-              $('#leading-bidder').html( "Leading Bidder: " + data.leading).fadeIn("slow");
+              $('#leading-bidder').html( "" + data.leading).fadeIn("slow");
       });
     }
 
