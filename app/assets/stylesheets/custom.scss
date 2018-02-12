@@ -41,7 +41,7 @@ body {
 
 .player-info {
   margin-top: 10px;
-  border-color: #DC75A6;
+  border-color: #e54b4b;
   border-style: solid;
   border-width: 1px 0 0 0;
 }
@@ -49,6 +49,7 @@ body {
 .money {
   font-size: 25px;
   display: inline-block;
+  margin-left: 5px;
 }
 
 
@@ -73,7 +74,6 @@ body {
 
 .user-header {
   margin: 0px;
-  color: #DC75A6;
   font-weight: bold;
   margin-bottom: 2px;
 }
@@ -82,6 +82,7 @@ body {
 
 .user-money {
   margin: 0;
+    color: #e54b4b;
 }
 
 .other-team {
@@ -107,54 +108,111 @@ input[type=number] {
   padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    background-color: #4CAF50;
+      background-color: #00C87C;
     border-radius: 5px;
+    color: black;
 }
 
 .sell-button {
-  padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  background-color: #81d3d2;
+  background-color: #00C87C;
   border-radius: 5px;
   color: black;
+  border-style: solid;
+  border-width: 1px;
+  width: 130px;
+  height: 50px;
+}
+
+.sell-button:hover {
+  background-color: #028955;
+}
+
+.auctioneer {
+  border-style: solid;
+  border-width: 1px;
+  padding: 5px;
+  border-radius: 5px;
+  width: 280px;
+  margin: 10px;
 }
 
 .cancel-auction {
-  padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  background-color: #c18989;
+  background-color: #FF6560;
   border-radius: 5px;
   color: black;
+  border-style: solid;
+  border-width: 1px;
+  width: 130px;
+  height: 50px;
+}
+
+.cancel-auction:hover {
+  background-color: #c14b49;
 }
 
 .bid-button {
+  height: 50px;
+  position: relative;
+  top: -3px;
   padding: 12px 20px;
   margin: 0px 0;
   box-sizing: border-box;
   border-radius: 5px;
-  background-color: #14151E;
+  background-color: #00C87C;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
+  border-color: #00C87C;
+  font-weight: bold;
+  color: #252832;
 }
 
 .bid-button:hover {
-  background-color: #02ead7;
+  background-color: #008e58;
   transition: background-color 1s linear;
   transition: color 1s linear;
   color: #14151E;
+  border-color: #008e58;
+}
+
+.card-info {
+  margin: 5px;
+}
+
+.line {
+  height: 50px;
+}
+
+.bid-box {
+  width: 300px;
+}
+
+.heading-label {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-bottom: 0;
+  color: #ffcb5e;
+}
+
+#bid-list {
+  margin-top: 3px;
+  padding-top: 2px;
+  border-style: solid;
+  border-width: 1px 0 0px 0px;
 }
 
 #bid_amount {
-  width: 75px;
+  width: 100px;
   margin-left: 5px;
-  margin-right: 5px;
+  margin-right: 10px;
   margin-top: 3px;
   margin-bottom: -5px;
   background-color: #14151E;
   color: white;
-
+  height: 50px;
 }
 
 body:not(.with-admin) .admin-only {
@@ -171,6 +229,7 @@ body:not(.without-admin) .not-admin {
 
 #sell_player {
   display: inline-block;
+
 }
 
 #unnominate {
@@ -178,15 +237,15 @@ body:not(.without-admin) .not-admin {
 }
 
 #current-bid {
-  color: #DC75A6;
+  color: #e54b4b;
 }
 
 #leading-bidder {
-  color: #DC75A6;
+  color: #e54b4b;
 }
 
 #switcher {
-  min-height: 550px;
+  min-height: 720px;
 }
 
 

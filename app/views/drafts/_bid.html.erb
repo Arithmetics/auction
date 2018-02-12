@@ -1,7 +1,7 @@
 <li><%= bid.user.name %>,
   $<%=bid.amount %>
-  @ <%= bid.created_at %>,
-  <% if current_user.auctioneer %>
+  @ <%= bid.created_at.in_time_zone(-8).strftime("%I:%M:%S:%p") %>
+  <% if current_user.auctioneer %>,
     <%= link_to 'Delete', bid, method: :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 </li>
