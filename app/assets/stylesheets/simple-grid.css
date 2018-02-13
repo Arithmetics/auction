@@ -93,7 +93,7 @@ p {
 /* ==== GRID SYSTEM ==== */
 
 .container {
-  width: 90%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -105,7 +105,7 @@ p {
 
 .row [class^="col"] {
   float: left;
-  margin: 0.5rem 2%;
+  /* margin: 0.5rem 2%; */
   min-height: 0.125rem;
 }
 
@@ -184,7 +184,7 @@ p {
 
 @media only screen and (min-width: 33.75em) {  /* 540px */
   .container {
-    width: 80%;
+    width: 100%;
   }
 }
 
@@ -244,7 +244,7 @@ p {
 
 @media only screen and (min-width: 60em) { /* 960px */
   .container {
-    width: 75%;
-    max-width: 60rem;
+    width: 100%;
+
   }
 }

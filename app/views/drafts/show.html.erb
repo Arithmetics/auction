@@ -3,14 +3,6 @@
   <h3> You are the Auctioneer </h3>
 <% end %>
 
-<div class="box">
-  <% @users.each do |user| %>
-    <div class="user-box" >
-      <p class="user-header"><%= user.name %> -
-      <span class="user-money" id="<%= 'user-money-' + user.id.to_s %>">$<%= user.money_remaining(@draft.year).to_s%></span> </p>
-    </div>
-  <% end %>
-</div>
 
 <div class="box">
   <div id="switcher">
@@ -20,22 +12,7 @@
       </div>
     <% else %>
       <div class="box">
-
           <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first } %>
-
-        <% if current_user.auctioneer %>
-          <div class="auctioneer">
-
-              <h3 class="heading-label">Auctioneer Actions:</h4>
-              <div id="sell_player">
-                <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
-              </div>
-              <div id="unnominate">
-                <%= render partial: 'unnominate', locals: { draft: @draft } %>
-              </div>
-
-          </div>
-        <% end %>
       </div>
       <div class="box bid-box">
         <% if !current_user.auctioneer %>
@@ -45,8 +22,20 @@
           </div>
 
         <% end %>
+        <% if current_user.auctioneer %>
+          <div class="auctioneer">
+
+              <div id="sell_player">
+                <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
+              </div>
+              <div id="unnominate">
+                <%= render partial: 'unnominate', locals: { draft: @draft } %>
+              </div>
+
+          </div>
+        <% end %>
         <h3 class="heading-label"> Bid History: </h3>
-        <ul id='bid-list'>
+        <ul id='bid-list' class="under-list">
           <% @bids.each do |bid| %>
             <%= render partial: 'bid', locals: { bid: bid } %>
           <% end %>
@@ -57,42 +46,42 @@
   </div>
 </div>
 
-
-
-
-<% if !current_user.auctioneer %>
-  <div class="box" >
-    <h3 class="heading-label">Your Team:</h3>
-    <ol id="<%= 'team-' + current_user.id.to_s %>">
-    <% current_user.drafted_players(@draft.year).each do |player| %>
-      <%= render partial: 'player', locals: { player: player, draft: @draft  } %>
-    <% end %>
-    </ol>
-  </div>
-<% end %>
-
-
-
-
-
-
-
 <div class="box">
+  <div class="container">
+    <div class="row">
+      <% if !current_user.auctioneer %>
+        <div class="col-3">
+          <div class="your-team">
 
-  <h3 class="heading-label">Other Teams:</h3>
-
-  <% @users.each do |user| %>
-
-    <% if user.id != current_user.id  %>
-    <div class="other-team" >
-      <h4><%= user.name %></h4>
-      <ol id="<%= 'team-' + user.id.to_s %>">
-      <% user.drafted_players(@draft.year).each do |player| %>
-        <%= render partial: 'player', locals: { player: player, draft: @draft } %>
-      <% end %>
-      </ol>
+            <p class="user-header current-user"><%= current_user.name %> -
+            <span class="user-money" id="<%= 'user-money-' + current_user.id.to_s %>">$<%= current_user.money_remaining(@draft.year).to_s%></span> </p>
+            <ol id="<%= 'team-' + current_user.id.to_s %>" class="under-list">
+              <% current_user.drafted_players(@draft.year).each do |player| %>
+                <%= render partial: 'player', locals: { player: player, draft: @draft  } %>
+              <% end %>
+            </ol>
+          </div>
         </div>
-    <% end %>
+      <% end %>
 
-  <% end %>
+
+      <% @users.each do |user| %>
+
+          <% if user.id != current_user.id  %>
+                  <div class="col-3">
+            <div class="other-team" >
+              <h4 class="team-header"><p class="user-header"><%= user.name %> -
+              <span class="user-money" id="<%= 'user-money-' + user.id.to_s %>">$<%= user.money_remaining(@draft.year).to_s%></span> </p></h4>
+              <ol class="under-list" id="<%= 'team-' + user.id.to_s %>">
+                <% user.drafted_players(@draft.year).each do |player| %>
+                  <%= render partial: 'player', locals: { player: player, draft: @draft } %>
+                <% end %>
+              </ol>
+            </div>
+                    </div>
+          <% end %>
+
+      <% end %>
+    </div>
+  </div>
 </div>
