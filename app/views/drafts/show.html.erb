@@ -37,14 +37,14 @@
           </div>
         <% end %>
       </div>
-      <% if !current_user.auctioneer %>
-        <div class="box bid-box">
+      <div class="box bid-box">
+        <% if !current_user.auctioneer %>
+
           <div id="bidding-form" >
             <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
           </div>
 
-      <% end %>
-        <div class="box bid-box">
+        <% end %>
         <h3 class="heading-label"> Bid History: </h3>
         <ul id='bid-list'>
           <% @bids.each do |bid| %>
@@ -52,8 +52,8 @@
           <% end %>
         </ul>
       </div>
-      </div>
     <% end %>
+
   </div>
 </div>
 
