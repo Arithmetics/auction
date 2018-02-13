@@ -1,10 +1,11 @@
 
-<% if current_user.auctioneer %>
-  <h3> You are the Auctioneer </h3>
-<% end %>
+
 
 
 <div class="box">
+  <% if current_user.auctioneer %>
+    <h3 class="heading-label"> You are the Auctioneer! </h3>
+  <% end %>
   <div id="switcher">
     <% if !@nominated_player %>
       <div id="nomination">
@@ -16,22 +17,18 @@
       </div>
       <div class="box bid-box">
         <% if !current_user.auctioneer %>
-
           <div id="bidding-form" >
             <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
           </div>
-
         <% end %>
         <% if current_user.auctioneer %>
           <div class="auctioneer">
-
               <div id="sell_player">
                 <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
               </div>
               <div id="unnominate">
                 <%= render partial: 'unnominate', locals: { draft: @draft } %>
               </div>
-
           </div>
         <% end %>
         <h3 class="heading-label"> Bid History: </h3>
@@ -42,17 +39,14 @@
         </ul>
       </div>
     <% end %>
-
   </div>
 </div>
-
 <div class="box">
   <div class="container">
     <div class="row">
       <% if !current_user.auctioneer %>
         <div class="col-3">
           <div class="your-team">
-
             <p class="user-header current-user"><%= current_user.name %> -
             <span class="user-money" id="<%= 'user-money-' + current_user.id.to_s %>">$<%= current_user.money_remaining(@draft.year).to_s%></span> </p>
             <ol id="<%= 'team-' + current_user.id.to_s %>" class="under-list">
@@ -63,12 +57,9 @@
           </div>
         </div>
       <% end %>
-
-
       <% @users.each do |user| %>
-
-          <% if user.id != current_user.id  %>
-                  <div class="col-3">
+        <% if user.id != current_user.id  %>
+          <div class="col-3">
             <div class="other-team" >
               <h4 class="team-header"><p class="user-header"><%= user.name %> -
               <span class="user-money" id="<%= 'user-money-' + user.id.to_s %>">$<%= user.money_remaining(@draft.year).to_s%></span> </p></h4>
@@ -78,9 +69,8 @@
                 <% end %>
               </ol>
             </div>
-                    </div>
-          <% end %>
-
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

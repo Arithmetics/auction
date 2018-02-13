@@ -77,7 +77,13 @@ body {
   margin-left: 5px;
 }
 
-
+.nomination-input {
+  background-color: #1C1E28;
+  font-size: 20px;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+}
 
 .num_field {
   display: inline-block;
@@ -86,7 +92,7 @@ body {
 .other-team {
   border-style: solid;
   border-width: 1px;
-  margin: 10px;
+  margin: 5px;
   padding: 5px;
   border-radius: 3px;
   vertical-align:top;

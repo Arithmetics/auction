@@ -1,42 +1,39 @@
-<div class="box">
 
-  <div id="player_for_sale">
-    <%= render partial: 'player_for_sale', locals: { nominated_player: nominated_player, bid: bids.first } %>
+<div class="box">
+    <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first } %>
+</div>
+
+<div class="box bid-box">
+
+  <div class="not-admin">
+
+    <div id="bidding-form" >
+      <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
+    </div>
+
+
   </div>
+
 
   <div class="admin-only">
     <div class="auctioneer">
-      <h4>Auctioneer Actions</h4>
 
-      <div id="sell_player">
-        <%= render partial: 'sell_player', locals: { bid: bids.first } %>
-      </div>
-
-      <div id="unnominate">
-        <%= render partial: 'unnominate', locals: { draft: draft } %>
-      </div>
+        <div id="sell_player">
+          <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
+        </div>
+        <div id="unnominate">
+          <%= render partial: 'unnominate', locals: { draft: @draft } %>
+        </div>
     </div>
   </div>
-</div>
 
 
 
-<div class="box">
-  <div class="not-admin">
-    <div id="bidding-form" />
-      <%= render partial: 'bidding_form', locals: { bid: bid, nominated_player: nominated_player, draft: draft, bids: bids } %>
-    </div>
-  </div>
-</div>
-
-
-
-
-<div class="box">
-  <h3> Bid History: </h3>
-  <ul id='bid-list'>
-    <% bids.each do |bid| %>
+  <h3 class="heading-label"> Bid History: </h3>
+  <ul id='bid-list' class="under-list">
+    <% @bids.each do |bid| %>
       <%= render partial: 'bid', locals: { bid: bid } %>
     <% end %>
   </ul>
+
 </div>
