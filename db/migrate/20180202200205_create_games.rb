@@ -21,7 +21,7 @@ class CreateGames < ActiveRecord::Migration[5.1]
       t.integer :rushing_yards
       t.integer :rushing_touchdowns
       t.integer :receptions
-      t.integer :recieving_yards
+      t.integer :receiving_yards
       t.integer :receiving_touchdowns
       t.integer :return_yards
       t.integer :return_touchdowns
