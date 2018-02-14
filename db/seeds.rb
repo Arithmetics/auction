@@ -61,7 +61,7 @@ def convert_player_stats(player_stats)
     rushing_yards: 0,
     rushing_touchdowns: 0,
     receptions: 0,
-    recieving_yards: 0,
+    receiving_yards: 0,
     receiving_touchdowns: 0,
     return_yards: 0,
     return_touchdowns: 0,
@@ -197,3 +197,19 @@ unique_players.each do |player|
   puts new_player
   new_player.save!
 end
+
+
+#####drafts seed ###############
+years = [2013,2014,2015,2016,2017]
+
+year.each do |year|
+  Draft.create(
+    year: year,
+    format: "OP_standard",
+    open: false,
+    nominated_player: nil
+  )
+end
+
+
+#######users seed #########
