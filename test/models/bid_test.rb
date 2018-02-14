@@ -19,8 +19,7 @@ class BidTest < ActiveSupport::TestCase
       user: @user1,
       winning: false
     )
-
-    assert_not @new_bid.valid?
+    assert @new_bid.valid?
   end
 
 
