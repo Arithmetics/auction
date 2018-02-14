@@ -1,11 +1,12 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+one:
+  player_name: "Marshawn Lynch"
+  esbid: FAKE1234
+  gsisPlayerId: 00-000001
+  position: RB
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+
+two:
+  player_name: "Dude Dudeler"
+  esbid: FAKE6969
+  gsisPlayerId: 00-000002
+  position: WR

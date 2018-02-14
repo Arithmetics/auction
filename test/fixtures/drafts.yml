@@ -1,9 +1,35 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  year: 1
-  format: MyString
+  year: 2013
+  format: OP_standard
+  open: false
+  nominated_player_id: nil
 
 two:
-  year: 1
-  format: MyString
+  year: 2014
+  format: OP_standard
+  open: false
+  nominated_player_id: nil
+
+three:
+  year: 2015
+  format: OP_standard
+  open: false
+  nominated_player_id: nil
+
+four:
+  year: 2016
+  format: OP_standard
+  open: false
+  nominated_player_id: nil
+
+five:
+  year: 2017
+  format: OP_standard
+  open: false
+  nominated_player_id: nil
+
+six:
+  year: 2018
+  format: OP_standard
+  open: true
+  nominated_player_id: nil
