@@ -141,7 +141,7 @@ weeks.each do |week|
           rushing_yards: converted_stats[:rushing_yards],
           rushing_touchdowns: converted_stats[:rushing_touchdowns],
           receptions: converted_stats[:receptions],
-          recieving_yards: converted_stats[:recieving_yards],
+          receiving_yards: converted_stats[:receiving_yards],
           receiving_touchdowns: converted_stats[:receiving_touchdowns],
           return_yards: converted_stats[:return_yards],
           return_touchdowns: converted_stats[:return_touchdowns],
@@ -202,12 +202,12 @@ end
 #####drafts seed ###############
 years = [2013,2014,2015,2016,2017]
 
-year.each do |year|
+years.each do |year|
   Draft.create(
     year: year,
     format: "OP_standard",
     open: false,
-    nominated_player: nil
+    nominated_player_id: nil
   )
 end
 
