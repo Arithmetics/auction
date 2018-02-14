@@ -13,3 +13,45 @@
   <h4 class="card-info"> Leading Bidder: <span id="leading-bidder"><%= bid.user.name %></span></h4>
 </div>
 </div>
+
+<div class="graph">
+<%= line_chart (@nominated_player.sales_hash),
+      library: {colors: ["#ffcb5e", "#90ee7e"],
+                chart: {
+                  backgroundColor: 'rgba(255, 255, 255, 0.0)',
+                  width: '250',
+                  style: {
+                    fontFamily: "'Unica One', sans-serif"
+                  }
+                }
+              }
+%>
+</div>
+
+<div class="graph">
+<%= line_chart (@nominated_player.season_pts_hash),
+      library: {colors: ["#ffcb5e", "#90ee7e"],
+                chart: {
+                  backgroundColor: 'rgba(255, 255, 255, 0.0)',
+                  width: '250',
+                  style: {
+                    fontFamily: "'Unica One', sans-serif"
+                  }
+                }
+              }
+%>
+</div>
+
+<div class="graph">
+<%= line_chart (@nominated_player.season_pts_hash),
+      library: {colors: ["#ffcb5e", "#90ee7e"],
+                chart: {
+                  backgroundColor: 'rgba(255, 255, 255, 0.0)',
+                  width: '250',
+                  style: {
+                    fontFamily: "'Unica One', sans-serif"
+                  }
+                }
+              }
+%>
+</div>

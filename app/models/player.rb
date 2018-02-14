@@ -29,4 +29,54 @@ class Player < ApplicationRecord
     sold
   end
 
+  def sell_amount(year)
+    amount = 0
+    self.bids.each do |bid|
+      if bid.winning && bid.draft.year == year
+        amount = bid.amount
+      end
+    end
+    amount
+  end
+
+  def sales_hash
+    graph_data = {}
+    Draft.all.each do |draft|
+      year = draft.year
+      winning_bid = draft.bids.find_by(player_id: self.id, winning: true)
+      if winning_bid
+        graph_data[year.to_s] = winning_bid.amount
+      end
+    end
+    graph_data.sort.to_h
+  end
+
+  def season_pts_hash
+    graph_data = {}
+    Draft.all.each do |draft|
+      year = draft.year
+      player_games = self.games.where(season: year)
+      if player_games.count > 0
+        season_fantasy_points = player_games.reduce(0){|sum,x| sum + x.points_standard }
+        graph_data[year.to_s] = season_fantasy_points
+      end
+    end
+    graph_data.sort.to_h
+  end
+
+  def games_played_hash
+    graph_data = {}
+    Draft.all.each do |draft|
+      year = draft.year
+      player_games = self.games.where(season: year)
+      if player_games.count > 0
+        season_fantasy_points = player_games.reduce(0){|sum,x| sum + x.points_standard }
+        graph_data[year.to_s] = season_fantasy_points
+      end
+    end
+    graph_data.sort.to_h
+  end
+
+
+
 end
