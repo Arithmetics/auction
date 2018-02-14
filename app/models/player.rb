@@ -1,5 +1,5 @@
 class Player < ApplicationRecord
-  #has_many :games
+  has_many :games
   has_many :bids
   has_many :users, through: :bids
   has_many :drafts, through: :bids
@@ -58,7 +58,7 @@ class Player < ApplicationRecord
       player_games = self.games.where(season: year)
       if player_games.count > 0
         season_fantasy_points = player_games.reduce(0){|sum,x| sum + x.points_standard }
-        graph_data[year.to_s] = season_fantasy_points
+        graph_data[year.to_s] = season_fantasy_points.round(1)
       end
     end
     graph_data.sort.to_h
@@ -70,8 +70,8 @@ class Player < ApplicationRecord
       year = draft.year
       player_games = self.games.where(season: year)
       if player_games.count > 0
-        season_fantasy_points = player_games.reduce(0){|sum,x| sum + x.points_standard }
-        graph_data[year.to_s] = season_fantasy_points
+        games
+        graph_data[year.to_s] = player_games.count
       end
     end
     graph_data.sort.to_h

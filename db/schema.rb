@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20180207194556) do
     t.integer "rushing_yards"
     t.integer "rushing_touchdowns"
     t.integer "receptions"
-    t.integer "recieving_yards"
+    t.integer "receiving_yards"
     t.integer "receiving_touchdowns"
     t.integer "return_yards"
     t.integer "return_touchdowns"
