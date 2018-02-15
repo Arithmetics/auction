@@ -6,20 +6,13 @@ class PlayerTest < ActiveSupport::TestCase
     @draft2018 = drafts(:six)
     @player1 = players(:one)
     @player2 = players(:two)
+    @player3 = players(:three)
     @user1 = users(:one)
     @bid1 = bids(:one)
     @bid2 = bids(:two)
     @bid3 = bids(:three)
   end
 
-  test "player must have esbid" do
-    @new_player = Player.new(
-      gsisPlayerId: "DFG435",
-      player_name: "Bringo Brangus",
-      position: "QB"
-    )
-    assert_not @new_player.valid?
-  end
 
 
   test "player must have gsisPlayerId" do
@@ -64,7 +57,7 @@ class PlayerTest < ActiveSupport::TestCase
 
 
   test "player has bids" do
-    assert_equal @player2.bids.count, 3
+    assert_equal @player2.bids.count, 5
   end
 
 
@@ -91,12 +84,35 @@ class PlayerTest < ActiveSupport::TestCase
   end
 
 
+  test "correct sell amount reported" do
+    @player2.bids.first.update_attribute(:winning, true)
+    assert @player2.sold?(2018)
+    assert_equal @player2.sell_amount(2018), 3
+  end
+
+
   test "prints name with position" do
     assert_equal @player1.name_with_position, "Marshawn Lynch, RB"
   end
 
 
+  test "connects with games" do
+    assert_equal @player3.games.count, 6
+  end
 
+
+  test "season_pts_hash" do
+    assert_equal @player3.season_pts_hash["2013"], 147.3
+  end
+
+  test "sales_hash" do
+    assert_equal @player2.sales_hash["2014"], 5
+    assert_equal @player2.sales_hash["2015"], 6
+  end
+
+  test "games_played_hash" do
+    assert_equal @player3.games_played_hash["2013"], 6
+  end
 
 
 end

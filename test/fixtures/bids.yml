@@ -18,3 +18,17 @@ three:
   draft: six
   player: two
   winning: false
+
+four:
+  amount: 5
+  user: one
+  draft: two
+  player: two
+  winning: true
+
+five:
+  amount: 6
+  user: one
+  draft: three
+  player: two
+  winning: true 

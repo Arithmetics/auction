@@ -1,7 +1,7 @@
 one:
   season: 2013
   week: 1
-  player_id: 497095
+  player_id: 69
   esbid: JOEQ1234
   gsisPlayerId: 00-000003
   player_name: Joe Quarterback
@@ -50,7 +50,7 @@ one:
 two:
   season: 2013
   week: 2
-  player_id: 497095
+  player_id: 69
   esbid: JOEQ1234
   gsisPlayerId: 00-000003
   player_name: Joe Quarterback
@@ -99,7 +99,7 @@ two:
 three:
   season: 2013
   week: 3
-  player_id: 497095
+  player_id: 69
   esbid: JOEQ1234
   gsisPlayerId: 00-000003
   player_name: Joe Quarterback
@@ -148,7 +148,7 @@ three:
 four:
   season: 2013
   week: 4
-  player_id: 497095
+  player_id: 69
   esbid: JOEQ1234
   gsisPlayerId: 00-000003
   player_name: Joe Quarterback
@@ -197,7 +197,7 @@ four:
 five:
   season: 2013
   week: 5
-  player_id: 497095
+  player_id: 69
   esbid: JOEQ1234
   gsisPlayerId: 00-000003
   player_name: Joe Quarterback
@@ -246,7 +246,7 @@ five:
 six:
   season: 2013
   week: 6
-  player_id: 497095
+  player_id: 69
   esbid: JOEQ1234
   gsisPlayerId: 00-000003
   player_name: Joe Quarterback

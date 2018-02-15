@@ -4,7 +4,7 @@ class Player < ApplicationRecord
   has_many :users, through: :bids
   has_many :drafts, through: :bids
 
-  validates :esbid, presence: true
+
   validates :gsisPlayerId, presence: true
   validates :player_name, presence: true
   validates :position, presence: true
@@ -29,12 +29,9 @@ class Player < ApplicationRecord
     unsold_players.sort!{|x,y| x.player_name <=> y.player_name}
   end
 
-
   def name_with_position
     "#{self.player_name}, #{self.position}"
   end
-
-
 
   def sell_amount(year)
     amount = 0
@@ -83,7 +80,6 @@ class Player < ApplicationRecord
     end
     graph_data.sort.to_h
   end
-
 
 
 end
