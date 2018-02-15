@@ -4,6 +4,21 @@ class Player < ApplicationRecord
   has_many :users, through: :bids
   has_many :drafts, through: :bids
 
+  validates :esbid, presence: true
+  validates :gsisPlayerId, presence: true
+  validates :player_name, presence: true
+  validates :position, presence: true
+
+  def sold?(year)
+    sold = false
+    self.bids.each do |bid|
+      if bid.winning && bid.draft.year == year
+        sold = true
+      end
+    end
+    sold
+  end
+
   def self.unsold(year)
     unsold_players = []
     Player.all.each do |player|
@@ -16,18 +31,10 @@ class Player < ApplicationRecord
 
 
   def name_with_position
-    "#{self.player_name}, #{self.games.last.position}"
+    "#{self.player_name}, #{self.position}"
   end
 
-  def sold?(year)
-    sold = false
-    self.bids.each do |bid|
-      if bid.winning && bid.draft.year == year
-        sold = true
-      end
-    end
-    sold
-  end
+
 
   def sell_amount(year)
     amount = 0

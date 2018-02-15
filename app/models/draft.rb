@@ -3,6 +3,10 @@ class Draft < ApplicationRecord
   has_many :players, through: :bids
   has_many :users, through: :bids
 
+  validates :format, presence: true
+  validates :year, presence: true
+
+
 
   def nominated_player
     if self.nominated_player_id

@@ -1,0 +1,20 @@
+one:
+  amount: 1
+  user: one
+  draft: six
+  player: two
+  winning: false
+
+two:
+  amount: 2
+  user: one
+  draft: six
+  player: two
+  winning: false
+
+three:
+  amount: 3
+  user: two
+  draft: six
+  player: two
+  winning: false
