@@ -21,9 +21,6 @@ class BidsController < ApplicationController
       ActionCable.server.broadcast 'draft_channel',
         nomination: render(partial: 'drafts/nomination', locals: { draft: @draft }),
         new_player_name: @bid.player.player_name, new_player_cost: @bid.amount, user_id: @bid.user.id, user_money: @bid.user.money_remaining(@draft.year), user_name: @bid.user.name 
-
-      #redirect_to request.referer
-
     else
       redirect_to request.referer
     end

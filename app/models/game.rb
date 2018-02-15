@@ -72,6 +72,6 @@ class Game < ApplicationRecord
     pts.reduce(0){|sum,x| sum + x }.round(2)
   end
 
-  
+
 
 end
