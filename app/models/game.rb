@@ -8,6 +8,7 @@ class Game < ApplicationRecord
       passing_touchdowns*4.0,
       interceptions_thrown*-2.0,
       rushing_yards/10.0,
+      rushing_touchdowns*6,
       receiving_yards/10.0,
       receiving_touchdowns*6.0,
       return_yards/50.0,
@@ -30,15 +31,17 @@ class Game < ApplicationRecord
     ]
 
     if position == "DEF"
-      if pts_allowed == 0
+      if points_allowed == 0
         pts.push(9.0)
-      elsif pts_allowed < 7
+      elsif points_allowed < 7
         pts.push(6.0)
-      elsif pts_allowed < 14
+      elsif points_allowed < 14
         pts.push(3.0)
-      elsif pts_allowed < 21
+      elsif points_allowed < 21
         pts.push(1.0)
-      elsif pts_allowed < 28
+      elsif points_allowed < 28
+        pts.push(-1.0)
+      elsif points_allowed < 34
         pts.push(-3.0)
       else
         pts.push(-6.0)
@@ -66,7 +69,9 @@ class Game < ApplicationRecord
       pts.push(blocked_kicks*1.0)
       pts.push(team_return_touchdowns*6.0)
     end
-    pts.reduce(0){|sum,x| sum + x }
+    pts.reduce(0){|sum,x| sum + x }.round(2)
   end
+
+  
 
 end

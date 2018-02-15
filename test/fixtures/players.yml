@@ -1,13 +1,20 @@
 one:
   id: 34
-  player_name: "Marshawn Lynch"
+  player_name: Marshawn Lynch
   esbid: FAKE1234
   gsisPlayerId: 00-000001
   position: RB
 
 
 two:
-  player_name: "Dude Dudeler"
+  player_name: Dude Dudeler
   esbid: FAKE6969
   gsisPlayerId: 00-000002
   position: WR
+
+
+three:
+  player_name: Joe Quarterback
+  esbid: JOEQ1234
+  gsisPlayerId: 00-000003
+  position: QB
