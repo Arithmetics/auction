@@ -26,4 +26,8 @@ class GameTest < ActiveSupport::TestCase
     assert_equal @game7.points_standard, 26.0
   end
 
+  test "test test" do
+    assert_equal 4,4
+  end
+
 end
