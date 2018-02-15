@@ -3,7 +3,7 @@
   <%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{nominated_player.esbid}.png", class: "player-pic") %>
 </div>
 <div class='player-info'>
-  <h3 class="card-info"><%= nominated_player.player_name %>,  <%= nominated_player.games.last.position %></h3>
+  <h3 class="card-info"><%= nominated_player.player_name %>,  <%= nominated_player.position %></h3>
   <div class="price">
     <div class="price-circle">
       <h4 class="card-info">Current Bid:
