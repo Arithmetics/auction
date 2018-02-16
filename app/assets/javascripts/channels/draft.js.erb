@@ -29,7 +29,6 @@ App.draft = App.cable.subscriptions.create("DraftChannel", {
     if (data.player_for_sale != null){
       $('#switcher').fadeOut('slow', function(){
               $('#switcher').html(data.player_for_sale).fadeIn("slow");
-
                 const ids=[1,2,3,4]
                 let graphMinButton;
                 let graphMaxButton;
@@ -46,7 +45,6 @@ App.draft = App.cable.subscriptions.create("DraftChannel", {
                     document.getElementById(`maxgraph${id}`).style.display = "none";
                   })
                 })
-
       });
     }
 
