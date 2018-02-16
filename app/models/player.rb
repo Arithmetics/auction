@@ -81,5 +81,15 @@ class Player < ApplicationRecord
     graph_data.sort.to_h
   end
 
+  def points_per_game_hash
+    season_pts = season_pts_hash
+    games_count = games_played_hash
+    graph_data = {}
+    season_pts.each do |k,v|
+      graph_data[k] = (v/(games_count[k].to_f)).round(2)
+    end
+    graph_data
+  end
+
 
 end

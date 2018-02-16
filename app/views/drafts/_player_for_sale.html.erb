@@ -14,12 +14,13 @@
 </div>
 </div>
 
-<div class="graph">
+<div class="graph" id="graph1">
 <%= line_chart (@nominated_player.sales_hash),
       library: {colors: ["#00c87c", "#90ee7e"],
                 chart: {
                   backgroundColor: 'rgba(255, 255, 255, 0.0)',
                   width: '250',
+                  padding: '10',
                   style: {
                     fontFamily: "'Unica One', sans-serif"
                   },
@@ -35,7 +36,7 @@
 %>
 </div>
 
-<div class="graph">
+<div class="graph" id="graph2">
 <%= line_chart (@nominated_player.season_pts_hash),
       library: {colors: ["#ffcb5e", "#90ee7e"],
                 chart: {
@@ -56,7 +57,7 @@
 %>
 </div>
 
-<div class="graph">
+<div class="graph" id="graph3">
 <%= line_chart (@nominated_player.games_played_hash),
       library: {colors: ["#73629e", "#90ee7e"],
                 chart: {
@@ -68,6 +69,27 @@
                 },
                 title: {
                   text: 'Games Played',
+                  style: {
+                  color: "#ff6560",
+                  fontSize: '22px'
+                }
+              }
+            }
+%>
+</div>
+
+<div class="graph" id="graph4">
+<%= line_chart (@nominated_player.points_per_game_hash),
+      library: {colors: ["#28d5dc", "#90ee7e"],
+                chart: {
+                  backgroundColor: 'rgba(255, 255, 255, 0.0)',
+                  width: '250',
+                  style: {
+                    fontFamily: "'Unica One', sans-serif"
+                  },
+                },
+                title: {
+                  text: 'Points/Game',
                   style: {
                   color: "#ff6560",
                   fontSize: '22px'
