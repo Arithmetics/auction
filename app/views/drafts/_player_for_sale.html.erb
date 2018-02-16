@@ -15,6 +15,7 @@
 </div>
 
 <div class="graph" id="graph1">
+<i class="ion-ios-minus-outline  minimize" id="minimizegraph1"></i>
 <%= line_chart (@nominated_player.sales_hash),
       library: {colors: ["#00c87c", "#90ee7e"],
                 chart: {
@@ -36,7 +37,9 @@
 %>
 </div>
 
+
 <div class="graph" id="graph2">
+  <i class="ion-ios-minus-outline minimize" id="minimizegraph2"></i>
 <%= line_chart (@nominated_player.season_pts_hash),
       library: {colors: ["#ffcb5e", "#90ee7e"],
                 chart: {
@@ -57,7 +60,10 @@
 %>
 </div>
 
+
+
 <div class="graph" id="graph3">
+  <i class="ion-ios-minus-outline  minimize" id="minimizegraph3"></i>
 <%= line_chart (@nominated_player.games_played_hash),
       library: {colors: ["#73629e", "#90ee7e"],
                 chart: {
@@ -78,7 +84,10 @@
 %>
 </div>
 
+
+
 <div class="graph" id="graph4">
+  <i class="ion-ios-minus-outline  minimize" id="minimizegraph4"></i>
 <%= line_chart (@nominated_player.points_per_game_hash),
       library: {colors: ["#28d5dc", "#90ee7e"],
                 chart: {
@@ -97,4 +106,11 @@
               }
             }
 %>
+</div>
+
+<div id="graph-shortcuts">
+  <i class="icon ion-plus-circled min-graph" id="maxgraph1"></i>
+  <i class="icon ion-plus-circled min-graph" id="maxgraph2"></i>
+  <i class="icon ion-plus-circled min-graph" id="maxgraph3"></i>
+  <i class="icon ion-plus-circled min-graph" id="maxgraph4"></i>
 </div>

@@ -1,3 +1,5 @@
+@import 'ionicons';
+
 body {
   background-color: #0D0D18
 }
@@ -55,6 +57,7 @@ body {
 
 .graph {
   border-style: solid;
+  position: relative;
   display: inline-block;
   border-width: 1px;
   width: 260px;
@@ -66,10 +69,49 @@ body {
               0px 0px 10px 10px rgba(45,78,255,0.15);
 }
 
+.min-graph {
+  display: none;
+  font-size: 24px;
+  margin-left: 22px;
+  margin-right: 22px;
+}
+
+#maxgraph1 {
+  color: #00c87c;
+}
+#maxgraph2 {
+  color: #ff6560;
+}
+
+#maxgraph3 {
+  color: #73629e;
+}
+
+#maxgraph4 {
+  color: #28d5dc;
+}
+
+#graph-shortcuts {
+
+  height: 30px;
+  padding-left: 10px;
+}
+
+.minimize {
+  position: absolute;
+  right: 10px;
+  font-size: 28px;
+  z-index: 99999;
+}
+
 @media only screen and (max-width : 1555px) {
 
   #graph4 {
     display: none;
+  }
+
+  #maxgraph4 {
+    display: inline;
   }
 }
 
@@ -78,6 +120,10 @@ body {
   #graph3 {
     display: none;
   }
+
+  #maxgraph3 {
+    display: inline;
+  }
 }
 
 @media only screen and (max-width : 965px) {
@@ -85,12 +131,20 @@ body {
   #graph2 {
     display: none;
   }
+
+  #maxgraph2 {
+    display: inline;
+  }
 }
 
 @media only screen and (max-width : 670px) {
 
   #graph1 {
     display: none;
+  }
+
+  #maxgraph1 {
+    display: inline;
   }
 }
 
