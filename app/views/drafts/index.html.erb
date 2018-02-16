@@ -1,3 +1,13 @@
+<div class="box">
+  <h3>Drafts</h3>
+<ul>
 <% @drafts.each do |draft| %>
-  <%= link_to draft.year, draft %>
+  <li><h4><%= link_to_if(draft.open, draft.year, draft) %>
+    <% if !draft.open %>
+      - closed!
+    <% end %>
+    </h4>
+  </li>
 <% end %>
+</ul>
+</div>

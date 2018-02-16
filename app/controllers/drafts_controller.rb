@@ -1,5 +1,6 @@
 class DraftsController < ApplicationController
   before_action :user_is_auctioneer, only: [:undo_drafting, :unnominate]
+  before_action :draft_is_open, only: [:show]
 
   def index
     @drafts = Draft.all
@@ -7,7 +8,7 @@ class DraftsController < ApplicationController
 
 
   def show
-    @draft = Draft.find(params[:id])
+
     @nominated_player = @draft.nominated_player
     @players = Player.all
     @users = User.all.where(auctioneer: false)
@@ -84,6 +85,13 @@ class DraftsController < ApplicationController
 
   def user_is_auctioneer
     redirect_to request.referer unless current_user.auctioneer?
+  end
+
+  def draft_is_open
+    @draft = Draft.find(params[:id])
+    if !@draft.open
+      redirect_to root_path
+    end
   end
 
 end
