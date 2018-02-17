@@ -8,7 +8,7 @@ class DraftsController < ApplicationController
 
 
   def show
-
+    @top_remaining = Player.top_remaining(@draft.year)[0..30]
     @nominated_player = @draft.nominated_player
     @players = Player.all
     @users = User.all.where(auctioneer: false)
@@ -24,7 +24,7 @@ class DraftsController < ApplicationController
 
   def nominate
     @draft = Draft.find(params[:id])
-
+    @top_remaining = Player.top_remaining(@draft.year)[0..30]
     if @draft.update_attributes(draft_params)
       starting_bid = @draft.bids.build(player_id: @draft.nominated_player_id, user: current_user, amount: 1)
       starting_bid.save
@@ -50,7 +50,9 @@ class DraftsController < ApplicationController
   end
 
   def unnominate
+
     @draft = Draft.find(params[:id])
+    @top_remaining = Player.top_remaining(@draft.year)[0..30]
     player = Player.find(@draft.nominated_player_id)
     bids = player.bids.select { |bid| bid.draft.year == @draft.year }
     if @draft.update_attribute(:nominated_player_id, nil)

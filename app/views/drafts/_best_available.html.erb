@@ -1,0 +1,43 @@
+<div class="best-available box">
+  <h3 class="heading-label" id="best-av-label"> Best Available </h3>
+
+  <div class="blocks">
+  <ol class="under-list" id="player-list-1">
+    <% top_remaining[0..4].each do |player| %>
+      <li><%= player %></li>
+    <% end %>
+  </ol>
+  </div>
+
+  <div class="blocks">
+    <ol start='6' id="player-list-2">
+      <% top_remaining[5..9].each do |player| %>
+        <li><%= player %></li>
+      <% end %>
+    </ol>
+  </div>
+
+  <div class="blocks">
+    <ol start='11' id="player-list-3">
+      <% top_remaining[10..14].each do |player| %>
+        <li><%= player %></li>
+      <% end %>
+    </ol>
+  </div>
+
+  <div class="blocks">
+    <ol start='16' id="player-list-4">
+      <% top_remaining[15..19].each do |player| %>
+        <li><%= player %></li>
+      <% end %>
+    </ol>
+  </div>
+
+  <div class="blocks">
+    <ol start='21' id="player-list-5">
+      <% top_remaining[20..24].each do |player| %>
+        <li><%= player %></li>
+      <% end %>
+    </ol>
+  </div>
+</div>

@@ -15,12 +15,13 @@ class BidsController < ApplicationController
   def update
     @bid = Bid.last
     @draft = @bid.draft
+    @top_remaining = Player.top_remaining(@draft.year)[0..30]
     if @bid.update_attributes(bid_params)
       @draft.update_attribute(:nominated_player_id, nil)
-
+      @top_remaining = Player.top_remaining(@draft.year)[0..30]
       ActionCable.server.broadcast 'draft_channel',
         nomination: render(partial: 'drafts/nomination', locals: { draft: @draft }),
-        new_player_name: @bid.player.player_name, new_player_cost: @bid.amount, user_id: @bid.user.id, user_money: @bid.user.money_remaining(@draft.year), user_name: @bid.user.name 
+        new_player_name: @bid.player.player_name, new_player_cost: @bid.amount, user_id: @bid.user.id, user_money: @bid.user.money_remaining(@draft.year), user_name: @bid.user.name
     else
       redirect_to request.referer
     end

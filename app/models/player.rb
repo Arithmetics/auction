@@ -29,6 +29,22 @@ class Player < ApplicationRecord
     unsold_players.sort!{|x,y| x.player_name <=> y.player_name}
   end
 
+  def self.top_remaining(year)
+    require 'open-uri'
+    require 'json'
+    response = open('http://api.fantasy.nfl.com/v1/players/userdraftranks?format=json').read
+    ranking_object = JSON.parse(response)
+    unsold_list = self.unsold(year)
+    top_ranked_left = []
+
+    ranking_object["players"][0..75].each do |player|
+      if unsold_list.select{|x| x.esbid == player["esbid"]}.length > 0
+        top_ranked_left.push(player["firstName"] + " " + player["lastName"] + ", " + player["position"]);
+      end
+    end
+    top_ranked_left
+  end
+
   def name_with_position
     "#{self.player_name}, #{self.position}"
   end

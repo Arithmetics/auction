@@ -15,7 +15,7 @@
       <div class="box">
           <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first } %>
       </div>
-      <div class="box bid-box">
+      <div class="bid-box">
         <% if !current_user.auctioneer %>
           <div id="bidding-form" >
             <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
@@ -38,6 +38,13 @@
           <% end %>
         </ul>
       </div>
+
+
+      <%= render partial: 'best_available', locals: { top_remaining: @top_remaining } %>
+
+
+
+
     <% end %>
   </div>
 </div>
