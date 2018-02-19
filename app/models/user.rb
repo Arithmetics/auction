@@ -6,13 +6,13 @@ class User < ApplicationRecord
   has_many :bids
 
 
+
   def drafted_players(year)
     players = []
     draft = Draft.find_by(year: year)
-    self.bids.each do |bid|
-      if (bid.draft == draft && bid.winning)
-        players.push({player: bid.player, amount: bid.amount})
-      end
+    winning_bids = draft.bids.where(winning: true, user_id: self.id)
+    winning_bids.each do |bid|
+      players.push({player: bid.player, amount: bid.amount})
     end
     players
   end

@@ -20,7 +20,10 @@ body:not(.without-admin) .not-admin {
   display: block;
   background-color: #1C1E28;
   border-radius: 5px;
+
 }
+
+
 
 .player-card {
   border-style: solid;
@@ -64,6 +67,8 @@ body:not(.without-admin) .not-admin {
 /************ best available ***********/
 .best-available {
   display: inline-block;
+  height: 198px;
+  vertical-align:top;
 }
 
 #best-av-label {
