@@ -12,7 +12,10 @@
   <body class="<%= current_user && current_user.auctioneer? ? "with-admin" : "without-admin" %>">
 
     <header>
-    <h3 class="logo-header">Fantasy Auction</h3>
+    <h3 class="logo-header">
+      <i class="icon ion-ios-americanfootball-outline"></i>
+        Fantasy Auction
+    </h3>
 
     <nav>
 
@@ -43,6 +46,7 @@
 
 
     <div class="remainder">
+      <h4>Logged in as: <%= current_user.name unless !current_user %> </h4>
 
     <%= yield %>
 

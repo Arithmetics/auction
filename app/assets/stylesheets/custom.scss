@@ -4,6 +4,14 @@ body {
   background-color: #0D0D18
 }
 
+body:not(.with-admin) .admin-only {
+  display: none;
+}
+
+body:not(.without-admin) .not-admin {
+  display: none;
+}
+
 .box {
   border-style: solid;
   border-width: 1px;
@@ -234,7 +242,10 @@ body {
   border-radius: 5px;
   border-style: solid;
   border-width: 1px;
+  height: 30px;
+  margin-right: 5px;
 }
+
 
 .num_field {
   display: inline-block;
@@ -377,6 +388,9 @@ input[type=number] {
 
 .blocks {
   display: inline-block;
+  ol {
+    margin: 0;
+  }
 }
 
 #bid_amount {
@@ -390,13 +404,7 @@ input[type=number] {
   height: 50px;
 }
 
-body:not(.with-admin) .admin-only {
-  display: none;
-}
 
-body:not(.without-admin) .not-admin {
-  display: none;
-}
 
 .remove {
   background-color: #FF6560;

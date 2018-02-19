@@ -4,16 +4,20 @@ $(document).ready(function(){
   let graphMaxButton;
   ids.forEach(function(id){
     graphMinButton = document.getElementById(`minimizegraph${id}`);
-    graphMinButton.addEventListener('click',function(e){
-      document.getElementById(`graph${id}`).style.display = "none";
-      document.getElementById(`maxgraph${id}`).style.display = "inline";
-    })
+    if (graphMinButton){
+      graphMinButton.addEventListener('click',function(e){
+        document.getElementById(`graph${id}`).style.display = "none";
+        document.getElementById(`maxgraph${id}`).style.display = "inline";
+      })
+    }
     graphMaxButton = document.getElementById(`maxgraph${id}`);
-    graphMaxButton.addEventListener('click',function(e){
-      console.log('click')
-      document.getElementById(`graph${id}`).style.display = "inline-block";
-      document.getElementById(`maxgraph${id}`).style.display = "none";
-    })
+    if (graphMaxButton){
+      graphMaxButton.addEventListener('click',function(e){
+        console.log('click')
+        document.getElementById(`graph${id}`).style.display = "inline-block";
+        document.getElementById(`maxgraph${id}`).style.display = "none";
+      })
+    }
   })
 })
 

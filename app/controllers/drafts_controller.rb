@@ -1,6 +1,7 @@
 class DraftsController < ApplicationController
   before_action :user_is_auctioneer, only: [:undo_drafting, :unnominate]
   before_action :draft_is_open, only: [:show]
+  before_action :users_turn_to_nominate, only: [:nominate]
 
   def index
     @drafts = Draft.all
@@ -23,7 +24,7 @@ class DraftsController < ApplicationController
 
 
   def nominate
-    @draft = Draft.find(params[:id])
+
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     if @draft.update_attributes(draft_params)
       starting_bid = @draft.bids.build(player_id: @draft.nominated_player_id, user: current_user, amount: 1)
@@ -88,6 +89,11 @@ class DraftsController < ApplicationController
 
   def user_is_auctioneer
     redirect_to request.referer unless current_user.auctioneer?
+  end
+
+  def users_turn_to_nominate
+    @draft = Draft.find(params[:id])
+    redirect_to request.referer unless current_user.auctioneer? || current_user == @draft.nominating_user
   end
 
   def draft_is_open

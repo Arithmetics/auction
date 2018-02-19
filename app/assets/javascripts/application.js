@@ -16,4 +16,5 @@
 //= require chartkick
 //= require turbolinks
 //= require graph_mins
+//= require button_disables
 //= require_tree .

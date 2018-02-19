@@ -2,6 +2,7 @@ class BidsController < ApplicationController
   before_action :not_winning, :check_if_enough_money, :check_if_top_bid, only: :create
   before_action :user_is_auctioneer, only: [:destroy, :update]
 
+
   def create
     if @bid.save
       ActionCable.server.broadcast 'draft_channel',
@@ -18,6 +19,7 @@ class BidsController < ApplicationController
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     if @bid.update_attributes(bid_params)
       @draft.update_attribute(:nominated_player_id, nil)
+      @draft.set_next_nominating_user
       @top_remaining = Player.top_remaining(@draft.year)[0..30]
       ActionCable.server.broadcast 'draft_channel',
         nomination: render(partial: 'drafts/nomination', locals: { draft: @draft }),
