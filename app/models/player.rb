@@ -49,7 +49,6 @@ class Player < ApplicationRecord
     ranking_object = JSON.parse(response)
     unsold_list = self.unsold(year)
     top_ranked_left = []
-
     ranking_object["players"][0..75].each do |player|
       if unsold_list.select{|x| x.esbid == player["esbid"]}.length > 0
         top_ranked_left.push(player["firstName"] + " " + player["lastName"] + ", " + player["position"]);
@@ -72,53 +71,40 @@ class Player < ApplicationRecord
     amount
   end
 
-  def sales_hash
-    graph_data = {}
+  def master_graphs_hash
+    master_graph_data = {
+      sales: {}, season_pts: {}, games_played: {}, pts_per_game: {}
+    }
     Draft.all.each do |draft|
       year = draft.year
+      #sales_hash
       winning_bid = draft.bids.find_by(player_id: self.id, winning: true)
       if winning_bid
-        graph_data[year.to_s] = winning_bid.amount
+        master_graph_data[:sales][year.to_s] = winning_bid.amount
       end
-    end
-    graph_data.sort.to_h
-  end
-
-  def season_pts_hash
-    graph_data = {}
-    Draft.all.each do |draft|
-      year = draft.year
+      #season_pts_hash
       player_games = self.games.where(season: year)
       if player_games.count > 0
         season_fantasy_points = player_games.reduce(0){|sum,x| sum + x.points_standard }
-        graph_data[year.to_s] = season_fantasy_points.round(1)
+        master_graph_data[:season_pts][year.to_s] = season_fantasy_points.round(1)
       end
-    end
-    graph_data.sort.to_h
-  end
-
-  def games_played_hash
-    graph_data = {}
-    Draft.all.each do |draft|
+      #games_played_hash
       year = draft.year
       player_games = self.games.where(season: year)
       if player_games.count > 0
         games
-        graph_data[year.to_s] = player_games.count
+        master_graph_data[:games_played][year.to_s] = player_games.count
       end
     end
-    graph_data.sort.to_h
-  end
+    master_graph_data[:sales].sort.to_h
+    master_graph_data[:season_pts].sort.to_h
+    master_graph_data[:games_played].sort.to_h
 
-  def points_per_game_hash
-    season_pts = season_pts_hash
-    games_count = games_played_hash
-    graph_data = {}
-    season_pts.each do |k,v|
-      graph_data[k] = (v/(games_count[k].to_f)).round(2)
+    master_graph_data[:season_pts].each do |k,v|
+      master_graph_data[:pts_per_game][k] = (v/(master_graph_data[:games_played][k].to_f)).round(2)
     end
-    graph_data
-  end
 
+    master_graph_data
+  end
 
 end

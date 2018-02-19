@@ -14,9 +14,11 @@
 </div>
 </div>
 
+<% graph_data = @nominated_player.master_graphs_hash %>
+
 <div class="graph" id="graph1">
   <i class="ion-ios-minus-outline  minimize" id="minimizegraph1"></i>
-  <%= line_chart (@nominated_player.sales_hash),
+  <%= line_chart (graph_data[:sales]),
         library: {colors: ["#00c87c", "#90ee7e"],
                   chart: {
                     backgroundColor: 'rgba(255, 255, 255, 0.0)',
@@ -39,7 +41,7 @@
 
 <div class="graph" id="graph2">
   <i class="ion-ios-minus-outline minimize" id="minimizegraph2"></i>
-  <%= line_chart (@nominated_player.season_pts_hash),
+  <%= line_chart (graph_data[:season_pts]),
         library: {colors: ["#ffcb5e", "#90ee7e"],
                   chart: {
                     backgroundColor: 'rgba(255, 255, 255, 0.0)',
@@ -61,7 +63,7 @@
 
 <div class="graph" id="graph3">
   <i class="ion-ios-minus-outline  minimize" id="minimizegraph3"></i>
-  <%= line_chart (@nominated_player.games_played_hash),
+  <%= line_chart (graph_data[:games_played]),
         library: {colors: ["#73629e", "#90ee7e"],
                   chart: {
                     backgroundColor: 'rgba(255, 255, 255, 0.0)',
@@ -83,7 +85,7 @@
 
 <div class="graph" id="graph4">
   <i class="ion-ios-minus-outline  minimize" id="minimizegraph4"></i>
-  <%= line_chart (@nominated_player.points_per_game_hash),
+  <%= line_chart (graph_data[:pts_per_game]),
         library: {colors: ["#28d5dc", "#90ee7e"],
                   chart: {
                     backgroundColor: 'rgba(255, 255, 255, 0.0)',
