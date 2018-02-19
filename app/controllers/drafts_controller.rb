@@ -40,7 +40,8 @@ class DraftsController < ApplicationController
           nominated_player: @nominated_player,
           bids: @bids,
           draft: @draft,
-          bid: @bid
+          bid: @bid,
+          top_remaining: @top_remaining
            })
       #redirect_to request.referer
     else
