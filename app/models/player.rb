@@ -19,7 +19,20 @@ class Player < ApplicationRecord
     sold
   end
 
+
   def self.unsold(year)
+    bids = Draft.find_by(year: year).bids.all
+    all_players = Player.all.to_a
+    sold_players = []
+    bids.where(winning: true).each do |winning_bid|
+      sold_players << winning_bid.player
+    end
+    unsold_players = all_players - sold_players
+    unsold_players.sort!{|x,y| x.player_name <=> y.player_name}
+    return unsold_players
+  end
+
+  def self.old_unsold(year)
     unsold_players = []
     Player.all.each do |player|
       if !player.sold?(year)
