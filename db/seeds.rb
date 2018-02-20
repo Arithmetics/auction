@@ -206,24 +206,34 @@ years.each do |year|
     year: year,
     format: "OP_standard",
     open: false,
-    nominated_player_id: nil
+    nominated_player_id: nil,
+    nominating_user_id: nil
   )
 end
 
+Draft.create(
+  year: year,
+  format: "OP_standard",
+  open: true,
+  nominated_player_id: nil,
+  nominating_user_id: 2
+)
 
 ######### user seed ########
 
 User.create(
   email: "auctioneer@example.com",
   name: "Auctioneer",
-  encrypted_password: User.new.send(:password_digest, 'password'),
+  password: "password",
+  password_confirmation: "password",
   auctioneer: true
 )
 
 User.create(
   email: "default@example.com",
   name: "Default",
-  encrypted_password: User.new.send(:password_digest, 'password'),
+  password: "password",
+  password_confirmation: "password",
   auctioneer: false
 )
 
