@@ -10,12 +10,12 @@ csv = CSV.parse(csv_text)
 
 csv.each do |entry|
   new_player =  Player.new(
-                  esbid: csv[1],
-                  gsisPlayerId: csv[2],
-                  player_name: csv[3],
-                  position: csv[4]
+                  esbid: entry[1],
+                  gsisPlayerId: entry[2],
+                  player_name: entry[3],
+                  position: entry[4]
                 )
-  new_player.id = player[0]
+  new_player.id = entry[0]
   puts new_player
   new_player.save!
 end
