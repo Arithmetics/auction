@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180219182148) do
+ActiveRecord::Schema.define(version: 20180220011151) do
 
   create_table "bids", force: :cascade do |t|
     t.integer "amount"
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20180219182148) do
     t.boolean "winning", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["draft_id"], name: "index_bids_on_draft_id"
+    t.index ["player_id"], name: "index_bids_on_player_id"
+    t.index ["user_id"], name: "index_bids_on_user_id"
   end
 
   create_table "drafts", force: :cascade do |t|
@@ -82,6 +85,7 @@ ActiveRecord::Schema.define(version: 20180219182148) do
     t.integer "team_two_pt_return"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_games_on_player_id"
   end
 
   create_table "players", force: :cascade do |t|
