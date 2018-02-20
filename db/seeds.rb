@@ -211,6 +211,29 @@ years.each do |year|
 end
 
 
+######### user seed ########
+
+User.create(
+  email: "auctioneer@example.com",
+  name: "Auctioneer",
+  encrypted_password: User.new.send(:password_digest, 'password'),
+  auctioneer: true
+)
+
+User.create(
+  email: "default@example.com",
+  name: "Default",
+  encrypted_password: User.new.send(:password_digest, 'password'),
+  auctioneer: false
+)
+
+auctioneer:
+    email: auctioneer@example.com
+    name: Auctioneer
+    encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+    auctioneer: true
+
+
 ####### bids seed #########
 
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'bids.csv'))
