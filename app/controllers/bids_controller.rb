@@ -1,6 +1,7 @@
 class BidsController < ApplicationController
   before_action :not_winning, :check_if_enough_money, :check_if_top_bid, only: :create
   before_action :user_is_auctioneer, only: [:destroy, :update]
+  before_action :auctioneer_cant_win_auction, only: [:update]
 
 
   def create
@@ -9,12 +10,12 @@ class BidsController < ApplicationController
         bid: render(partial: 'drafts/bid', locals: { bid: @bid }),
         leading: @bid.user.name, amount: @bid.amount
     else
+      flash[:danger] = "Issue with bid"
       redirect_to request.referer
     end
   end
 
   def update
-    @bid = Bid.last
     @draft = @bid.draft
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     if @bid.update_attributes(bid_params)
@@ -25,6 +26,7 @@ class BidsController < ApplicationController
         nomination: render(partial: 'drafts/nomination', locals: { draft: @draft }),
         new_player_name: @bid.player.player_name, new_player_cost: @bid.amount, user_id: @bid.user.id, user_money: @bid.user.money_remaining(@draft.year), user_name: @bid.user.name
     else
+      flash[:danger] = "Winning bid could not be resolved"
       redirect_to request.referer
     end
   end
@@ -45,7 +47,14 @@ class BidsController < ApplicationController
   end
 
   def user_is_auctioneer
+    flash[:danger] = "User not auctioneer" unless current_user.auctioneer?
     redirect_to request.referer unless current_user.auctioneer?
+  end
+
+  def auctioneer_cant_win_auction
+    @bid = Bid.last
+    flash[:danger] = "Auctioneer can't win auction" unless current_user.auctioneer?
+    redirect_to request.referer unless !@bid.user.auctioneer
   end
 
   def not_winning
@@ -65,6 +74,7 @@ class BidsController < ApplicationController
   def check_if_top_bid
     high_bid = @bid.draft.highest_bid_amount(@bid.player)
     if @bid.amount <= high_bid
+      flash[:danger] = "Bid needs to be higher!"
       redirect_to draft_path(@bid.draft)
     end
   end

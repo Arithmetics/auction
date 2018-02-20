@@ -44,7 +44,6 @@ class DraftsController < ApplicationController
           bid: @bid,
           top_remaining: @top_remaining
            })
-      #redirect_to request.referer
     else
       flash[:alert] = "error"
       redirect_to request.referer
@@ -52,7 +51,6 @@ class DraftsController < ApplicationController
   end
 
   def unnominate
-
     @draft = Draft.find(params[:id])
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     player = Player.find(@draft.nominated_player_id)
@@ -76,8 +74,6 @@ class DraftsController < ApplicationController
 
     ActionCable.server.broadcast 'draft_channel',
       undrafted: player.player_name, team_id: bids.last.user_id
-
-    #redirect_to request.referer
   end
 
 
@@ -99,6 +95,7 @@ class DraftsController < ApplicationController
   def draft_is_open
     @draft = Draft.find(params[:id])
     if !@draft.open
+      flash[:danger] = "Draft is closed!"
       redirect_to root_path
     end
   end

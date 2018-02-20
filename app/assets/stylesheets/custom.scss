@@ -1,3 +1,5 @@
+/******** global **********/
+
 @import 'ionicons';
 
 body {
@@ -20,10 +22,10 @@ body:not(.without-admin) .not-admin {
   display: block;
   background-color: #1C1E28;
   border-radius: 5px;
-
 }
 
 
+/******** player card **********/
 
 .player-card {
   border-style: solid;
@@ -38,10 +40,28 @@ body:not(.without-admin) .not-admin {
               0px 0px 10px 10px rgba(45,78,255,0.15);
 }
 
+.player-pic {
+  border-radius: 100px;
+  border-style: solid;
+  border-width: 2px;
+  display: block;
+  margin: auto;
+  box-shadow: 0px 0px 10px 10px rgba(0,0,0,0.1),
+              0px 0px 10px 10px rgba(45,78,255,0.15);
+}
 
+.center-pic {
+  margin: 0 auto;
+}
+
+.player-info {
+  margin-top: 10px;
+  border-color: #e54b4b;
+  border-style: solid;
+  border-width: 1px 0 0 0;
+}
 
 .user-box {
-
   border-style: solid;
   border-width: 1px;
   margin: 2px;
@@ -65,14 +85,18 @@ body:not(.without-admin) .not-admin {
 }
 
 /************ best available ***********/
+
 .best-available {
   display: inline-block;
-  height: 198px;
+  height: 160px;
   vertical-align:top;
+  padding: 20px;
+
 }
 
 #best-av-label {
   margin-top: 0;
+  margin-bottom: 4px;
 }
 
 @media only screen and (max-width : 620px) {
@@ -212,28 +236,8 @@ body:not(.without-admin) .not-admin {
 }
 
 
-/******************  **********/
+/****************** miscellaneous **********/
 
-.player-pic {
-  border-radius: 100px;
-  border-style: solid;
-  border-width: 2px;
-  display: block;
-  margin: auto;
-  box-shadow: 0px 0px 10px 10px rgba(0,0,0,0.1),
-              0px 0px 10px 10px rgba(45,78,255,0.15);
-}
-
-.center-pic {
-  margin: 0 auto;
-}
-
-.player-info {
-  margin-top: 10px;
-  border-color: #e54b4b;
-  border-style: solid;
-  border-width: 1px 0 0 0;
-}
 
 .money {
   font-size: 25px;
@@ -374,6 +378,8 @@ input[type=number] {
   display: inline-block;
   background-color: #1C1E28;
   border-radius: 5px;
+  height: 200px;
+  overflow-y: scroll;
 }
 
 .heading-label {
@@ -414,8 +420,6 @@ input[type=number] {
   color: white;
   height: 50px;
 }
-
-
 
 .remove {
   background-color: #FF6560;
@@ -460,7 +464,7 @@ input[type=number] {
 
 
 
-/**********************************************/
+/********************** nav bar ************************/
 
 header {
 	background: #fff;
@@ -529,31 +533,41 @@ nav {
 	}
 
 	nav ul, nav:active ul {
-
 		display: none;
 		position: absolute;
 		padding: 20px;
 		background: #14151E;
 		border: 5px solid #444;
-
 		top: 40px;
 		width: 100%;
 		border-radius: 4px 0 4px 4px;
-
 	}
 
 	nav li {
-
 		text-align: center;
 		width: 100%;
 		padding: 10px 0;
 		margin: 0;
-
 	}
 
 	nav:hover ul {
-
 		display: block;
-
 	}
+}
+
+
+
+/********** alerts *********/
+
+.alert {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 4px;
+  font-size: 20px;
+  margin: 5px;
+}
+
+.alert-danger {
+  color: red;
+  border-color: red;
 }

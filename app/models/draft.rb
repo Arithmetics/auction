@@ -42,7 +42,9 @@ class Draft < ApplicationRecord
     end
     if User.find(self.nominating_user_id).auctioneer
       self.set_next_nominating_user
-    end 
+    elsif User.find(self.nominating_user_id).money_remaining(self.year) < 1
+      self.set_next_nominating_user
+    end
   end
 
 
