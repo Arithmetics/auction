@@ -212,7 +212,7 @@ years.each do |year|
 end
 
 Draft.create(
-  year: year,
+  year: 2018,
   format: "OP_standard",
   open: true,
   nominated_player_id: nil,
