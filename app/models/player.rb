@@ -32,6 +32,7 @@ class Player < ApplicationRecord
     return unsold_players
   end
 
+  #saving for posterity. what a bad method!!
   def self.old_unsold(year)
     unsold_players = []
     Player.all.each do |player|

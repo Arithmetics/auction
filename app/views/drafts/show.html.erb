@@ -39,10 +39,9 @@
   </div>
 </div>
 <div class="box">
-  <div class="container">
-    <div class="row">
+
       <% if !current_user.auctioneer %>
-        <div class="col-3">
+
           <div class="your-team">
             <p class="user-header current-user"><%= current_user.name %> -
             <span class="user-money" id="<%= 'user-money-' + current_user.id.to_s %>">$<%= current_user.money_remaining(@draft.year).to_s%></span> </p>
@@ -52,11 +51,11 @@
               <% end %>
             </ol>
           </div>
-        </div>
+
       <% end %>
       <% @users.each do |user| %>
         <% if user.id != current_user.id  %>
-          <div class="col-3">
+
             <div class="other-team" >
               <h4 class="team-header"><p class="user-header"><%= user.name %> -
               <span class="user-money" id="<%= 'user-money-' + user.id.to_s %>">$<%= user.money_remaining(@draft.year).to_s%></span> </p></h4>
@@ -66,9 +65,8 @@
                 <% end %>
               </ol>
             </div>
-          </div>
+
         <% end %>
       <% end %>
-    </div>
-  </div>
+
 </div>

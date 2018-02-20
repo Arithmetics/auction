@@ -13,7 +13,6 @@ $(document).ready(function(){
     graphMaxButton = document.getElementById(`maxgraph${id}`);
     if (graphMaxButton){
       graphMaxButton.addEventListener('click',function(e){
-        console.log('click')
         document.getElementById(`graph${id}`).style.display = "inline-block";
         document.getElementById(`maxgraph${id}`).style.display = "none";
       })

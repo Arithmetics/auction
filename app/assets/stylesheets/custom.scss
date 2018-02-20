@@ -263,6 +263,9 @@ body:not(.without-admin) .not-admin {
   padding: 5px;
   border-radius: 5px;
   vertical-align:top;
+  display: inline-block;
+  width: 320px;
+
 }
 
 .your-team {
@@ -271,6 +274,9 @@ body:not(.without-admin) .not-admin {
   margin: 5px;
   padding: 5px;
   border-radius: 5px;
+  vertical-align:top;
+  display: inline-block;
+  width: 320px;
 }
 
 input[type=number] {
