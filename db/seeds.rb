@@ -227,12 +227,6 @@ User.create(
   auctioneer: false
 )
 
-auctioneer:
-    email: auctioneer@example.com
-    name: Auctioneer
-    encrypted_password: <%= User.new.send(:password_digest, 'password') %>
-    auctioneer: true
-
 
 ####### bids seed #########
 
