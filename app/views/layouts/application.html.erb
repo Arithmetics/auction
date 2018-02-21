@@ -12,10 +12,10 @@
   <body class="<%= current_user && current_user.auctioneer? ? "with-admin" : "without-admin" %>">
 
     <div class="topnav" id="myTopnav">
-      <a href="#home" class="main">
+      <%= link_to(root_path, class: 'subnav')  do %>
         <i class="icon ion-ios-americanfootball-outline nav-icon-main"> </i>
         Fantasy Auction
-      </a>
+      <% end %>
       <% if user_signed_in? %>
         <%= link_to destroy_user_session_path, method: :delete, class: 'subnav' do%>
         <i class="icon ion-log-out nav-icon"> </i>
@@ -26,18 +26,18 @@
          <i class="icon ion-log-in nav-icon">
         <% end %>
       <% end %>
-      <a href="#about" class='subnav'>
+      <%= link_to(drafts_path, class: 'subnav')  do %>
         <i class="icon ion-social-usd nav-icon"> </i>
         Drafts
-      </a>
-      <a href="#about" class='subnav'>
+      <% end %>
+      <%= link_to(players_path, class: 'subnav')  do %>
         <i class="icon ion-ios-people nav-icon"> </i>
         Players
-      </a>
-      <a href="#news" class='subnav'>
+      <% end %>
+      <%= link_to(current_user, class: 'subnav')  do %>
         <i class="icon ion-ios-body nav-icon"> </i>
         My Profile
-      </a>
+      <% end %>
       <a href="javascript:void(0);" class="iconx">&#9776;</a>
     </div>
 

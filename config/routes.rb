@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :games
 
+  resources :users 
+
   resources :drafts do
     member do
       patch 'nominate'
