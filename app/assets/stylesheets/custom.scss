@@ -571,12 +571,14 @@ nav {
 	nav ul, nav:active ul {
 		display: none;
 		position: absolute;
-		padding: 20px;
+
 		background: #14151E;
-		border: 5px solid #444;
+		border: 2px solid #444;
 		top: 40px;
-		width: 100%;
-		border-radius: 4px 0 4px 4px;
+    left: 0px;
+    max-width: 100vw;
+    width: 100vw;
+		border-radius: 0px 0 0px 0px;
 	}
 
 	nav li {
