@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).on('turbolinks:load', function(){
   const ids=[1,2,3,4]
   let graphMinButton;
   let graphMaxButton;
