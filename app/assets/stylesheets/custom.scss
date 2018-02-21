@@ -24,6 +24,42 @@ body:not(.without-admin) .not-admin {
   border-radius: 5px;
 }
 
+/******** devise **********/
+
+.devise-form {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 22px;
+}
+
+.devise-button {
+  width: 300px;
+  height: 40px;
+  border-radius: 4px;
+  color: black;
+  font-size: 20px;
+}
+
+.big-input {
+  width: 300px;
+  height: 40px;
+  color: black;
+  background-color: #0D0D18;
+  color: #ffcb5e;
+  padding: 4px;
+  font-size: 20px;
+  border-radius: 4px;
+}
+
+.check-box {
+  width: 25px;
+  height: 25px;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+
+
 
 /******** player card **********/
 
