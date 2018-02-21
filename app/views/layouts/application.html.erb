@@ -11,31 +11,39 @@
 
   <body class="<%= current_user && current_user.auctioneer? ? "with-admin" : "without-admin" %>">
 
-    <header>
-      <h3 class="logo-header">
-        <i class="icon ion-ios-americanfootball-outline"></i>
-          Fantasy Auction
-      </h3>
-      <nav>
-        <span id="menu-icon"></span>
-        <ul class="nav-list">
-          <li class="nav-list-item"><a href="#">My Profile</a></li>
-          <li class="nav-list-item"><a href="#">Players</a></li>
-          <% if user_signed_in? %>
-            <li class="nav-list-item">
-              <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-            </li>
-          <% else %>
-            <li class="nav-list-item">
-              <%= link_to('Login', new_user_session_path)  %>
-            </li>
-          <% end %>
-        </ul>
-      </nav>
-    </header>
+    <div class="topnav" id="myTopnav">
+      <a href="#home" class="main">
+        <i class="icon ion-ios-americanfootball-outline nav-icon-main"> </i>
+        Fantasy Auction
+      </a>
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'subnav' do%>
+        <i class="icon ion-log-out nav-icon"> </i>
+          Logout
+        <% end %>
+      <% else %>
+        <%= link_to(new_user_session_path, class: 'subnav')  do %>
+         <i class="icon ion-log-in nav-icon">
+        <% end %>
+      <% end %>
+      <a href="#about" class='subnav'>
+        <i class="icon ion-social-usd nav-icon"> </i>
+        Drafts
+      </a>
+      <a href="#about" class='subnav'>
+        <i class="icon ion-ios-people nav-icon"> </i>
+        Players
+      </a>
+      <a href="#news" class='subnav'>
+        <i class="icon ion-ios-body nav-icon"> </i>
+        My Profile
+      </a>
+      <a href="javascript:void(0);" class="iconx">&#9776;</a>
+    </div>
 
 
     <div class="remainder">
+
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>" id="flash">
           <%= message %>
