@@ -1,10 +1,39 @@
 class DraftsController < ApplicationController
-  before_action :user_is_auctioneer, only: [:undo_drafting, :unnominate]
+  before_action :user_is_auctioneer, only: [:create, :new, :edit, :update, :undo_drafting, :unnominate]
   before_action :draft_is_open, only: [:show]
   before_action :users_turn_to_nominate, only: [:nominate]
 
   def index
     @drafts = Draft.all
+  end
+
+  def new
+    @draft = Draft.new
+  end
+
+  def edit
+    @draft = Draft.find(params[:id])
+  end
+
+  def update
+    @draft = Draft.find(params[:id])
+    if @draft.update_attributes(draft_params)
+      flash[:success] = "Draft edited"
+      redirect_to drafts_path
+    else
+      flash.now[:danger] = "Issue"
+      render 'edit'
+    end
+  end
+
+  def create
+    @draft = Draft.new(draft_params)
+    if @draft.save
+      flash[:success] = "Draft created"
+      redirect_to drafts_path
+    else
+      redirect_to request_referer
+    end
   end
 
 
@@ -14,17 +43,14 @@ class DraftsController < ApplicationController
     @players = Player.all
     @users = User.all.where(auctioneer: false)
     @bids = @draft.bids.where(player: @nominated_player).order(:amount).reverse
-
     @bid = current_user.bids.build(
       draft: @draft,
       player: @nominated_player,
       winning: false);
-
   end
 
 
   def nominate
-
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     if @draft.update_attributes(draft_params)
       starting_bid = @draft.bids.build(player_id: @draft.nominated_player_id, user: current_user, amount: 1)
@@ -35,7 +61,6 @@ class DraftsController < ApplicationController
         draft: @draft,
         player: @nominated_player,
         winning: false);
-
       ActionCable.server.broadcast "draft_#{@draft.id}",
         player_for_sale: render(partial: 'drafts/bidding_panel', locals: {
           nominated_player: @nominated_player,
@@ -71,8 +96,7 @@ class DraftsController < ApplicationController
     bids.each do |bid|
       bid.destroy
     end
-
-    ActionCable.server.broadcast "draft_#{@draft.id}",
+    ActionCable.server.broadcast "draft_#{params[:draft][:draft_id]}",
       undrafted: player.player_name, team_id: bids.last.user_id
   end
 
@@ -80,7 +104,7 @@ class DraftsController < ApplicationController
   private ####################
 
   def draft_params
-    params.require(:draft).permit(:year, :format, :nominated_player_id)
+    params.require(:draft).permit(:year, :format, :nominated_player_id, :open)
   end
 
   def user_is_auctioneer

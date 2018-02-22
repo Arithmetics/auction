@@ -1,0 +1,29 @@
+<div class="box devise-form">
+ <h3>Edit Auction: </h3>
+  <%= form_for(@draft) do |f| %>
+    <div class="field">
+      <%= f.label :year %><br />
+      <%= f.number_field :year, autofocus: true, class: 'big-input' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :format %><br />
+      <%= f.text_field :format,  autocomplete: "off", class: 'big-input' %>
+    </div>
+
+    <%= f.hidden_field :nominated_player_id, value: nil %>
+
+    <%= f.hidden_field :nominating_user_id, value: nil %>
+
+    <div class="field">
+      <%= f.label :open? %>
+      <%= f.check_box :open, class: 'check-box' %>
+    </div>
+
+    <br>
+    <div class="actions">
+      <%= f.submit "Update", class: 'devise-button' %>
+    </div>
+
+  <% end %>
+</div>

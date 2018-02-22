@@ -36,7 +36,11 @@
       <% end %>
       <%= link_to(current_user, class: 'subnav')  do %>
         <i class="icon ion-ios-body nav-icon"> </i>
-        My Profile
+        <% if current_user %>
+          <%= current_user.name %>
+        <% else %>
+          Profile
+        <% end %>
       <% end %>
       <a href="javascript:void(0);" class="iconx">&#9776;</a>
     </div>

@@ -1,6 +1,12 @@
 <div class="box">
   <h3 class="heading-label">Being bid on: </h3>
-  <h4 class="waiting">Waiting for nomination from: <%= draft.nominating_user.name %> </h4>
+  <h4 class="waiting">Waiting for nomination from:
+    <% if draft.nominating_user %>
+      <%= draft.nominating_user.name %>
+    <% else %>
+      Auctioneer!
+    <% end %>
+  </h4>
   <div class="nom-user-only">
     <%= form_for draft, :url => {:action=> "nominate", :method => :patch, :controller => "drafts", id: draft.id}, remote: true do |f| %>
       <%= f.hidden_field :id, value: draft.id %>
