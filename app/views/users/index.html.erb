@@ -1,5 +1,23 @@
 <div class="box">
+  <table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Active?</th>
+    <th>Championships</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.id %></td>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td>Yes</td>
+    <th>0</th>
+  </tr>
+  <% end %>
 
+</table>
 
 
 </div>
