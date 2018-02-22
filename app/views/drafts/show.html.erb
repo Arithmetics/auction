@@ -2,7 +2,9 @@
   <% if current_user.auctioneer %>
     <h3 class="heading-label"> You are the Auctioneer! </h3>
   <% end %>
-  <div id="switcher">
+  <div id="test6">
+  </div>
+  <div id="switcher" data-draft-id="<%= @draft.id %>">
     <% if !@nominated_player %>
       <div id="nomination">
         <%= render partial: 'nomination', locals: { draft: @draft } %>

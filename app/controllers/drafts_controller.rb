@@ -36,7 +36,7 @@ class DraftsController < ApplicationController
         player: @nominated_player,
         winning: false);
 
-      ActionCable.server.broadcast 'draft_channel',
+      ActionCable.server.broadcast "draft_#{@draft.id}",
         player_for_sale: render(partial: 'drafts/bidding_panel', locals: {
           nominated_player: @nominated_player,
           bids: @bids,
@@ -57,7 +57,7 @@ class DraftsController < ApplicationController
     bids = player.bids.select { |bid| bid.draft.year == @draft.year }
     if @draft.update_attribute(:nominated_player_id, nil)
       bids.each { |bid| bid.destroy }
-      ActionCable.server.broadcast 'draft_channel',
+      ActionCable.server.broadcast "draft_#{@draft.id}",
         nomination: render(partial: 'drafts/nomination', locals: { draft: @draft })
     else
       flash[:alert] = "error"
@@ -72,7 +72,7 @@ class DraftsController < ApplicationController
       bid.destroy
     end
 
-    ActionCable.server.broadcast 'draft_channel',
+    ActionCable.server.broadcast "draft_#{@draft.id}",
       undrafted: player.player_name, team_id: bids.last.user_id
   end
 

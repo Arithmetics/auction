@@ -6,7 +6,7 @@ class BidsController < ApplicationController
 
   def create
     if @bid.save
-      ActionCable.server.broadcast 'draft_channel',
+      ActionCable.server.broadcast "draft_#{@bid.draft.id}",
         bid: render(partial: 'drafts/bid', locals: { bid: @bid }),
         leading: @bid.user.name, amount: @bid.amount
     else
@@ -22,7 +22,7 @@ class BidsController < ApplicationController
       @draft.update_attribute(:nominated_player_id, nil)
       @draft.set_next_nominating_user
       @top_remaining = Player.top_remaining(@draft.year)[0..30]
-      ActionCable.server.broadcast 'draft_channel',
+      ActionCable.server.broadcast "draft_#{@draft.id}",
         nomination: render(partial: 'drafts/nomination', locals: { draft: @draft }),
         new_player_name: @bid.player.player_name, new_player_cost: @bid.amount, user_id: @bid.user.id, user_money: @bid.user.money_remaining(@draft.year), user_name: @bid.user.name
     else
