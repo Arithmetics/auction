@@ -108,7 +108,7 @@ class DraftsController < ApplicationController
   end
 
   def user_is_auctioneer
-    redirect_to request.referer unless current_user.auctioneer?
+    redirect_to (request.referer || root_url) unless current_user.auctioneer?
   end
 
   def users_turn_to_nominate

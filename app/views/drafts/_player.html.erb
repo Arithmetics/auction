@@ -1,14 +1,14 @@
 <li>
-<%= player[:player].player_name %>,
-$<%= player[:amount] %>
+  <%= player[:player].player_name %>,
+  $<%= player[:amount] %>
 
-<div class="admin-only">
-  <%= form_for draft, url: {action: "undo_drafting", method: :patch, controller: "drafts"}, remote: true do |f| %>
-  <%= f.hidden_field :year, value: draft.year %>
-    <%= f.hidden_field :player_id, value: player[:player].id %>
-    <%= f.hidden_field :draft_id, value: draft.id %>
-    <%= f.submit "Remove", :class => 'remove' %>
-  <% end %>
-</div>
+  <div class="admin-only">
+    <%= form_for draft, url: {action: "undo_drafting", method: :patch, controller: "drafts"}, remote: true do |f| %>
+    <%= f.hidden_field :year, value: draft.year %>
+      <%= f.hidden_field :player_id, value: player[:player].id %>
+      <%= f.hidden_field :draft_id, value: draft.id %>
+      <%= f.submit "Remove", :class => 'remove' %>
+    <% end %>
+  </div>
 
 </li>

@@ -1,7 +1,8 @@
 class BidsController < ApplicationController
   before_action :not_winning, :check_if_enough_money, :check_if_top_bid, only: :create
   before_action :user_is_auctioneer, only: [:destroy, :update]
-  before_action :auctioneer_cant_win_auction, only: [:update]
+  before_action :auctioneer_cant_win_auction, only: :update
+
 
 
   def create
@@ -34,11 +35,13 @@ class BidsController < ApplicationController
   def destroy
     Bid.find(params[:id]).destroy
     flash[:success] = "Bid deleted"
-    redirect_to request.referer
+    redirect_to request.referer || root_url
   end
 
 
-
+  def index
+    @bids = Bid.all
+  end
 
   private ####################
 
@@ -48,13 +51,13 @@ class BidsController < ApplicationController
 
   def user_is_auctioneer
     flash[:danger] = "User not auctioneer" unless current_user.auctioneer?
-    redirect_to request.referer unless current_user.auctioneer?
+    redirect_to drafts_path unless current_user.auctioneer?
   end
 
   def auctioneer_cant_win_auction
     @bid = Bid.last
     flash[:danger] = "Auctioneer can't win auction" unless current_user.auctioneer?
-    redirect_to request.referer unless !@bid.user.auctioneer
+    redirect_to (request.referer || root_url) unless !@bid.user.auctioneer
   end
 
   def not_winning
@@ -73,11 +76,15 @@ class BidsController < ApplicationController
 
   def check_if_top_bid
     high_bid = @bid.draft.highest_bid_amount(@bid.player)
-    if @bid.amount <= high_bid
-      flash[:danger] = "Bid needs to be higher!"
-      redirect_to draft_path(@bid.draft)
+    if high_bid
+      if @bid.amount <= high_bid
+        flash[:danger] = "Bid needs to be higher!"
+        redirect_to draft_path(@bid.draft)
+      end
     end
   end
+
+
 
 
 end

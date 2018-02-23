@@ -1,8 +1,9 @@
 <div class="best-available box">
   <h3 class="heading-label" id="best-av-label"> Best Available </h3>
-
+<% if top_remaining[24] %>
   <div class="blocks">
   <ol class="under-list" id="player-list-1">
+
     <% top_remaining[0..4].each do |player| %>
       <li><%= player %></li>
     <% end %>
@@ -40,4 +41,5 @@
       <% end %>
     </ol>
   </div>
+<% end %>
 </div>

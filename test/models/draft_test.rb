@@ -10,6 +10,10 @@ class DraftTest < ActiveSupport::TestCase
     @bid1 = bids(:one)
     @bid2 = bids(:two)
     @bid3 = bids(:three)
+    @user1 = users(:one)
+    @user2 = users(:two)
+    @user3 = users(:three)
+    @auctioneer = users(:auctioneer)
   end
 
   test "draft needs year" do
@@ -53,5 +57,17 @@ class DraftTest < ActiveSupport::TestCase
     assert_equal @draft2018.bids.where(:player == @player1).maximum('amount'), 3
   end
 
+  test "nominating_user is returned" do
+    assert_equal @draft2018.nominating_user, @user1
+  end
+
+  test "set_next_nominating_user returns a new user each time and never the auctioneer" do
+    5.times do
+      last_nominated_user = @draft2018.nominating_user
+      @draft2018.set_next_nominating_user
+      assert_not @draft2018.nominating_user == last_nominated_user
+      assert_not @draft2018.nominating_user == @auctioneer
+    end
+  end
 
 end

@@ -260,7 +260,7 @@ six:
   rushing_attempts: 2
   rushing_yards: 1
   rushing_touchdowns: 0
-  receptions: 0
+  receptions: 10
   receiving_yards: 89
   receiving_touchdowns: 0
   return_yards: 0

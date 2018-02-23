@@ -102,16 +102,16 @@ class PlayerTest < ActiveSupport::TestCase
 
 
   test "season_pts_hash" do
-    assert_equal @player3.season_pts_hash["2013"], 147.3
+    assert_equal @player3.master_graphs_hash[:season_pts]["2013"], 147.3
   end
 
   test "sales_hash" do
-    assert_equal @player2.sales_hash["2014"], 5
-    assert_equal @player2.sales_hash["2015"], 6
+    assert_equal @player2.master_graphs_hash[:sales]["2014"], 5
+    assert_equal @player2.master_graphs_hash[:sales]["2015"], 6
   end
 
   test "games_played_hash" do
-    assert_equal @player3.games_played_hash["2013"], 6
+    assert_equal @player3.master_graphs_hash[:games_played]["2013"], 6
   end
 
 

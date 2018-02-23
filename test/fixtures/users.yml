@@ -1,11 +1,26 @@
 one:
+  id: 1
   email: user1@example.com
   name: Bill Belichick
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   auctioneer: false
 
+two:
+  id: 2
+  email: user2@example.com
+  name: Doug Peterson
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  auctioneer: false
+
+three:
+  id: 3
+  email: user3@example.com
+  name: Pete Carroll
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  auctioneer: false
 
 auctioneer:
+    id: 4
     email: auctioneer@example.com
     name: Auctioneer
     encrypted_password: <%= User.new.send(:password_digest, 'password') %>

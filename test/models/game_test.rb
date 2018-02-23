@@ -26,8 +26,9 @@ class GameTest < ActiveSupport::TestCase
     assert_equal @game7.points_standard, 26.0
   end
 
-  test "test test" do
-    assert_equal 4,4
+  test "correct ppr fantasy point calculations" do
+    assert_equal @game6.points_ppr, 33.96
   end
+
 
 end

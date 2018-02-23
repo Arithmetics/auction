@@ -3,33 +3,39 @@ one:
   format: OP_standard
   open: false
   nominated_player_id: nil
+  nominating_user_id: 1
 
 two:
   year: 2014
   format: OP_standard
   open: false
   nominated_player_id: nil
+  nominating_user_id: 1
 
 three:
   year: 2015
   format: OP_standard
   open: false
   nominated_player_id: nil
+  nominating_user_id: 1
 
 four:
   year: 2016
   format: OP_standard
   open: false
   nominated_player_id: nil
+  nominating_user_id: 1
 
 five:
   year: 2017
   format: OP_standard
   open: false
   nominated_player_id: nil
+  nominating_user_id: 1
 
 six:
   year: 2018
   format: OP_standard
   open: true
   nominated_player_id: 34
+  nominating_user_id: 1
