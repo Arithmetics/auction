@@ -9,8 +9,12 @@ class Draft < ApplicationRecord
 
 
   def nominated_player
-    if self.nominated_player_id
-      nom_player = Player.find(self.nominated_player_id)
+    if self.nominated_player_id != nil
+      if self.nominated_player_id == 0
+        nom_player = nil
+      else
+        nom_player = Player.find(self.nominated_player_id)
+      end
     else
       nom_player = nil
     end

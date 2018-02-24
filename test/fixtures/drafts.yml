@@ -22,7 +22,7 @@ three:
 four:
   year: 2016
   format: OP_standard
-  open: false
+  open: true
   nominated_player_id: nil
   nominating_user_id: 1
 

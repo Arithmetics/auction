@@ -4,6 +4,7 @@ class DraftTest < ActiveSupport::TestCase
 
   setup do
     @draft2018 = drafts(:six)
+    @draft2016 = drafts(:four)
     @player1 = players(:one)
     @player2 = players(:two)
     @user1 = users(:one)
@@ -46,6 +47,10 @@ class DraftTest < ActiveSupport::TestCase
 
   test "nominated_player returns correct player" do
     assert @draft2018.nominated_player == @player1
+  end
+
+  test "nom player nil returns nil" do
+    assert @draft2016.nominated_player == nil
   end
 
 

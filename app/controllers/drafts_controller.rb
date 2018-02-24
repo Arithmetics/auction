@@ -113,7 +113,7 @@ class DraftsController < ApplicationController
 
   def users_turn_to_nominate
     @draft = Draft.find(params[:id])
-    redirect_to request.referer unless current_user.auctioneer? || current_user == @draft.nominating_user
+    redirect_to request.referer || root_url unless current_user.auctioneer? || current_user == @draft.nominating_user
   end
 
   def draft_is_open
