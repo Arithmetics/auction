@@ -3,6 +3,7 @@
     <h3 class="heading-label"> You are the Auctioneer! </h3>
   <% end %>
   <div id="test6">
+    <%= react_component("Draft", props: @draft_props) %>
   </div>
   <div id="switcher" data-draft-id="<%= @draft.id %>">
     <% if !@nominated_player %>

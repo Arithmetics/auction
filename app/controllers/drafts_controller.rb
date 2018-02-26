@@ -38,6 +38,7 @@ class DraftsController < ApplicationController
 
 
   def show
+    @draft_props = { name: "Bob" }
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     @nominated_player = @draft.nominated_player
     @players = Player.all
