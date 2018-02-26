@@ -1,75 +1,13 @@
 <div class="box">
-  <% if current_user.auctioneer %>
-    <h3 class="heading-label"> You are the Auctioneer! </h3>
-  <% end %>
-  <div id="test6">
-    <%= react_component("Draft", props: @draft_props) %>
+  
+  <div id="bidding-form" >
+    <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
   </div>
-  <div id="switcher" data-draft-id="<%= @draft.id %>">
-    <% if !@nominated_player %>
-      <div id="nomination">
-        <%= render partial: 'nomination', locals: { draft: @draft } %>
-      </div>
-    <% else %>
-      <div class="box">
-          <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first } %>
-      </div>
-      <div class="bid-box">
-        <% if !current_user.auctioneer %>
-          <div id="bidding-form" >
-            <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
-          </div>
-        <% end %>
-        <% if current_user.auctioneer %>
-          <div class="auctioneer">
-              <div id="sell_player">
-                <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
-              </div>
-              <div id="unnominate">
-                <%= render partial: 'unnominate', locals: { draft: @draft } %>
-              </div>
-          </div>
-        <% end %>
-        <h3 class="heading-label"> Bid History: </h3>
-        <ul id='bid-list' class="under-list">
-          <% @bids.each do |bid| %>
-            <%= render partial: 'bid', locals: { bid: bid } %>
-          <% end %>
-        </ul>
-      </div>
-      <%= render partial: 'best_available', locals: { top_remaining: @top_remaining } %>
-    <% end %>
-  </div>
-</div>
-<div class="box">
 
-      <% if !current_user.auctioneer %>
 
-          <div class="your-team">
-            <p class="user-header current-user"><%= current_user.name %> -
-            <span class="user-money" id="<%= 'user-money-' + current_user.id.to_s %>">$<%= current_user.money_remaining(@draft.year).to_s%></span> </p>
-            <ol id="<%= 'team-' + current_user.id.to_s %>" class="under-list">
-              <% current_user.drafted_players(@draft.year).each do |player| %>
-                <%= render partial: 'player', locals: { player: player, draft: @draft  } %>
-              <% end %>
-            </ol>
-          </div>
+  <%= react_component("Draft", props: {draft: render(
+    partial: "drafts/draft.json",
+    locals: { draft: @draft })}) %>
 
-      <% end %>
-      <% @users.each do |user| %>
-        <% if user.id != current_user.id  %>
-
-            <div class="other-team" >
-              <h4 class="team-header"><p class="user-header"><%= user.name %> -
-              <span class="user-money" id="<%= 'user-money-' + user.id.to_s %>">$<%= user.money_remaining(@draft.year).to_s%></span> </p></h4>
-              <ol class="under-list" id="<%= 'team-' + user.id.to_s %>">
-                <% user.drafted_players(@draft.year).each do |player| %>
-                  <%= render partial: 'player', locals: { player: player, draft: @draft } %>
-                <% end %>
-              </ol>
-            </div>
-
-        <% end %>
-      <% end %>
 
 </div>

@@ -36,8 +36,21 @@ class DraftsController < ApplicationController
     end
   end
 
-
   def show
+    @draft_props = { name: "Bob" }
+
+    #only added these for the form
+    @draft = Draft.find(params[:id])
+    @nominated_player = @draft.nominated_player
+    @bids = @draft.bids.where(player: @nominated_player).order(:amount).reverse
+    @bid = current_user.bids.build(
+      draft: @draft,
+      player: @nominated_player,
+      winning: false);
+  end
+
+
+  def old_show
     @draft_props = { name: "Bob" }
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     @nominated_player = @draft.nominated_player

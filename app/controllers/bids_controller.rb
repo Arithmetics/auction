@@ -8,7 +8,7 @@ class BidsController < ApplicationController
   def create
     if @bid.save
       ActionCable.server.broadcast "draft_#{@bid.draft.id}",
-        bid: render(partial: 'drafts/bid', locals: { bid: @bid }),
+        bid: render(partial: 'bids/bid.json', locals: { bid: @bid }),
         leading: @bid.user.name, amount: @bid.amount
     else
       flash[:danger] = "Issue with bid"
