@@ -1,10 +1,5 @@
 <div class="box">
   
-  <div id="bidding-form" >
-    <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
-  </div>
-
-
   <%= react_component("Draft", props: {draft: render(
     partial: "drafts/draft.json",
     locals: { draft: @draft })}) %>

@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import update from 'immutability-helper'
 import BidsList from './BidsList'
+import BidForm from './BidForm'
+import PlayerCard from './PlayerCard'
 
 export default class Draft extends React.Component {
   constructor(props) {
@@ -10,7 +12,9 @@ export default class Draft extends React.Component {
     console.log(draft)
     this.state = {
       bids: draft.bids,
-      draftId: draft.id
+      draftId: draft.id,
+      year: draft.year,
+      nominatedPlayer: draft.nominated_player
     };
   }
 
@@ -30,23 +34,29 @@ export default class Draft extends React.Component {
       received: function(data) {
         // bid is sumbitted
         if (data.bid != null) {
-          console.log("new bid received")
           this.updateBids(JSON.parse(data.bid));
         }
-
       }.bind(this)
     });
   }
 
-  updateName = (name) => {
-    this.setState({ name });
-  };
 
   render() {
     return (
       <div>
+        <PlayerCard
+          nominatedPlayer={this.state.nominatedPlayer}
+          bids={this.state.bids}
+          />
         <div className="bid-box">
-          <BidsList bids={this.state.bids} />
+          <BidForm
+            draftId={this.state.draftId}
+            year={this.state.year}
+            nominatedPlayer={this.state.nominatedPlayer}
+            draftId={this.state.draftId}/>
+          <BidsList
+            bids={this.state.bids}
+            />
         </div>
       </div>
     );
