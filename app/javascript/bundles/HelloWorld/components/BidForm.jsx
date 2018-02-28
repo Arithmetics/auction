@@ -11,7 +11,7 @@ export default class BidForm extends React.Component {
     }
   }
 
-  handleChange = (e) => { this.setState({amount: this.amount.value})}
+  handleBidChange = (e) => { this.setState({amount: this.amount.value})}
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -29,19 +29,52 @@ export default class BidForm extends React.Component {
       } )
   }
 
+  handleUnnominateSubmit = (e) => {
+    e.preventDefault()
+  }
+
+  handleSellClick = (e) => {
+    e.preventDefault()
+    $.ajax({
+      url: `/bids/${this.props.bids[0].id}`,
+      type: 'PATCH',
+      data: {bid:
+        { winning: true
+        } }
+    })
+      .done(response => {
+        console.log(response)
+      } )
+  }
+
   render(){
-    return (
-      <div id="bidding-form" >
-        <form onSubmit={this.handleSubmit}>
-          <span className="money">
-            $
-          </span>
-          <span className="num-field">
-            <input type="number" name="amount" value={this.state.amount} onChange={this.handleChange} ref={input => this.amount = input } />
-          </span>
-          <input type="submit" value="Submit Bid" name="commit" className="bid-button" />
-        </form>
-      </div>
-    )
+    if(this.props.auctioneer) {
+      return (
+        <div className="auctioneer">
+          <div id="sell_player">
+            <button onClick={this.handleSellClick} className="sell-button">Sell Player</button>
+          </div>
+          <div id="unnominate">
+            <form onSubmit={this.handleUnnominateSubmit}>
+              <input type="submit" value="Unnominate" name="commit" className="cancel-auction" />
+            </form>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div id="bidding-form" >
+          <form onSubmit={this.handleSubmit}>
+            <span className="money">
+              $
+            </span>
+            <span className="num-field">
+              <input type="number" name="amount" value={this.state.amount} onChange={this.handleBidChange} ref={input => this.amount = input } />
+            </span>
+            <input type="submit" value="Submit Bid" name="commit" className="bid-button" />
+          </form>
+        </div>
+      )
+    }
   }
 }

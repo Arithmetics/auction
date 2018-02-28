@@ -7,7 +7,9 @@ json.bids(draft.bids.where(player: draft.nominated_player).order(:amount).revers
   end
 end
 
-json.nominated_player(draft.nominated_player, :id, :esbid, :gsisPlayerId, :player_name, :position)
+if draft.nominated_player
+  json.nominated_player(draft.nominated_player, :id, :esbid, :gsisPlayerId, :player_name, :position)
+end 
 
 json.users(users) do |user|
   json.extract! user, :id, :name

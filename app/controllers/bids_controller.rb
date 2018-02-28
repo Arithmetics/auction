@@ -17,14 +17,14 @@ class BidsController < ApplicationController
 
   def update
     @draft = @bid.draft
+    @user = @bid.user
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     if @bid.update_attributes(bid_params)
       @draft.update_attribute(:nominated_player_id, nil)
       @draft.set_next_nominating_user
       @top_remaining = Player.top_remaining(@draft.year)[0..30]
       ActionCable.server.broadcast "draft_#{@draft.id}",
-        nomination: render(partial: 'drafts/nomination', locals: { draft: @draft }),
-        new_player_name: @bid.player.player_name, new_player_cost: @bid.amount, user_id: @bid.user.id, user_money: @bid.user.money_remaining(@draft.year), user_name: @bid.user.name
+        sold_player: render(partial: 'sold_player', locals: { user: @user, draft: @draft  })
     else
       flash[:danger] = "Winning bid could not be resolved"
       redirect_to request.referer
