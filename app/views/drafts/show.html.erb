@@ -1,8 +1,17 @@
 <div class="box">
-  
-  <%= react_component("Draft", props: {draft: render(
-    partial: "drafts/draft.json",
-    locals: { draft: @draft })}) %>
+  <%= react_component(
+    "Draft",
+    props:  {draft:
+              render(
+                partial: "drafts/draft.json",
+                locals: {
+                  draft: @draft,
+                  users: @users
+                }
+              )
+            }
+      )
+  %>
 
 
 </div>

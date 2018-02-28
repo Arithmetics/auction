@@ -37,21 +37,11 @@ class DraftsController < ApplicationController
   end
 
   def show
-    @draft_props = { name: "Bob" }
-
-    #only added these for the form
-    @draft = Draft.find(params[:id])
-    @nominated_player = @draft.nominated_player
-    @bids = @draft.bids.where(player: @nominated_player).order(:amount).reverse
-    @bid = current_user.bids.build(
-      draft: @draft,
-      player: @nominated_player,
-      winning: false);
+    @users = User.all.where(auctioneer: false)
   end
 
 
   def old_show
-    @draft_props = { name: "Bob" }
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     @nominated_player = @draft.nominated_player
     @players = Player.all
@@ -110,8 +100,10 @@ class DraftsController < ApplicationController
     bids.each do |bid|
       bid.destroy
     end
+    @users = User.all.where(auctioneer: false)
+    @draft = Draft.find(params[:id])
     ActionCable.server.broadcast "draft_#{params[:draft][:draft_id]}",
-      undrafted: player.player_name, team_id: bids.last.user_id
+      undo_drafting: render(partial: 'undo_drafting.json', locals: { player: player})
   end
 
 
