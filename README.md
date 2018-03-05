@@ -2,7 +2,7 @@
 
 Application I built to allow users to conduct an auction style fantasy draft. Users bid on fantasy football players live and see their interface update in real time without refreshing the page as other users make bids. Players' historical statistics and attributes are graphed 
 
-Live website running at: https://bt-nfl.herokuapp.com/ (Account will need to be created to login).
+Live website running at: https://bt-auction.herokuapp.com/ (Account will need to be created to login).
 
 ** In process of updating to React JS views **
 
