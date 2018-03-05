@@ -53,7 +53,7 @@ Top drafted players list updates from NFL.com's API source.
 
 ## Comments:
 
-This was the second app I built. It was in the same vein as the NBA Contest Application but with a much better understanding of the Rails system and philosophy. I have very good backend test coverage, the rendering tests could use some work.
+This is the most complex app I have built, and also the one I am most proud of. The ability to set up web sockets is really funand useful, and graphing histoical data for use in fantasy sports is something I am personally very interested in. I look forward to continuing to push this project forward. 
 
 
 ### Future Improvements/Retrospective:
@@ -62,4 +62,5 @@ This was the second app I built. It was in the same vein as the NBA Contest Appl
 2. Create a Leagues model, that own many drafts (draft belongs_to league).
 3. Full implement React view componenets. 
 4. Implement more data/graphical views for each player.
+5. Once React implemented, Jasmine tests for frontend views.
 
