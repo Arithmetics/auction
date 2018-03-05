@@ -9,7 +9,7 @@ end
 
 if draft.nominated_player
   json.nominated_player(draft.nominated_player, :id, :esbid, :gsisPlayerId, :player_name, :position)
-end 
+end
 
 json.users(users) do |user|
   json.extract! user, :id, :name
@@ -20,3 +20,8 @@ json.users(users) do |user|
 end
 
 json.auctioneer(current_user.auctioneer)
+
+
+json.unsold_players(unsold_players) do |player|
+  json.extract! player, :id, :player_name, :position
+end

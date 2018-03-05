@@ -38,6 +38,7 @@ class DraftsController < ApplicationController
 
   def show
     @users = User.all.where(auctioneer: false)
+    @unsold_players = Player.unsold(@draft.year)
   end
 
 
@@ -87,7 +88,7 @@ class DraftsController < ApplicationController
     if @draft.update_attribute(:nominated_player_id, nil)
       bids.each { |bid| bid.destroy }
       ActionCable.server.broadcast "draft_#{@draft.id}",
-        nomination: render(partial: 'drafts/nomination', locals: { draft: @draft })
+        unnomination: render(partial: 'drafts/unnominate')
     else
       flash[:alert] = "error"
       redirect_to request.referer
@@ -97,13 +98,15 @@ class DraftsController < ApplicationController
   def undo_drafting
     player = Player.find(params[:draft][:player_id])
     bids = player.bids.select {|bid| bid.draft.year == params[:draft][:year].to_i}
+    user = bids.last.user
+    year = params[:draft][:year]
     bids.each do |bid|
       bid.destroy
     end
     @users = User.all.where(auctioneer: false)
     @draft = Draft.find(params[:id])
     ActionCable.server.broadcast "draft_#{params[:draft][:draft_id]}",
-      undo_drafting: render(partial: 'undo_drafting.json', locals: { player: player})
+      undo_drafting: render(partial: 'undo_drafting.json', locals: { player: player, money_remaining: user.money_remaining(year) })
   end
 
 

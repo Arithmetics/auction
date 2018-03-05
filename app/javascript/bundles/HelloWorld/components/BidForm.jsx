@@ -31,6 +31,14 @@ export default class BidForm extends React.Component {
 
   handleUnnominateSubmit = (e) => {
     e.preventDefault()
+    console.log("yo")
+    $.ajax({
+      url: `/drafts/${this.state.draftId}/unnominate`,
+      type: 'PATCH'
+    })
+      .done(response => {
+        console.log(response)
+      } )
   }
 
   handleSellClick = (e) => {
