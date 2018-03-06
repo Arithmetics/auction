@@ -38,6 +38,7 @@ class DraftsController < ApplicationController
 
   def show
     @users = User.all.where(auctioneer: false)
+    @current_user = current_user
     @unsold_players = Player.unsold(@draft.year)
   end
 

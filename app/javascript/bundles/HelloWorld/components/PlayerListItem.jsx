@@ -20,8 +20,6 @@ export default class PlayerListItem extends React.Component {
           year={this.props.year}
           draftId={draftId}
           />
-    } else {
-      console.log("not an auctioneer huh")
     }
     return(
       <li>

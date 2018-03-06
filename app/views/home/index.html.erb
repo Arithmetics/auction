@@ -2,7 +2,7 @@
   <h1>Welcome to Live Fantasy Auction, <%= current_user.name %>!</h1>
 
   <% if @drafts.any? { |e| e.open  } %>
-    <h4 class="alert alert-danger">Draft <%= @drafts.last.year %> is open! </h4>
+    <h4 class="alert alert-danger">One of your drafts is live! </h4>
     <%= link_to "Click here to view drafts", drafts_url %>
   <% else %>
     <h4>All Drafts are closed, next scheduled draft is: 9/4/2018</h4>

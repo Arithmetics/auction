@@ -19,7 +19,9 @@ export default class Draft extends React.Component {
       year: draft.year,
       nominatedPlayer: draft.nominated_player,
       users: draft.users,
-      unsold_players: draft.unsold_players
+      unsold_players: draft.unsold_players,
+      nominatingUser: draft.nominating_user,
+      currentUser: draft.current_user
     };
   }
 
@@ -56,11 +58,15 @@ export default class Draft extends React.Component {
         userIndex = indexX
       }
     })
-    const new_users = update(this.state.users,{[userIndex]: {money_remaining: {$set: data.money_remaining}}})
-    this.setState({users: new_users})
+    const newUsers = update(this.state.users,{[userIndex]: {money_remaining: {$set: data.money_remaining}}})
+    this.setState({users: newUsers})
 
-    const a_users = update(this.state.users, {[userIndex]: {team: {$push: [data.team[data.team.length-1]]}}})
-    this.setState({users: a_users})
+    const anotherUpdate = update(this.state.users, {[userIndex]: {team: {$push: [data.team[data.team.length-1]]}}})
+    this.setState({users: anotherUpdate})
+
+    const newNomUser = update(this.state.nominatingUser, {
+      $set: data.nominating_user })
+    this.setState({nominatingUser: newNomUser})
   }
 
   unnominate(){
@@ -148,6 +154,8 @@ export default class Draft extends React.Component {
             year={this.state.year}
             draftId={this.state.draftId}
             unsoldPlayers={this.state.unsold_players}
+            nominatingUser={this.state.nominatingUser}
+            currentUser={this.state.currentUser}
             />
           <TeamArea
             users={this.state.users}

@@ -21,6 +21,9 @@ end
 
 json.auctioneer(current_user.auctioneer)
 
+json.nominating_user(draft.nominating_user, :id, :name)
+
+json.current_user(current_user, :id, :name)
 
 json.unsold_players(unsold_players) do |player|
   json.extract! player, :id, :player_name, :position
