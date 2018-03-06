@@ -6,13 +6,24 @@ export default class NominationSelector extends React.Component {
     super(props)
     this.state = {
       selectedPlayer: null,
-      unsoldPlayers: this.props.unsoldPlayers
+      unsoldPlayers: this.props.unsoldPlayers,
+      draftId: this.props.draftId
     }
   }
 
   handleSubmit = (e) => {
-    e.preventDefault
-    
+    e.preventDefault()
+    $.ajax({
+      url: `/drafts/${this.state.draftId}/nominate`,
+      type: 'PATCH',
+      data: {draft:
+        { nominated_player_id: this.state.selectedPlayer,
+          id: this.state.draftId
+        } }
+    })
+      .done(response => {
+        console.log(response)
+      } )
   }
 
   handleChange = (e) => {
@@ -31,7 +42,7 @@ export default class NominationSelector extends React.Component {
         </h4>
           <form onSubmit={this.handleSubmit}>
             <select name="select" onChange={this.handleChange} className='nomination-input'>
-              <option selected="selected">
+              <option>
                 Please nominate a player
               </option>
               {unsoldPlayers.map(function(n) {

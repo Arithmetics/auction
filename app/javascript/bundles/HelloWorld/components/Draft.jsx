@@ -28,12 +28,12 @@ export default class Draft extends React.Component {
     this.setState({bids: bids})
   }
 
-  removeFromTeam(undone_player){
+  removeFromTeam(data){
     let userIndex
     let teamIndex
     this.state.users.forEach(function(user, indexX){
       user.team.forEach(function(entry, indexY){
-        if (entry.player.id == undone_player.player.id) {
+        if (entry.player.id == data.player.id) {
           userIndex = indexX
           teamIndex = indexY
         }
@@ -41,7 +41,7 @@ export default class Draft extends React.Component {
     })
     const new_users = update(this.state.users,{[userIndex]: {team: {$splice: [[teamIndex, 1]] }}})
     this.setState({users: new_users})
-    const a_users = update(this.state.users,{[userIndex]: {money_remaining: {$set: undone_player.money_remaining}}})
+    const a_users = update(this.state.users,{[userIndex]: {money_remaining: {$set: data.money_remaining}}})
     this.setState({users: a_users})
   }
 
@@ -69,6 +69,16 @@ export default class Draft extends React.Component {
     this.setState({nominatedPlayer: noNomPlayerState})
   }
 
+  nominate(data){
+    const nomPlayerState = update(this.state.nominatedPlayer,
+      { $set: data.nominated_player })
+    this.setState({nominatedPlayer: nomPlayerState})
+
+    const bidState = update(this.state.bids, {
+      $set: data.bids })
+    this.setState({bids: bidState})
+  }
+
   componentDidMount(){
     App.draft = App.cable.subscriptions.create({
         channel: "DraftChannel",
@@ -80,12 +90,10 @@ export default class Draft extends React.Component {
         if (data.bid != null) {
           this.updateBids(JSON.parse(data.bid));
         }
-
         // player is deleted from team
         if (data.undo_drafting != null) {
           this.removeFromTeam(JSON.parse(data.undo_drafting));
         }
-
         //player is sold
         if (data.sold_player != null) {
           this.sellPlayer(JSON.parse(data.sold_player));
@@ -94,8 +102,10 @@ export default class Draft extends React.Component {
         if (data.unnomination != null) {
           this.unnominate();
         }
-
-
+        //player is nominated for bidding
+        if (data.nomination != null) {
+          this.nominate(JSON.parse(data.nomination));
+        }
       }.bind(this)
     });
   }
@@ -133,19 +143,18 @@ export default class Draft extends React.Component {
     } else {
       return (
         <div>
-        <h3>No nominated player</h3>
-        <NominationSelector
-          auctioneer={this.state.auctioneer}
-          year={this.state.year}
-          draftId={this.state.draftId}
-          unsoldPlayers={this.state.unsold_players}
+          <NominationSelector
+            auctioneer={this.state.auctioneer}
+            year={this.state.year}
+            draftId={this.state.draftId}
+            unsoldPlayers={this.state.unsold_players}
+            />
+          <TeamArea
+            users={this.state.users}
+            auctioneer={this.state.auctioneer}
+            year={this.state.year}
+            draftId={this.state.draftId}
           />
-        <TeamArea
-          users={this.state.users}
-          auctioneer={this.state.auctioneer}
-          year={this.state.year}
-          draftId={this.state.draftId}
-        />
         </div>
       )
     }

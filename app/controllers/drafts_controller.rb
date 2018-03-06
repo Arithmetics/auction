@@ -41,20 +41,6 @@ class DraftsController < ApplicationController
     @unsold_players = Player.unsold(@draft.year)
   end
 
-
-  def old_show
-    @top_remaining = Player.top_remaining(@draft.year)[0..30]
-    @nominated_player = @draft.nominated_player
-    @players = Player.all
-    @users = User.all.where(auctioneer: false)
-    @bids = @draft.bids.where(player: @nominated_player).order(:amount).reverse
-    @bid = current_user.bids.build(
-      draft: @draft,
-      player: @nominated_player,
-      winning: false);
-  end
-
-
   def nominate
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     if @draft.update_attributes(draft_params)
@@ -67,13 +53,7 @@ class DraftsController < ApplicationController
         player: @nominated_player,
         winning: false);
       ActionCable.server.broadcast "draft_#{@draft.id}",
-        player_for_sale: render(partial: 'drafts/bidding_panel', locals: {
-          nominated_player: @nominated_player,
-          bids: @bids,
-          draft: @draft,
-          bid: @bid,
-          top_remaining: @top_remaining
-           })
+        nomination: render(partial: 'drafts/nominate', locals: { draft: @draft, nominated_player: @nominated_player })
     else
       flash[:alert] = "error"
       redirect_to request.referer
