@@ -24,6 +24,13 @@ body:not(.without-admin) .not-admin {
   border-radius: 5px;
 }
 
+.toprow {
+  margin: 0 auto;
+  width: 99%;
+  position: relative;
+  display: block;
+}
+
 /******** devise **********/
 
 .devise-form {
@@ -65,9 +72,10 @@ body:not(.without-admin) .not-admin {
 
 .player-card {
   border-style: solid;
+  vertical-align:top;
   display: inline-block;
   border-width: 1px;
-  width: 250px;
+  width: 265px;
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
@@ -185,6 +193,7 @@ body:not(.without-admin) .not-admin {
   display: inline-block;
   border-width: 1px;
   width: 260px;
+  min-width: 260px;
   border-radius: 10px;
   margin: 10px;
   padding: 5px;
@@ -198,6 +207,12 @@ body:not(.without-admin) .not-admin {
   font-size: 24px;
   margin-left: 22px;
   margin-right: 22px;
+}
+
+.graphtitle{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #maxgraph1 {
@@ -216,7 +231,6 @@ body:not(.without-admin) .not-admin {
 }
 
 #graph-shortcuts {
-
   height: 30px;
   padding-left: 10px;
 }
@@ -228,7 +242,7 @@ body:not(.without-admin) .not-admin {
   z-index: 99;
 }
 
-@media only screen and (max-width : 1555px) {
+@media only screen and (max-width : 1560px) {
 
   #graph4 {
     display: none;
@@ -239,7 +253,7 @@ body:not(.without-admin) .not-admin {
   }
 }
 
-@media only screen and (max-width : 1260px) {
+@media only screen and (max-width : 1265px) {
 
   #graph3 {
     display: none;
@@ -250,7 +264,7 @@ body:not(.without-admin) .not-admin {
   }
 }
 
-@media only screen and (max-width : 965px) {
+@media only screen and (max-width : 970px) {
 
   #graph2 {
     display: none;
@@ -261,7 +275,7 @@ body:not(.without-admin) .not-admin {
   }
 }
 
-@media only screen and (max-width : 670px) {
+@media only screen and (max-width : 680px) {
 
   #graph1 {
     display: none;
@@ -416,7 +430,6 @@ input[type=number] {
   background-color: #1C1E28;
   border-radius: 5px;
   height: 200px;
-  overflow-y: scroll;
 }
 
 .heading-label {
@@ -438,6 +451,12 @@ input[type=number] {
   border-style: solid;
   border-width: 1px 0 0px 0px;
   border-color: #e54b4b;
+
+}
+
+#bid-under-list {
+  height: 80px;
+  overflow-y: scroll;
 }
 
 .blocks {

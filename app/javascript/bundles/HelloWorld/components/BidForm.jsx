@@ -77,7 +77,7 @@ export default class BidForm extends React.Component {
               $
             </span>
             <span className="num-field">
-              <input type="number" name="amount" value={this.state.amount} onChange={this.handleBidChange} ref={input => this.amount = input } />
+              <input id="bid_amount" type="number" name="amount" value={this.state.amount} onChange={this.handleBidChange} ref={input => this.amount = input } />
             </span>
             <input type="submit" value="Submit Bid" name="commit" className="bid-button" />
           </form>

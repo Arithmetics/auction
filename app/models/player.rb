@@ -74,36 +74,36 @@ class Player < ApplicationRecord
 
   def master_graphs_hash
     master_graph_data = {
-      sales: {}, season_pts: {}, games_played: {}, pts_per_game: {}
+      sales: [], season_pts: [], games_played: [], pts_per_game: []
     }
     Draft.all.each do |draft|
       year = draft.year
       #sales_hash
       winning_bid = draft.bids.find_by(player_id: self.id, winning: true)
       if winning_bid
-        master_graph_data[:sales][year.to_s] = winning_bid.amount
+        master_graph_data[:sales].push({year: year.to_s, amount: winning_bid.amount, user: winning_bid.user.name })
       end
       #season_pts_hash
       player_games = self.games.where(season: year)
       if player_games.count > 0
         season_fantasy_points = player_games.reduce(0){|sum,x| sum + x.points_standard }
-        master_graph_data[:season_pts][year.to_s] = season_fantasy_points.round(1)
+        master_graph_data[:season_pts].push({year: year.to_s, season_fantasy_points: season_fantasy_points.round(1) })
       end
       #games_played_hash
       year = draft.year
       player_games = self.games.where(season: year)
       if player_games.count > 0
         games
-        master_graph_data[:games_played][year.to_s] = player_games.count
+        master_graph_data[:games_played].push({year: year.to_s, games_played: player_games.count})
       end
-    end
-    master_graph_data[:sales].sort.to_h
-    master_graph_data[:season_pts].sort.to_h
-    master_graph_data[:games_played].sort.to_h
 
-    master_graph_data[:season_pts].each do |k,v|
-      master_graph_data[:pts_per_game][k] = (v/(master_graph_data[:games_played][k].to_f)).round(2)
     end
+
+    #pts/game_hash
+    master_graph_data[:season_pts].each_with_index do |x,i|
+      master_graph_data[:pts_per_game].push({year: x[:year], pts_per_game: (x[:season_fantasy_points]/(master_graph_data[:games_played][i][:games_played].to_f)).round(2) } )
+    end
+
 
     master_graph_data
   end

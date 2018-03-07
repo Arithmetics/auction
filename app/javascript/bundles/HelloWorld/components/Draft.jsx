@@ -6,6 +6,8 @@ import BidForm from './BidForm'
 import PlayerCard from './PlayerCard'
 import TeamArea from './TeamArea'
 import NominationSelector from './NominationSelector'
+import LineGraph from './LineGraph'
+import GraphButton from './GraphButton'
 
 export default class Draft extends React.Component {
   constructor(props) {
@@ -121,10 +123,47 @@ export default class Draft extends React.Component {
     if (this.state.nominatedPlayer){
       return (
         <div>
-          <PlayerCard
-            nominatedPlayer={this.state.nominatedPlayer}
-            bids={this.state.bids}
-          />
+          <div className="box">
+            <PlayerCard
+              nominatedPlayer={this.state.nominatedPlayer}
+              bids={this.state.bids}
+            />
+            <LineGraph
+              title={"Auction $ Spent"}
+              data={this.state.nominatedPlayer.master_graphs_hash.sales}
+              color="#00c87c"
+              yData="amount"
+              id="graph1"
+            />
+            <LineGraph
+              title={"Total Pts Scored"}
+              data={this.state.nominatedPlayer.master_graphs_hash.season_pts}
+              color="#8884d8"
+              yData="season_fantasy_points"
+              id="graph2"
+            />
+            <LineGraph
+              title={"Pts / Game"}
+              data={this.state.nominatedPlayer.master_graphs_hash.pts_per_game}
+              color="#ff6560"
+              yData="pts_per_game"
+              id="graph3"
+            />
+            <LineGraph
+              title={"Games Played"}
+              data={this.state.nominatedPlayer.master_graphs_hash.games_played}
+              color="#ffcb5e"
+              yData="games_played"
+              id="graph4"
+            />
+            <div id="graph-shortcuts">
+              <GraphButton id="maxgraph1" />
+              <GraphButton id="maxgraph2" />
+              <GraphButton id="maxgraph3" />
+              <GraphButton id="maxgraph4" />
+            </div>
+          </div>
+
           <div className="bid-box">
             <BidForm
               draftId={this.state.draftId}

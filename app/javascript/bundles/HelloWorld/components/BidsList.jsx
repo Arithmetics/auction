@@ -4,7 +4,7 @@ import Bid from './Bid'
 const BidsList = ({bids}) =>
 <div id="bids">
   <h3 className="heading-label"> Bid History: </h3>
-  <ul>
+  <ul className="under-list" id="bid-under-list">
     {bids.map((bid, i) => {
       return(<Bid key={i} bid={bid} />)
     })}
