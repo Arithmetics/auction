@@ -12,6 +12,10 @@ import GraphButton from './GraphButton'
 export default class Draft extends React.Component {
   constructor(props) {
     super(props);
+
+    this.handleGraphMax = this.handleGraphMax.bind(this)
+    this.handleGraphMin = this.handleGraphMin.bind(this)
+
     let draft = JSON.parse(this.props.draft)
     console.log(draft)
     this.state = {
@@ -23,7 +27,8 @@ export default class Draft extends React.Component {
       users: draft.users,
       unsold_players: draft.unsold_players,
       nominatingUser: draft.nominating_user,
-      currentUser: draft.current_user
+      currentUser: draft.current_user,
+      displayGraphs: [false, false, false, false]
     };
   }
 
@@ -77,6 +82,20 @@ export default class Draft extends React.Component {
     this.setState({nominatedPlayer: noNomPlayerState})
   }
 
+
+  handleGraphMax(i){
+    const newDisplay = this.state.displayGraphs;
+    newDisplay[i-1] = true
+    this.setState({displayGraphs: newDisplay})
+  }
+
+  handleGraphMin(i){
+    const newDisplay = this.state.displayGraphs;
+    newDisplay[i-1] = false
+    this.setState({displayGraphs: newDisplay})
+  }
+
+
   nominate(data){
     const nomPlayerState = update(this.state.nominatedPlayer,
       { $set: data.nominated_player })
@@ -88,6 +107,7 @@ export default class Draft extends React.Component {
   }
 
   componentDidMount(){
+    //websockets Action Cable Subs
     App.draft = App.cable.subscriptions.create({
         channel: "DraftChannel",
         id: this.state.draftId
@@ -116,11 +136,96 @@ export default class Draft extends React.Component {
         }
       }.bind(this)
     });
+    //sreen query for initial state
+    let width = $(window).width()
+    if (width > 1560){
+      this.setState({displayGraphs: [true, true, true, true]})
+    } else if (width > 1265) {
+      this.setState({displayGraphs: [true, true, true, false]})
+    } else if(width > 970) {
+      this.setState({displayGraphs: [true, true, false, false]})
+    } else if(width > 680) {
+      this.setState({displayGraphs: [true, false, false, false]})
+    } else {
+
+    }
   }
 
+  render(){
 
-  render() {
     if (this.state.nominatedPlayer){
+      let graph1;
+      let graph2;
+      let graph3;
+      let graph4;
+      let graphButton1;
+      let graphButton2;
+      let graphButton3;
+      let graphButton4;
+      if(this.state.displayGraphs[0]){
+        graph1 = (<LineGraph
+          title={"Auction $ Spent"}
+          data={this.state.nominatedPlayer.master_graphs_hash.sales}
+          color="#00c87c"
+          yData="amount"
+          id="graph1"
+          graphid="1"
+          onClick={this.handleGraphMin}
+        />)
+      } else {
+        graphButton1 = (
+          <GraphButton
+            id="maxgraph1" graphid="1"
+            onClick={this.handleGraphMax}
+          />
+        )
+      }
+      if(this.state.displayGraphs[1]){
+        graph2 = (<LineGraph
+          title={"Total Pts Scored"}
+          data={this.state.nominatedPlayer.master_graphs_hash.season_pts}
+          color="#8884d8"
+          yData="season_fantasy_points"
+          id="graph2"
+          graphid="2"
+          onClick={this.handleGraphMin}
+        />)
+      } else {
+        graphButton2 = (
+          <GraphButton id="maxgraph2" graphid="2" onClick={this.handleGraphMax}/>
+        )
+      }
+      if(this.state.displayGraphs[2]){
+        graph3 = (<LineGraph
+          title={"Pts / Game"}
+          data={this.state.nominatedPlayer.master_graphs_hash.pts_per_game}
+          color="#ff6560"
+          yData="pts_per_game"
+          id="graph3"
+          graphid="3"
+          onClick={this.handleGraphMin}
+        />)
+      } else {
+        graphButton3 = (
+          <GraphButton id="maxgraph3" graphid="3" onClick={this.handleGraphMax}/>
+        )
+      }
+      if(this.state.displayGraphs[3]){
+        graph4 = (<LineGraph
+          title={"Games Played"}
+          data={this.state.nominatedPlayer.master_graphs_hash.games_played}
+          color="#ffcb5e"
+          yData="games_played"
+          id="graph4"
+          graphid="4"
+          onClick={this.handleGraphMin}
+        />)
+      } else {
+        graphButton4 = (
+          <GraphButton id="maxgraph4" graphid="4" onClick={this.handleGraphMax}/>
+
+        )
+      }
       return (
         <div>
           <div className="box">
@@ -128,42 +233,17 @@ export default class Draft extends React.Component {
               nominatedPlayer={this.state.nominatedPlayer}
               bids={this.state.bids}
             />
-            <LineGraph
-              title={"Auction $ Spent"}
-              data={this.state.nominatedPlayer.master_graphs_hash.sales}
-              color="#00c87c"
-              yData="amount"
-              id="graph1"
-            />
-            <LineGraph
-              title={"Total Pts Scored"}
-              data={this.state.nominatedPlayer.master_graphs_hash.season_pts}
-              color="#8884d8"
-              yData="season_fantasy_points"
-              id="graph2"
-            />
-            <LineGraph
-              title={"Pts / Game"}
-              data={this.state.nominatedPlayer.master_graphs_hash.pts_per_game}
-              color="#ff6560"
-              yData="pts_per_game"
-              id="graph3"
-            />
-            <LineGraph
-              title={"Games Played"}
-              data={this.state.nominatedPlayer.master_graphs_hash.games_played}
-              color="#ffcb5e"
-              yData="games_played"
-              id="graph4"
-            />
+            {graph1}
+            {graph2}
+            {graph3}
+            {graph4}
             <div id="graph-shortcuts">
-              <GraphButton id="maxgraph1" />
-              <GraphButton id="maxgraph2" />
-              <GraphButton id="maxgraph3" />
-              <GraphButton id="maxgraph4" />
+              {graphButton1}
+              {graphButton2}
+              {graphButton3}
+              {graphButton4}
             </div>
           </div>
-
           <div className="bid-box">
             <BidForm
               draftId={this.state.draftId}
@@ -185,6 +265,7 @@ export default class Draft extends React.Component {
           />
         </div>
       );
+
     } else {
       return (
         <div>
@@ -207,4 +288,6 @@ export default class Draft extends React.Component {
     }
 
   }
+
+
 }

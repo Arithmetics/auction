@@ -5,14 +5,12 @@ import {ResponsiveContainer, Label, LineChart, CartesianGrid, XAxis, YAxis, Tool
 export default class LineGraph extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-
-    }
+    this.doParentGraphToggle = this.doParentGraphToggle.bind(this);
   }
 
-  toggleMin(e){
-    e.preventDefault();
-
+  doParentGraphToggle(){
+    let index = parseInt(this.props.graphid)
+    this.props.onClick(index)
   }
 
   render(){
@@ -20,11 +18,11 @@ export default class LineGraph extends React.Component {
     let title = this.props.title
     let color = this.props.color
     let yData = this.props.yData
-    let show = this.state.show
+
     let id = this.props.id
       return(
         <div className="graph" id={id}>
-          <i className="ion-ios-minus-outline minimize" onClick={this.toggleMin.bind(this)}></i>
+          <i className="ion-ios-minus-outline minimize" onClick={ this.doParentGraphToggle }></i>
           <h4 className="graphtitle">{title}</h4>
           <ResponsiveContainer height={295} width="95%">
           <LineChart data={data}

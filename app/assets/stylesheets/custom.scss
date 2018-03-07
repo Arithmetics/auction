@@ -75,7 +75,7 @@ body:not(.without-admin) .not-admin {
   vertical-align:top;
   display: inline-block;
   border-width: 1px;
-  width: 265px;
+  width: 250px;
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
@@ -217,17 +217,21 @@ body:not(.without-admin) .not-admin {
 
 #maxgraph1 {
   color: #00c87c;
+  display: inline;
 }
 #maxgraph2 {
-  color: #ffcb5e;
+  color: #8884d8;
+  display: inline;
 }
 
 #maxgraph3 {
-  color: #73629e;
+  color: #ff6560;
+  display: inline;
 }
 
 #maxgraph4 {
-  color: #28d5dc;
+  color: #ffcb5e;
+  display: inline;
 }
 
 #graph-shortcuts {
@@ -242,49 +246,6 @@ body:not(.without-admin) .not-admin {
   z-index: 99;
 }
 
-@media only screen and (max-width : 1560px) {
-
-  #graph4 {
-    display: none;
-  }
-
-  #maxgraph4 {
-    display: inline;
-  }
-}
-
-@media only screen and (max-width : 1265px) {
-
-  #graph3 {
-    display: none;
-  }
-
-  #maxgraph3 {
-    display: inline;
-  }
-}
-
-@media only screen and (max-width : 970px) {
-
-  #graph2 {
-    display: none;
-  }
-
-  #maxgraph2 {
-    display: inline;
-  }
-}
-
-@media only screen and (max-width : 680px) {
-
-  #graph1 {
-    display: none;
-  }
-
-  #maxgraph1 {
-    display: inline;
-  }
-}
 
 
 /****************** miscellaneous **********/
