@@ -4,7 +4,7 @@ Application I built to allow users to conduct an auction style fantasy draft. Us
 
 Live website running at: https://bt-auction.herokuapp.com/ (Account will need to be created to login).
 
-** In process of updating to React JS views **
+** In process of updating to React JS views please see react2 branch for work **
 
 Technologies used:
 * Ruby on Rails 5
