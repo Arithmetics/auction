@@ -132,11 +132,19 @@ body:not(.without-admin) .not-admin {
 
 .best-available {
   display: inline-block;
-  height: 160px;
+  height: 200px;
   vertical-align:top;
-  padding: 20px;
+  padding: 5px;
   justify-content: center;
 
+}
+
+.best-bid-list {
+  height: 140px;
+  overflow-y: scroll;
+  width: 230px;
+  padding-left: 5px;
+  z-index: 99;
 }
 
 #best-av-label {
@@ -144,44 +152,19 @@ body:not(.without-admin) .not-admin {
   margin-bottom: 4px;
 }
 
-@media only screen and (max-width : 650px) {
-  .best-available {
-    display: none;
-  }
-  #player-list-1 {
-    display: none;
-  }
+.button-box {
+  width: 100%;
 }
 
-@media only screen and (max-width : 850px) {
-
-  #player-list-2 {
-    display: none;
-  }
+.best-filter {
+  background: black;
+  border-radius: 4px;
+  margin-left: 5px;
+  border-color:  #28d5dc;
+  border-width: 1px;
+  color: #28d5dc;
 }
 
-@media only screen and (max-width : 1050px) {
-
-  #player-list-3 {
-    display: none;
-  }
-}
-
-@media only screen and (max-width : 1200px) {
-
-  #player-list-4 {
-    display: none;
-  }
-
-}
-
-@media only screen and (max-width : 1400px) {
-
-  #player-list-5 {
-    display: none;
-  }
-
-}
 
 
 
@@ -280,7 +263,7 @@ body:not(.without-admin) .not-admin {
   border-radius: 5px;
   vertical-align:top;
   display: inline-block;
-  width: 320px;
+  width: 270px;
 
 }
 
@@ -292,7 +275,7 @@ body:not(.without-admin) .not-admin {
   border-radius: 5px;
   vertical-align:top;
   display: inline-block;
-  width: 320px;
+  width: 280px;
 }
 
 input[type=number] {
@@ -315,8 +298,8 @@ input[type=number] {
 }
 
 .sell-button {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
   box-sizing: border-box;
   background-color: #00C87C;
   border-radius: 5px;
@@ -382,7 +365,7 @@ input[type=number] {
 }
 
 .bid-box {
-  width: 300px;
+  width: 278px;
   border-style: solid;
   border-width: 1px;
   margin: 10px;

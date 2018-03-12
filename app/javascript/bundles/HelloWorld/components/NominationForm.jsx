@@ -11,6 +11,10 @@ export default class NominationForm extends React.Component {
     }
   }
 
+  componentDidMount(){
+    this.setState({unsoldPlayers: this.props.unsoldPlayers})
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     $.ajax({
@@ -33,7 +37,7 @@ export default class NominationForm extends React.Component {
 
 
   render(){
-    let unsoldPlayers = this.state.unsoldPlayers
+    let unsoldPlayers = this.props.unsoldPlayers
     return(
       <div>
         <form onSubmit={this.handleSubmit}>

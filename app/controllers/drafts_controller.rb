@@ -40,6 +40,7 @@ class DraftsController < ApplicationController
     @users = User.all.where(auctioneer: false)
     @current_user = current_user
     @unsold_players = Player.unsold(@draft.year)
+    @best_available = Player.top_remaining(@draft.year)
   end
 
   def nominate

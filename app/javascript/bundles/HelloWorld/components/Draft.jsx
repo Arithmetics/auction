@@ -8,6 +8,7 @@ import TeamArea from './TeamArea'
 import NominationSelector from './NominationSelector'
 import LineGraph from './LineGraph'
 import GraphButton from './GraphButton'
+import BestAvailable from './BestAvailable'
 
 export default class Draft extends React.Component {
   constructor(props) {
@@ -28,7 +29,8 @@ export default class Draft extends React.Component {
       unsold_players: draft.unsold_players,
       nominatingUser: draft.nominating_user,
       currentUser: draft.current_user,
-      displayGraphs: [false, false, false, false]
+      displayGraphs: [false, false, false, false],
+      bestAvailable: draft.best_available
     };
   }
 
@@ -74,6 +76,27 @@ export default class Draft extends React.Component {
     const newNomUser = update(this.state.nominatingUser, {
       $set: data.nominating_user })
     this.setState({nominatingUser: newNomUser})
+
+    // need to remove player from best available
+    let bestIndex;
+    this.state.bestAvailable.forEach(function(entry, i){
+      if (entry.esbid == data.team[data.team.length -1].player.esbid) {
+        bestIndex = i
+      }
+    })
+    const newBestAvailable = update(this.state.bestAvailable,{$splice: [[bestIndex, 1]] })
+    this.setState({bestAvailable: newBestAvailable});
+
+
+    // need to remove player from drop down list
+    let unsoldIndex;
+    this.state.unsold_players.forEach(function(entry, i){
+      if (entry.esbid == data.team[data.team.length -1].player.esbid) {
+        unsoldIndex = i
+      }
+    })
+    const new_unsoldPlayers = update(this.state.unsold_players,{$splice: [[unsoldIndex, 1]] })
+    this.setState({unsold_players: new_unsoldPlayers});
   }
 
   unnominate(){
@@ -257,6 +280,9 @@ export default class Draft extends React.Component {
               bids={this.state.bids}
             />
           </div>
+          <div className="best-available box">
+            <BestAvailable bestAvailable={this.state.bestAvailable}/>
+          </div>
           <TeamArea
             users={this.state.users}
             auctioneer={this.state.auctioneer}
@@ -277,6 +303,9 @@ export default class Draft extends React.Component {
             nominatingUser={this.state.nominatingUser}
             currentUser={this.state.currentUser}
             />
+            <div className="best-available box">
+              <BestAvailable bestAvailable={this.state.bestAvailable}/>
+            </div>
           <TeamArea
             users={this.state.users}
             auctioneer={this.state.auctioneer}

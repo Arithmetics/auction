@@ -46,13 +46,21 @@ class Player < ApplicationRecord
   def self.top_remaining(year)
     require 'open-uri'
     require 'json'
-    response = open('http://api.fantasy.nfl.com/v1/players/userdraftranks?format=json').read
+    response = open('http://api.fantasy.nfl.com/v1/players/userdraftranks?format=json&count=100').read
     ranking_object = JSON.parse(response)
     unsold_list = self.unsold(year)
     top_ranked_left = []
-    ranking_object["players"][0..75].each do |player|
+    ranking_object["players"][0..99].each do |player|
       if unsold_list.select{|x| x.esbid == player["esbid"]}.length > 0
-        top_ranked_left.push(player["firstName"] + " " + player["lastName"] + ", " + player["position"]);
+        top_ranked_left.push(player);
+      end
+    end
+    response = open('http://api.fantasy.nfl.com/v1/players/userdraftranks?format=json&count=100&offset=100').read
+    ranking_object = JSON.parse(response)
+    unsold_list = self.unsold(year)
+    ranking_object["players"][0..99].each do |player|
+      if unsold_list.select{|x| x.esbid == player["esbid"]}.length > 0
+        top_ranked_left.push(player);
       end
     end
     top_ranked_left
