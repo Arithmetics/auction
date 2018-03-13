@@ -1,6 +1,7 @@
 import React from 'react'
 import TeamCard from './TeamCard'
 
+
 export default class TeamArea extends React.Component {
   constructor(props) {
     super(props)
@@ -16,7 +17,8 @@ export default class TeamArea extends React.Component {
     return(
       <div className="box">
 
-        {this.props.users.map(function(user) { return <TeamCard
+        {this.props.users.map(function(user) {
+          return <TeamCard
             key={user.id}
             user={user}
             auctioneer={auctioneer}

@@ -35,7 +35,6 @@ export default class NominationForm extends React.Component {
   }
 
 
-
   render(){
     let unsoldPlayers = this.props.unsoldPlayers
     return(

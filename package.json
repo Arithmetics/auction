@@ -9,6 +9,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-on-rails": "^10.1.1",
+    "react-transition-group": "1.x",
     "recharts": "^1.0.0-beta.10"
   },
   "devDependencies": {

@@ -9,6 +9,7 @@ import NominationSelector from './NominationSelector'
 import LineGraph from './LineGraph'
 import GraphButton from './GraphButton'
 import BestAvailable from './BestAvailable'
+import { CSSTransitionGroup } from 'react-transition-group'
 
 export default class Draft extends React.Component {
   constructor(props) {
@@ -250,16 +251,50 @@ export default class Draft extends React.Component {
         )
       }
       return (
+        <CSSTransitionGroup
+        transitionName="example"
+        transitionAppear={true}
+        transitionEnterTimeout={1500}
+        transitionLeaveTimeout={1500}
+        transitionAppearTimeout={1500}>
         <div>
           <div className="box">
-            <PlayerCard
-              nominatedPlayer={this.state.nominatedPlayer}
-              bids={this.state.bids}
-            />
-            {graph1}
-            {graph2}
-            {graph3}
-            {graph4}
+              <PlayerCard
+                nominatedPlayer={this.state.nominatedPlayer}
+                bids={this.state.bids}
+              />
+            <CSSTransitionGroup
+            transitionName="spicy"
+            transitionEnterTimeout={1500}
+            transitionLeaveTimeout={1500}
+            transitionAppear={true}
+            transitionAppearTimeout={1500}>
+              {graph1}
+            </CSSTransitionGroup>
+            <CSSTransitionGroup
+            transitionName="spicy"
+            transitionEnterTimeout={1500}
+            transitionLeaveTimeout={1500}
+            transitionAppear={true}
+            transitionAppearTimeout={1500}>
+              {graph2}
+            </CSSTransitionGroup>
+            <CSSTransitionGroup
+            transitionName="spicy"
+            transitionEnterTimeout={1500}
+            transitionLeaveTimeout={1500}
+            transitionAppear={true}
+            transitionAppearTimeout={1500}>
+              {graph3}
+            </CSSTransitionGroup>
+            <CSSTransitionGroup
+            transitionName="spicy"
+            transitionEnterTimeout={1500}
+            transitionLeaveTimeout={1500}
+            transitionAppear={true}
+            transitionAppearTimeout={1500}>
+              {graph4}
+            </CSSTransitionGroup>
             <div id="graph-shortcuts">
               {graphButton1}
               {graphButton2}
@@ -290,28 +325,38 @@ export default class Draft extends React.Component {
             draftId={this.state.draftId}
           />
         </div>
+        </CSSTransitionGroup>
       );
 
     } else {
       return (
         <div>
-          <NominationSelector
-            auctioneer={this.state.auctioneer}
-            year={this.state.year}
-            draftId={this.state.draftId}
-            unsoldPlayers={this.state.unsold_players}
-            nominatingUser={this.state.nominatingUser}
-            currentUser={this.state.currentUser}
-            />
-            <div className="best-available box">
-              <BestAvailable bestAvailable={this.state.bestAvailable}/>
-            </div>
+          <CSSTransitionGroup
+          transitionName="example"
+          transitionEnterTimeout={1500}
+          transitionLeaveTimeout={1500}
+          transitionAppear={true}
+      transitionAppearTimeout={500}>
+          <div className="box nomination-panel">
+            <NominationSelector
+              auctioneer={this.state.auctioneer}
+              year={this.state.year}
+              draftId={this.state.draftId}
+              unsoldPlayers={this.state.unsold_players}
+              nominatingUser={this.state.nominatingUser}
+              currentUser={this.state.currentUser}
+              />
+              <div className="best-available box">
+                <BestAvailable bestAvailable={this.state.bestAvailable}/>
+              </div>
+          </div>
           <TeamArea
             users={this.state.users}
             auctioneer={this.state.auctioneer}
             year={this.state.year}
             draftId={this.state.draftId}
           />
+      </CSSTransitionGroup>
         </div>
       )
     }

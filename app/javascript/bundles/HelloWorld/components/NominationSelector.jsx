@@ -30,7 +30,7 @@ export default class NominationSelector extends React.Component {
     }
 
     return(
-      <div className="box">
+      <div>
         <h3 className="heading-label">
           {message}
         </h3>

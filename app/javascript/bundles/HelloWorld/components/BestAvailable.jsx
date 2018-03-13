@@ -56,7 +56,7 @@ export default class BestAvailable extends React.Component {
         </div>
         <ol className="under-list best-bid-list">
           {bestAvailable.map((player, i) => {
-            return(<li key={i}>{player.firstName} {player.lastName}, {player.position}</li>)
+            return(<li className="best-item" key={i}>{player.firstName} {player.lastName}, {player.position}</li>)
           })}
         </ol>
       </div>
