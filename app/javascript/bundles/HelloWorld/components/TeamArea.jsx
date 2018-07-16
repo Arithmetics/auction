@@ -15,7 +15,7 @@ export default class TeamArea extends React.Component {
     let year = this.props.year
     let draftId = this.props.draftId
     return(
-      <div className="box">
+      <div className="flex-box">
 
         {this.props.users.map(function(user) {
           return <TeamCard

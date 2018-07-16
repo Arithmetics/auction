@@ -5,20 +5,20 @@ require 'csv'
 
 ####### players seed ###################
 
-csv_text = File.read(Rails.root.join('lib', 'seeds', 'players.csv'))
-csv = CSV.parse(csv_text)
+# csv_text = File.read(Rails.root.join('lib', 'seeds', 'players.csv'))
+# csv = CSV.parse(csv_text)
 
-csv.each do |entry|
-  new_player =  Player.new(
-                  esbid: entry[1],
-                  gsisPlayerId: entry[2],
-                  player_name: entry[3],
-                  position: entry[4]
-                )
-  new_player.id = entry[0]
-  puts new_player
-  new_player.save!
-end
+# csv.each do |entry|
+#   new_player =  Player.new(
+#                   esbid: entry[1],
+#                   gsisPlayerId: entry[2],
+#                   player_name: entry[3],
+#                   position: entry[4]
+#                 )
+#   new_player.id = entry[0]
+#   puts new_player
+#   new_player.save!
+# end
 
 
 ############## games seed ################
@@ -230,8 +230,88 @@ User.create(
 )
 
 User.create(
-  email: "default@example.com",
-  name: "Default",
+  email: "matt@example.com",
+  name: "Matt",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "kevin@example.com",
+  name: "Kevin",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "keenan@example.com",
+  name: "Keenan",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "jeremy@example.com",
+  name: "Jeremy",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "daniel@example.com",
+  name: "Daniel",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "brandon@example.com",
+  name: "Brandon",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "woody@example.com",
+  name: "Woody",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "dennis@example.com",
+  name: "Dennis",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "brock@example.com",
+  name: "Brock",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "joe@example.com",
+  name: "Joe",
+  password: "password",
+  password_confirmation: "password",
+  auctioneer: false
+)
+
+User.create(
+  email: "jordan@example.com",
+  name: "Jordan",
   password: "password",
   password_confirmation: "password",
   auctioneer: false

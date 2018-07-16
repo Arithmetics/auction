@@ -258,7 +258,7 @@ export default class Draft extends React.Component {
         transitionLeaveTimeout={1500}
         transitionAppearTimeout={1500}>
         <div>
-          <div className="box">
+          <div className="flex-box">
               <PlayerCard
                 nominatedPlayer={this.state.nominatedPlayer}
                 bids={this.state.bids}
@@ -295,13 +295,13 @@ export default class Draft extends React.Component {
             transitionAppearTimeout={1500}>
               {graph4}
             </CSSTransitionGroup>
-            <div id="graph-shortcuts">
+          </div>
+          <div id="graph-shortcuts">
               {graphButton1}
               {graphButton2}
               {graphButton3}
               {graphButton4}
             </div>
-          </div>
           <div className="bid-box">
             <BidForm
               draftId={this.state.draftId}

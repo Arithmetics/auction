@@ -2,6 +2,7 @@
 
 @import 'ionicons';
 
+
 body {
   background-color: #0D0D18
 }
@@ -15,6 +16,25 @@ body {
   display: block;
   background-color: #1C1E28;
   border-radius: 5px;
+}
+
+.flex-box {
+  border-style: solid;
+  border-width: 1px;
+  margin: 10px;
+  padding: 5px;
+  display: block;
+  background-color: #1C1E28;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+  @media screen and (max-width: 700px){
+    span {
+      width: 100%;
+    }
+  }
 }
 
 .box:after {
@@ -72,7 +92,7 @@ body {
 .player-card {
   border-style: solid;
   vertical-align:top;
-  display: inline-block;
+
   border-width: 1px;
   width: 250px;
   border-radius: 10px;
@@ -81,6 +101,10 @@ body {
   justify-content: center;
   box-shadow: 0px 0px 10px 10px rgba(0,0,0,0.1),
               0px 0px 10px 10px rgba(45,78,255,0.15);
+
+  @media screen and (max-width: 700px){
+    width: 100%;
+  }
 }
 
 .player-pic {
@@ -136,12 +160,23 @@ body {
   padding: 5px;
   justify-content: center;
 
+
+  @media screen and (max-width: 700px){
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
 }
 
 .best-bid-list {
   height: 130px;
   overflow-y: scroll;
   width: 90%;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .best-item {
@@ -174,7 +209,7 @@ body {
 .graph {
   border-style: solid;
   position: relative;
-  display: inline-block;
+
   border-width: 1px;
   width: 260px;
   min-width: 260px;
@@ -184,6 +219,13 @@ body {
   justify-content: center;
   box-shadow: 0px 0px 10px 10px rgba(0,0,0,0.1),
               0px 0px 10px 10px rgba(45,78,255,0.15);
+  
+  @media screen and (max-width: 700px){
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
 }
 
 
@@ -193,6 +235,11 @@ body {
   font-size: 24px;
   margin-left: 22px;
   margin-right: 22px;
+  transition: all 2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .graphtitle{
@@ -204,25 +251,51 @@ body {
 #maxgraph1 {
   color: #00c87c;
   display: inline;
+  transition: all 2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 #maxgraph2 {
   color: #8884d8;
   display: inline;
+  transition: all 2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 #maxgraph3 {
   color: #ff6560;
   display: inline;
+  transition: all 2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 #maxgraph4 {
   color: #ffcb5e;
   display: inline;
+  transition: all 2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 #graph-shortcuts {
   height: 30px;
-  padding-left: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 5px;
+  margin-bottom: 10px;
+
+  
 }
 
 .minimize {
@@ -282,6 +355,10 @@ body {
   vertical-align:top;
   display: inline-block;
   width: 280px;
+
+  @media screen and (max-width: 700px){
+    width: 100%;
+  }
 }
 
 
@@ -382,6 +459,14 @@ input[type=number] {
   background-color: #1C1E28;
   border-radius: 5px;
   height: 200px;
+
+  @media screen and (max-width: 700px){
+    width: 90%;
+
+    display: block;
+    margin: 0 auto;
+
+  }
 }
 
 .heading-label {
@@ -404,11 +489,21 @@ input[type=number] {
   border-width: 1px 0 0px 0px;
   border-color: #e54b4b;
 
+    &::-webkit-scrollbar {
+    display: none;
+  }
+
 }
 
 #bid-under-list {
   height: 80px;
   overflow-y: scroll;
+
+
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .blocks {
@@ -609,7 +704,7 @@ input[type=number] {
 .spicy-enter.spicy-enter-active {
 	opacity: 1;
 	transform:  scaleX(1) scaleY(1);
-	transition: all 2000ms ease-out;
+	transition: all 1000ms ease-out;
 }
 
 .spicy-leave {
@@ -620,5 +715,5 @@ input[type=number] {
 .spicy-leave-active {
 	opacity: .01;
 	transform:  scaleX(0) scaleY(0);
-	transition: all 2000ms ease-out;
+	transition: all 1000ms ease-out;
 }
