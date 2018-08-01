@@ -302,22 +302,25 @@ export default class Draft extends React.Component {
               {graphButton3}
               {graphButton4}
             </div>
-          <div className="bid-box">
-            <BidForm
-              draftId={this.state.draftId}
-              year={this.state.year}
-              nominatedPlayer={this.state.nominatedPlayer}
-              draftId={this.state.draftId}
-              auctioneer={this.state.auctioneer}
-              bids={this.state.bids}
-            />
-            <BidsList
-              bids={this.state.bids}
-            />
+          <div class="flex-box">
+            <div className="bid-box">
+              <BidForm
+                draftId={this.state.draftId}
+                year={this.state.year}
+                nominatedPlayer={this.state.nominatedPlayer}
+                draftId={this.state.draftId}
+                auctioneer={this.state.auctioneer}
+                bids={this.state.bids}
+              />
+              <BidsList
+                bids={this.state.bids}
+              />
+            </div>
+            <div className="best-available box">
+              <BestAvailable bestAvailable={this.state.bestAvailable}/>
+            </div>
           </div>
-          <div className="best-available box">
-            <BestAvailable bestAvailable={this.state.bestAvailable}/>
-          </div>
+          
           <TeamArea
             users={this.state.users}
             auctioneer={this.state.auctioneer}
