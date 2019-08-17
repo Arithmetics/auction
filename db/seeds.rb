@@ -5,26 +5,28 @@ require 'csv'
 
 ####### players seed ###################
 
-# csv_text = File.read(Rails.root.join('lib', 'seeds', 'players.csv'))
-# csv = CSV.parse(csv_text)
+csv_text = File.read(Rails.root.join('lib', 'seeds', 'players.csv'))
+csv = CSV.parse(csv_text)
 
-# csv.each do |entry|
-#   new_player =  Player.new(
-#                   esbid: entry[1],
-#                   gsisPlayerId: entry[2],
-#                   player_name: entry[3],
-#                   position: entry[4]
-#                 )
-#   new_player.id = entry[0]
-#   puts new_player
-#   new_player.save!
-# end
+csv.each do |entry|
+  puts entry[3]
+  new_player =  Player.new(
+                  esbid: entry[1],
+                  gsisPlayerId: entry[2],
+                  player_name: entry[3],
+                  position: entry[4]
+                )
+  new_player.id = entry[0]
+  puts new_player
+  new_player.save!
+end
 
 
 ############## games seed ################
 
 def api_request(week, season, position)
-  response = open("http://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=#{season}&week=#{week}&position=#{position}&format=json").read
+  puts "making api request for #{week} #{season}, #{position}"
+  response = open("https://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=#{season}&week=#{week}&position=#{position}&format=json").read
   week_object = JSON.parse(response)
 end
 
