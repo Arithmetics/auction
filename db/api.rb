@@ -4,7 +4,7 @@ require 'json'
 
 
 def api_request(week, season, position)
-  response = open("http://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=#{season}&week=#{week}&position=#{position}&format=json").read
+  response = open("https://api.fantasy.nfl.com/v1/players/stats?statType=weekStats&season=#{season}&week=#{week}&position=#{position}&format=json").read
   week_object = JSON.parse(response)
 end
 

@@ -46,7 +46,7 @@ class Player < ApplicationRecord
   def self.top_remaining(year)
     require 'open-uri'
     require 'json'
-    response = open('http://api.fantasy.nfl.com/v1/players/userdraftranks?format=json').read
+    response = open('https://api.fantasy.nfl.com/v1/players/userdraftranks?format=json').read
     ranking_object = JSON.parse(response)
     unsold_list = self.unsold(year)
     top_ranked_left = []
