@@ -64,10 +64,12 @@ body:not(.without-admin) .not-admin {
 /******** player card **********/
 
 .player-card {
+  box-sizing: border-box;
   border-style: solid;
-  display: inline-block;
+  // display: inline-block;
   border-width: 1px;
-  width: 955px;
+  width: 620px;
+  height: 500px;
   border-radius: 10px;
   margin: 10px;
   padding: 10px;
@@ -180,7 +182,7 @@ body:not(.without-admin) .not-admin {
 
 .highlight-box {
   border-style: solid;
-  display: inline-block;
+  // display: inline-block;
   border-width: 1px;
   border-radius: 10px;
   margin: 10px;
@@ -194,7 +196,7 @@ body:not(.without-admin) .not-admin {
 .graph {
   border-style: solid;
   position: relative;
-  display: inline-block;
+  // display: inline-block;
   border-width: 1px;
   width: 435px;
   border-radius: 10px;
@@ -301,7 +303,8 @@ body:not(.without-admin) .not-admin {
   border-style: solid;
   border-width: 1px;
   height: 30px;
-  margin-right: 5px;
+  width: 100%;
+  margin: 2px 0px 20px 0px;
 }
 
 
@@ -419,15 +422,16 @@ input[type=number] {
 }
 
 .bid-box {
+  box-sizing: border-box;
   width: 300px;
+  height: 500px;
   border-style: solid;
   border-width: 1px;
   margin: 10px;
   padding: 5px;
-  display: inline-block;
+  // display: inline-block;
   background-color: #1C1E28;
   border-radius: 5px;
-  height: 200px;
   overflow-y: scroll;
 }
 
@@ -509,6 +513,9 @@ input[type=number] {
 
 #switcher {
   min-height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 

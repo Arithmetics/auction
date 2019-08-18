@@ -1,0 +1,14 @@
+<%= form_for bid, remote: true  do |f| %>
+  <%= f.hidden_field :player_id, value: nominated_player.id %>
+  <%= f.hidden_field :draft_id, value: draft.id %>
+  <%= f.hidden_field :winning, value: false %>
+
+    <span class="money">
+      $
+    </span>
+    <span class="num-field">
+      <%= f.number_field :amount, value: bids.first.amount + 1 %>
+    </span>
+    <%= f.submit "Submit Bid", class: "bid-button" %>
+    <%= f.collection_select :user_id, User.all, :id, :name, {:include_blank => true}, {:class=>'nomination-input'} %>
+<% end %>

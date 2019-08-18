@@ -1,42 +1,15 @@
 <div class="box">
-  <div id="test6">
-  </div>
   <div id="switcher" data-draft-id="<%= @draft.id %>">
     <% if !@nominated_player %>
       <div id="nomination">
         <%= render partial: 'nomination', locals: { draft: @draft } %>
       </div>
     <% else %>
-      <div>
-          <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first } %>
-      </div>
-      <div class="bid-box">
-        <% if !current_user.auctioneer %>
-          <div id="bidding-form" >
-            <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
-          </div>
-        <% end %>
-        <% if current_user.auctioneer %>
-          <div class="auctioneer">
-              <div id="sell_player">
-                <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
-              </div>
-              <div id="unnominate">
-                <%= render partial: 'unnominate', locals: { draft: @draft } %>
-              </div>
-          </div>
-        <% end %>
-        <h3 class="heading-label"> Bid History: </h3>
-        <ul id='bid-list' class="under-list">
-          <% @bids.each do |bid| %>
-            <%= render partial: 'bid', locals: { bid: bid } %>
-          <% end %>
-        </ul>
-      </div>
-      <%# <%= render partial: 'best_available', locals: { top_remaining: @top_remaining } %> %>
+      <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first, bids: @bids, draft: @draft, users: @users } %>
     <% end %>
   </div>
 </div>
+
 <div class="box">
 
       <% if !current_user.auctioneer %>

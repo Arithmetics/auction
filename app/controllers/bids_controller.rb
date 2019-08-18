@@ -6,6 +6,8 @@ class BidsController < ApplicationController
 
 
   def create
+    puts params
+
     if @bid.save
       ActionCable.server.broadcast "draft_#{@bid.draft.id}",
         bid: render(partial: 'drafts/bid', locals: { bid: @bid }),
@@ -46,7 +48,7 @@ class BidsController < ApplicationController
   private ####################
 
   def bid_params
-    params.require(:bid).permit(:draft_id, :player_id, :user, :amount, :winning)
+    params.require(:bid).permit(:draft_id, :player_id, :user_id, :amount, :winning)
   end
 
   def user_is_auctioneer
@@ -61,12 +63,17 @@ class BidsController < ApplicationController
   end
 
   def not_winning
-    @bid = current_user.bids.build(bid_params)
+    bid_maker = User.find(bid_params[:user_id])
+    puts "xxxxxx"
+    puts bid_maker
+    puts "xxxxxx"
+    @bid = bid_maker.bids.build(bid_params)
     @bid.winning = false
   end
 
   def check_if_enough_money
-    money_remaining = current_user.money_remaining(@bid.draft.year)
+    bid_maker = User.find(bid_params[:user_id])
+    money_remaining = bid_maker.money_remaining(@bid.draft.year)
     puts money_remaining
     if @bid.amount > money_remaining
       flash[:alert] = "You dont have enough money!"

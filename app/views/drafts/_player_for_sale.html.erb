@@ -14,6 +14,32 @@
   </div>
 </div>
 
+
+<div class="bid-box">
+  <% if !current_user.auctioneer %>
+    <div id="bidding-form" >
+      <%= render partial: 'bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids } %>
+    </div>
+  <% end %>
+  <% if current_user.auctioneer %>
+    <div class="auctioneer">
+        <%= render partial: 'auctioneer_bidding_form', locals: { bid: @bid, nominated_player: @nominated_player, draft: @draft, bids: @bids, users: @users } %>
+        <div id="sell_player">
+          <%= render partial: 'sell_player', locals: { bid: @bids.first } %>
+        </div>
+        <div id="unnominate">
+          <%= render partial: 'unnominate', locals: { draft: @draft } %>
+        </div>
+    </div>
+  <% end %>
+  <h3 class="heading-label"> Bid History: </h3>
+  <ul id='bid-list' class="under-list">
+    <% @bids.each do |bid| %>
+      <%= render partial: 'bid', locals: { bid: bid } %>
+    <% end %>
+  </ul>
+</div>
+
 <% player_id = @nominated_player.id %>
 
 <% video_url = "http://localhost:8000/#{player_id}.mp4"%>
