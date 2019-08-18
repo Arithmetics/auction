@@ -1,7 +1,4 @@
 <div class="box">
-  <% if current_user.auctioneer %>
-    <h3 class="heading-label"> You are the Auctioneer! </h3>
-  <% end %>
   <div id="test6">
   </div>
   <div id="switcher" data-draft-id="<%= @draft.id %>">
@@ -10,7 +7,7 @@
         <%= render partial: 'nomination', locals: { draft: @draft } %>
       </div>
     <% else %>
-      <div class="box">
+      <div>
           <%= render partial: 'player_for_sale', locals: { nominated_player: @nominated_player, bid: @bids.first } %>
       </div>
       <div class="bid-box">
@@ -36,7 +33,7 @@
           <% end %>
         </ul>
       </div>
-      <%= render partial: 'best_available', locals: { top_remaining: @top_remaining } %>
+      <%# <%= render partial: 'best_available', locals: { top_remaining: @top_remaining } %> %>
     <% end %>
   </div>
 </div>

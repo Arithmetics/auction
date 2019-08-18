@@ -1,17 +1,27 @@
 <div id="player_for_sale" class="player-card">
-<div class='center-pic'>
-  <%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{nominated_player.esbid}.png", class: "player-pic") %>
-</div>
-<div class='player-info'>
-  <h3 class="card-info"><%= nominated_player.player_name %>,  <%= nominated_player.position %></h3>
-  <div class="price">
-    <div class="price-circle">
-      <h4 class="card-info">Current Bid:
-      <span id="current-bid">$<%= bid.amount %></span></h4>
-    </div>
+  <div class='center-pic'>
+    <%= image_tag("http://static.nfl.com/static/content/public/static/img/fantasy/transparent/200x200/#{nominated_player.esbid}.png", class: "player-pic") %>
   </div>
-  <h4 class="card-info"> Leading Bidder: <span id="leading-bidder"><%= bid.user.name %></span></h4>
+  <div class='player-info'>
+    <h3 class="card-info"><%= nominated_player.player_name %>,  <%= nominated_player.position %></h3>
+    <div class="price">
+      <div class="price-circle">
+        <h4 class="card-info">Current Bid:
+        <span id="current-bid">$<%= bid.amount %></span></h4>
+      </div>
+    </div>
+    <h4 class="card-info"> Leading Bidder: <span id="leading-bidder"><%= bid.user.name %></span></h4>
+  </div>
 </div>
+
+<% player_id = @nominated_player.id %>
+
+<% video_url = "http://localhost:8000/#{player_id}.mp4"%>
+
+<div class="highlight-box">
+  <video width="855" height="484" autoplay muted controls>
+    <source src=<%= video_url %> type="video/mp4">
+  </video>
 </div>
 
 <% graph_data = @nominated_player.master_graphs_hash %>
@@ -22,7 +32,7 @@
         library: {colors: ["#00c87c", "#90ee7e"],
                   chart: {
                     backgroundColor: 'rgba(255, 255, 255, 0.0)',
-                    width: '250',
+                    width: '435',
                     padding: '10',
                     style: {
                       fontFamily: "'Unica One', sans-serif"
@@ -45,7 +55,7 @@
         library: {colors: ["#ffcb5e", "#90ee7e"],
                   chart: {
                     backgroundColor: 'rgba(255, 255, 255, 0.0)',
-                    width: '250',
+                    width: '435',
                     style: {
                       fontFamily: "'Unica One', sans-serif"
                     },
@@ -67,7 +77,7 @@
         library: {colors: ["#73629e", "#90ee7e"],
                   chart: {
                     backgroundColor: 'rgba(255, 255, 255, 0.0)',
-                    width: '250',
+                    width: '435',
                     style: {
                       fontFamily: "'Unica One', sans-serif"
                     },
@@ -89,7 +99,7 @@
         library: {colors: ["#28d5dc", "#90ee7e"],
                   chart: {
                     backgroundColor: 'rgba(255, 255, 255, 0.0)',
-                    width: '250',
+                    width: '435',
                     style: {
                       fontFamily: "'Unica One', sans-serif"
                     },
