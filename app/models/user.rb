@@ -23,4 +23,13 @@ class User < ApplicationRecord
     200 - spent
   end
 
+  def make_acronym()
+    input_string = self.name
+    return nil unless input_string
+    return 'Not a string' unless input_string.is_a? String
+    return 'Not letters' unless (input_string =~ /^[a-z\s]*$/i)
+  
+    input_string.split(" ").each_with_object(''){|e, m| m << e[0]}.upcase
+  end
+
 end

@@ -53,9 +53,10 @@ class DraftsController < ApplicationController
   def nominate
     @top_remaining = Player.top_remaining(@draft.year)[0..30]
     if @draft.update_attributes(draft_params)
-      starting_bid = @draft.bids.build(player_id: @draft.nominated_player_id, user: current_user, amount: 1)
+      starting_bid = @draft.bids.build(player_id: @draft.nominated_player_id, user: current_user, amount: 0)
       starting_bid.save
       @nominated_player = @draft.nominated_player
+      @users = User.all.where(auctioneer: false)
       @bids = @draft.bids.where(player: @nominated_player).order(:amount).reverse
       @bid = current_user.bids.build(
         draft: @draft,
@@ -67,7 +68,8 @@ class DraftsController < ApplicationController
           bids: @bids,
           draft: @draft,
           bid: @bid,
-          top_remaining: @top_remaining
+          top_remaining: @top_remaining,
+          users: @users
            })
     else
       flash[:alert] = "error"

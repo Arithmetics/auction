@@ -10,7 +10,17 @@
         <span id="current-bid">$<%= bid.amount %></span></h4>
       </div>
     </div>
-    <h4 class="card-info"> Leading Bidder: <span id="leading-bidder"><%= bid.user.name %></span></h4>
+    <h4 class="card-info"> Leading Bidder:<br> <span id="leading-bidder"><%= bid.user.name %></span></h4>
+  </div>
+  <div class='money-left-section'>
+    <% @users && @users.each do |user| %>
+      <% if user.id != current_user.id  %>
+        <div class="mini-money">
+          <h4><p><%= user.make_acronym() %> -
+          <span class="money-green" id="<%= 'other-user-money-' + user.id.to_s %>">$<%= user.money_remaining(@draft.year).to_s%></span> </p></h4>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
 
