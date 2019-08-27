@@ -32,18 +32,34 @@ class Draft < ApplicationRecord
   end
 
   def set_next_nominating_user
-    if !self.nominating_user_id || self.nominating_user_id == User.count
-      self.update_attribute(:nominating_user_id, User.first.id)
+
+    # no nom user or at the end
+    if !self.nominating_user_id || self.nominating_user_id == User.count && !self.reverseOrder
+      self.update_attribute(:reverseOrder, true)
+      self.update_attribute(:nominating_user_id, User.last.id)
+    elsif self.nominating_user_id == 1
+      if self.reverseOrder 
+        self.update_attribute(:nominating_user_id, User.first.id)
+        self.update_attribute(:reverseOrder, false)
+      else
+        self.update_attribute(:nominating_user_id, User.second.id)
+      end
     else
       found = false
       until found
         current_nomination_id = self.nominating_user_id
-        self.update_attribute(:nominating_user_id, current_nomination_id + 1)
+        if self.reverseOrder
+          self.update_attribute(:nominating_user_id, current_nomination_id - 1)
+        else
+          self.update_attribute(:nominating_user_id, current_nomination_id + 1)
+        end
         if User.find(self.nominating_user_id)
           found = true
         end
       end
     end
+
+    # conditions to move on if auctioneer or out of money
     if User.find(self.nominating_user_id).auctioneer
       self.set_next_nominating_user
     elsif User.find(self.nominating_user_id).money_remaining(self.year) < 1

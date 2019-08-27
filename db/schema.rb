@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180220011151) do
+ActiveRecord::Schema.define(version: 20190827004121) do
 
   create_table "bids", force: :cascade do |t|
     t.integer "amount"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180220011151) do
     t.boolean "open"
     t.integer "nominated_player_id"
     t.integer "nominating_user_id"
+    t.boolean "reverseOrder"
   end
 
   create_table "games", force: :cascade do |t|
