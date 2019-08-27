@@ -13,14 +13,35 @@
     <h4 class="card-info"> Leading Bidder:<br> <span id="leading-bidder"><%= bid.user.name %></span></h4>
   </div>
   <div class='money-left-section'>
+
+  <% money_data = {} %>
     <% @users && @users.each do |user| %>
       <% if user.id != current_user.id  %>
-        <div class="mini-money">
-          <h4><p><%= user.make_acronym() %> -
-          <span class="money-green" id="<%= 'other-user-money-' + user.id.to_s %>">$<%= user.money_remaining(@draft.year).to_s%></span> </p></h4>
-        </div>
+          <% money_data[user.make_acronym()] = user.money_remaining(@draft.year) %> 
       <% end %>
     <% end %>
+
+
+    <%= column_chart (money_data), max: 200,
+        library: {colors: ["#00c87c", "#90ee7e"],
+                  chart: {
+                    backgroundColor: 'rgba(255, 255, 255, 0.0)',
+                    width: '550',
+                    height: '200',
+                    padding: '10',
+                    style: {
+                      fontFamily: "'Unica One', sans-serif"
+                    },
+                  },
+                  title: {
+                    text: 'Owner $ Remaining',
+                    style: {
+                    color: "#ff6560",
+                    fontSize: '18px'
+                  }
+                }
+              }
+  %>
   </div>
 </div>
 
