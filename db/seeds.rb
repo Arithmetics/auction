@@ -385,22 +385,23 @@ rookies = [
   ["Justice Hill","RB",99909,88809,77701],
   ["Darwin Thompson","RB",99910,88810,77701],
   ["Damien Harris","RB",99911,88811,77701],
-  ["Tony Pollard,""RB",99912,88812,77701],
+  ["Tony Pollard","RB",99912,88812,77701],
   ["Alexander Mattison","RB",99913,88813,77701],
   ["DK Metcalf","WR",99914,88814,77701],
-  ["K'Neal Harris","WR",99915,88815,77701],
+  ["N'Keal Harry","WR",99915,88815,77701],
   ["Marquise Brown","WR",99916,88816,77701],
   ["Parris Campell","WR",99917,88817,77701],
   ["TJ Hockenson","TE",99918,88818,77701],
-  ["Noah Fant","TE",99919,88819,77701],
+  ["Noah Fant","TE",99919,88819,77701]
 ]
 
 rookies.each do |rookie|
-  Player.new(
+  player = Player.new(
     player_name: rookie[0],
     position: rookie[1],
     id: rookie[2],
     esbid: rookie[3],
     gsisPlayerId: rookie[4]
   )
+  player.save!
 end
