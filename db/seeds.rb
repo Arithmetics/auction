@@ -366,3 +366,41 @@ csv.each do |entry|
     winning: true
   )
 end
+
+
+
+
+
+####### rookies ####
+
+rookies = [
+  ["Kyler Murray","QB",99901,88801,77701],
+  ["Dwayne Haskins","QB",99902,88802,77701],
+  ["Daniel Jones","QB",99903,88803,77701],
+  ["Josh Jacobs","RB",99904,88804,77701],
+  ["David Montgomery","RB",99905,88805,77701],
+  ["Miles Sanders","RB",99906,88806,77701],
+  ["Devin Singletary","RB",99907,88807,77701],
+  ["Darrel Henderson","RB",99908,88808,77701],
+  ["Justice Hill","RB",99909,88809,77701],
+  ["Darwin Thompson","RB",99910,88810,77701],
+  ["Damien Harris","RB",99911,88811,77701],
+  ["Tony Pollard,""RB",99912,88812,77701],
+  ["Alexander Mattison","RB",99913,88813,77701],
+  ["DK Metcalf","WR",99914,88814,77701],
+  ["K'Neal Harris","WR",99915,88815,77701],
+  ["Marquise Brown","WR",99916,88816,77701],
+  ["Parris Campell","WR",99917,88817,77701],
+  ["TJ Hockenson","TE",99918,88818,77701],
+  ["Noah Fant","TE",99919,88819,77701],
+]
+
+rookies.each do |rookie|
+  Player.new(
+    player_name: rookie[0],
+    position: rookie[1],
+    id: rookie[2],
+    esbid: rookie[3],
+    gsisPlayerId: rookie[4]
+  )
+end
