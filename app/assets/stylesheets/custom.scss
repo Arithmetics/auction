@@ -132,11 +132,11 @@ body:not(.without-admin) .not-admin {
 
 .best-available {
   display: inline-block;
-  height: 160px;
+  height: 270px;
   vertical-align:top;
   padding: 20px;
   justify-content: center;
-
+  width: 95%;
 }
 
 #best-av-label {
@@ -311,8 +311,20 @@ body:not(.without-admin) .not-admin {
   height: 30px;
   width: 100%;
   margin: 2px 0px 20px 0px;
+  display: block;
+  width: 800px;
 }
 
+.nomination-input-two {
+  background-color: #1C1E28;
+  font-size: 20px;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 1px;
+  height: 30px;
+  width: 100%;
+  margin: 2px 0px 20px 0px;
+}
 
 .num_field {
   display: inline-block;
@@ -326,7 +338,7 @@ body:not(.without-admin) .not-admin {
   border-radius: 5px;
   vertical-align:top;
   display: inline-block;
-  width: 320px;
+  width: 353px;
 
 }
 
@@ -358,6 +370,8 @@ input[type=number] {
       background-color: #00C87C;
     border-radius: 5px;
     color: black;
+    width: 800px;
+    font-size: 20px;
 }
 
 .sell-button {
@@ -395,6 +409,7 @@ input[type=number] {
 
 .bid-button {
   height: 50px;
+  width: 120px;
   position: relative;
   top: -3px;
   padding: 12px 20px;
@@ -464,6 +479,7 @@ input[type=number] {
 
 .blocks {
   display: inline-block;
+  margin-right: 20px;
   ol {
     margin: 0;
   }
@@ -637,5 +653,22 @@ input[type=number] {
 
 
 .money-green {
+  color: #00c87c;
+}
+
+.nomination-box {
+  width: 1880px;
+
+  li {
+    font-size: 30px;
+  }
+}
+
+
+.waiting {
+  font-size: 30px;
+}
+
+.nom-name {
   color: #00c87c;
 }

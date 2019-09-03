@@ -1,18 +1,20 @@
-<div class="box">
-  <h3 class="heading-label">Being bid on: </h3>
-  <h4 class="waiting">Waiting for nomination from:
-    <% if draft.nominating_user %>
-      <%= draft.nominating_user.name %>
-    <% else %>
-      Auctioneer!
-    <% end %>
-  </h4>
-  <div class="nom-user-only">
-    <%= form_for draft, :url => {:action=> "nominate", :method => :patch, :controller => "drafts", id: draft.id}, remote: true do |f| %>
-      <%= f.hidden_field :id, value: draft.id %>
-      <%= f.collection_select :nominated_player_id, Player.unsold(draft.year), :id, :name_with_position, {:include_blank => true}, {:class=>'nomination-input'} %>
-      <%= f.submit "Nominate Player", :class => 'nominate' %>
-    <% end %>
+<div class="nomination-box">
+  <div class="box">
+    <h3 class="heading-label">Nomination: </h3>
+    <h4 class="waiting">Waiting for nomination from:
+      <% if draft.nominating_user %>
+        <span class="nom-name"><%= draft.nominating_user.name %></span>
+      <% else %>
+        Auctioneer!
+      <% end %>
+    </h4>
+    <div class="nom-user-only">
+      <%= form_for draft, :url => {:action=> "nominate", :method => :patch, :controller => "drafts", id: draft.id}, remote: true do |f| %>
+        <%= f.hidden_field :id, value: draft.id %>
+        <%= f.collection_select :nominated_player_id, Player.unsold(draft.year), :id, :name_with_position, {:include_blank => true}, {:class=>'nomination-input'} %>
+        <%= f.submit "Nominate Player", :class => 'nominate' %>
+      <% end %>
+    </div>
+    <%= render partial: 'drafts/best_available', locals: { top_remaining: @top_remaining } %>
   </div>
-  <%= render partial: 'drafts/best_available', locals: { top_remaining: @top_remaining } %>
 </div>
